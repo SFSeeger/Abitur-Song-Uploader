@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - my-db:/var/lib/mysql
+
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    expose:
+      - 80
+    restart: always
+    depends_on:
+      - db
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:3306"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+
+    volumes:
+      - .env:/app/.env
+      - ./src/:/app/.
+
+volumes:
+  my-db:
+
