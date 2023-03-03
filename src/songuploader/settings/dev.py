@@ -12,4 +12,3 @@ DATABASES = {
         "PORT": "3306",
     }
 }
-print("AAA")
