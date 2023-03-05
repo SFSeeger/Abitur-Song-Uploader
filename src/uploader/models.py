@@ -1,4 +1,5 @@
 from django.db import models
+from django.core import validators
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
@@ -11,7 +12,18 @@ def generate_filename(self, filename):
 class Submission(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
-    song_url = models.CharField(_("Song URL"), max_length=512)
-    start_time = models.IntegerField(_("Start Time"), blank=True, default=0)
+    song_url = models.URLField(_("Song URL"), max_length=512, null=True, blank=True)
+    start_time = models.IntegerField(
+        _("Start Time"),
+        validators=[validators.MinValueValidator(0)],
+        blank=True,
+        default=0,
+    )
 
-    song = models.FileField(_("Song File"), upload_to=generate_filename)
+    song = models.FileField(
+        _("Song File"),
+        upload_to=generate_filename,
+        validators=[validators.FileExtensionValidator(["mp3", "wav", "ogg"])],
+        null=True,
+        blank=True,
+    )
