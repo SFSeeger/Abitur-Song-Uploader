@@ -1,0 +1,41 @@
+:root {
+    --primary-light: hsl(171, 100%, 96%);
+    --link-light: hsl(219, 70%, 96%);
+    --info-light: hsl(206, 70%, 96%);
+    --success-light: hsl(142, 52%, 96%);
+    --warning-light: hsl(48, 100%, 96%);
+    --danger-light: hsl(347, 90%, 96%);
+    --primary-dark: hsl(171, 100%, 29%);
+    --link-dark: hsl(217, 71%, 45%);
+    --info-dark: hsl(204, 71%, 39%);
+    --success-dark: hsl(141, 53%, 31%);
+    --warning-dark: hsl(48, 100%, 29%);
+    --danger-dark: hsl(348, 86%, 43%);
+
+    --background-white: hsl(0, 0%, 100%);
+    --background-black: hsl(0, 0%, 4%);
+    --background-light: hsl(0, 0%, 96%);
+    --background-dark: hsl(0, 0%, 21%);
+    --background-primary: hsl(171, 100%, 41%);
+    --background-link: hsl(217, 71%, 53%);
+    --background-info: hsl(204, 86%, 53%);
+    --background-success: hsl(141, 71%, 48%);
+    --background-warning: hsl(48, 100%, 67%);
+    --background-danger: hsl(348, 100%, 61%);
+
+    --text-white: hsl(0, 0%, 100%);
+    --text-black: hsl(0, 0%, 4%);
+    --text-light: hsl(0, 0%, 96%);
+    --text-dark: hsl(0, 0%, 21%);
+    --text-primary: hsl(171, 100%, 41%);
+    --text-link: hsl(217, 71%, 53%);
+    --text-info: hsl(204, 86%, 53%);
+    --text-success: hsl(141, 71%, 48%);
+    --text-warning: hsl(48, 100%, 67%);
+    --text-danger: hsl(348, 100%, 61%);
+}
+
+html,
+body {
+    height: 100vh;
+}

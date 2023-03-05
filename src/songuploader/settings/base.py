@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as message_constants
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -37,11 +39,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bulma",
+    "django_q",
+    "uploader",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -54,7 +61,7 @@ ROOT_URLCONF = "songuploader.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["web/theme/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -121,8 +128,37 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
+STATICFILES_DIRS = [BASE_DIR / "theme/node_modules", BASE_DIR / "theme/static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+APPEND_SLASH = True
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bulma"
+CRISPY_TEMPLATE_PACK = "bulma"
+
+Q_CLUSTER = {
+    "name": "DjangORM",
+    "workers": 4,
+    "timeout": 90,
+    "retry": 120,
+    "queue_limit": 50,
+    "bulk": 10,
+    "orm": "default",
+}
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: "is-success is-light",
+    message_constants.INFO: "is-primary",
+    message_constants.SUCCESS: "issuccess",
+    message_constants.WARNING: "is-warning",
+    message_constants.ERROR: "is-danger",
+}
+
+LANGUAGES = [
+    ("de", _("German")),
+    ("en", _("English")),
+]

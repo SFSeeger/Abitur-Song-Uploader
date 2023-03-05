@@ -1,11 +1,25 @@
 FROM python:3.11-bullseye
 
+ENV NODE_VERSION=16.13.0
+
 
 RUN apt-get update
-RUN apt-get install default-libmysqlclient-dev gettext -y
+RUN apt-get install -y default-libmysqlclient-dev gettext curl
+
+#RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+# ENV NVM_DIR=/root/.nvm
+# RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+# RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+# RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+# ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+
 WORKDIR /app/web
 COPY src/ ./src/
 
+# WORKDIR /app/web/theme
+# RUN npm -i
+
+RUN chown -R root /app
 WORKDIR /app
 ADD ./requirements-dev.txt ./
 ADD ./entrypoint.sh ./

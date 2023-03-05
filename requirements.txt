@@ -2,6 +2,8 @@ ansicon==1.89.0 ; python_version >= "3.10" and python_version < "4" and platform
 arrow==1.2.3 ; python_version >= "3.10" and python_version < "4"
 asgiref==3.6.0 ; python_version >= "3.10" and python_version < "4.0"
 blessed==1.20.0 ; python_version >= "3.10" and python_version < "4"
+crispy-bulma==0.8.3 ; python_version >= "3.10" and python_version < "4.0"
+django-crispy-forms==2.0 ; python_version >= "3.10" and python_version < "4.0"
 django-picklefield==3.1 ; python_version >= "3.10" and python_version < "4"
 django-q==1.3.9 ; python_version >= "3.10" and python_version < "4"
 django==4.1.7 ; python_version >= "3.10" and python_version < "4.0"

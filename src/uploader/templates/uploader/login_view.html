@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block title %}Login{% endblock title %}
+{% block content %}
+<form action="." method="post">
+    {% comment %} {% csrf_token %} {% endcomment %}
+    {% crispy form %}
+    {% comment %} <input type="submit" class="button is-success" value={% translate "Login" %}></input> {% endcomment %}
+</form>
+{% endblock content %}

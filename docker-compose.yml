@@ -31,8 +31,8 @@ services:
       retries: 5
 
     volumes:
-      - .env:/app/web/.env
       - ./src/:/app/web/.
+      - ./.env:/app/web/.
 
 volumes:
   my-db:

@@ -1,0 +1,84 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'fontawsome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </head>
+  <body>
+    <div class="container hero is-fullheight is-fullwidth">
+      <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+          <a href="/" class="navbar-item">
+            Abitur 2023
+          </a>
+          <div class="navbar burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div id="navbarTransparent" class="navbar-menu">
+          <div class="navbar-start">
+            <a href="/" class="navbar-item">
+              {% translate "Home" %}
+            </a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="button is-primary">{% translate "Logout" %}</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="button is-primary">{% translate "Login" %}</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
+            <button class="delete"></button>
+            {{message}}
+        </div>
+        {% endfor %}
+      {% endif %}
+      
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-half has-background-light">
+              <div>
+                {% block content %} {% endblock content %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {% include 'footer.html' %}
+    </div>
+
+    <script src="{% static 'fontawsome/js/all.js' %}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+          const $notification = $delete.parentNode;
+
+          $delete.addEventListener('click', () => {
+            $notification.parentNode.removeChild($notification);
+          });
+        });
+      });
+    </script>
+    {% block scripts %}{% endblock scripts %}
+  </body>
+</html>
