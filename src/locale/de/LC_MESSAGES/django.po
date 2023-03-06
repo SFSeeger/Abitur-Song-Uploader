@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: theme/templates/base.html:28
 msgid "Home"
-msgstr ""
+msgstr "Start"
 
 #: theme/templates/base.html:35
 msgid "Logout"

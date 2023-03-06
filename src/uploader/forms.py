@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
+from crispy_forms.layout import Layout, Hidden
 from crispy_bulma.layout import Submit, Field
 from crispy_bulma.widgets import FileUploadInput
 
@@ -24,16 +24,20 @@ class LoginForm(forms.Form):
                 icon_prepend="fa-solid fa-user",
             ),
             Field("password"),
+            Hidden("redirect_to", value="", id="redirect_to")
             # Submit("submit", _("Submit")),
         )
         self.helper.add_input(
-            Submit("submit", _("Submit"), css_class="is-primary is-fullwidth")
+            Submit(
+                "submit", _("Submit"), css_class="is-primary is-fullwidth is-rounded"
+            )
         )
 
     username = forms.CharField(max_length=512, required=True, label=_("Username"))
     password = forms.CharField(
         max_length=512, required=True, widget=forms.PasswordInput(), label=_("Password")
     )
+    redirect_to = forms.CharField(max_length=512, required=False)
 
 
 class SubmissionForm(forms.ModelForm):
