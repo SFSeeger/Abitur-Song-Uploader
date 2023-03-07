@@ -1,4 +1,6 @@
 from typing import Any
+import requests
+import re
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
@@ -26,7 +28,8 @@ class LoginView(FormView):
         )
         if user is not None:
             login(self.request, user)
-            return redirect(form.cleaned_data.get("redirect_to", "/"))
+            redirect_to = form.cleaned_data.get("redirect_to")
+            return redirect(redirect_to if redirect_to else "/")
         else:
             messages.error(self.request, _("Wrong username or password"))
             return self.form_invalid(form)
@@ -59,7 +62,19 @@ class SubmissionCreateView(LoginRequiredMixin, CreateView):
     template_name = "uploader/upload_form.html"
     redirect_url = reverse_lazy("index")
 
+    pattern = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"'
+    yt_url = "^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+
+    def try_site(self, url):
+        request = requests.get(url)
+        return False if self.pattern in request.text else True
+
     def form_valid(self, form):
+        if not re.match(self.yt_url, form.cleaned_data["song_url"]):
+            return super().form_invalid()
+        if not self.try_site(form.cleaned_data["song_url"]):
+            return super().form_invalid()
+
         submission = form.save(commit=False)
         submission.user = self.request.user
         submission.save()

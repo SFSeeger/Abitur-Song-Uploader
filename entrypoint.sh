@@ -6,4 +6,4 @@
 
 ./web/manage.py qcluster &
 
-python -Xfrozen_modules=off -m debugpy --wait-for-client --listen 0.0.0.0:3000 ./web/manage.py runserver 0.0.0.0:80
+python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:3000 ./web/manage.py runserver 0.0.0.0:80
