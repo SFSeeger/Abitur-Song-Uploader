@@ -1,5 +1,8 @@
 FROM python:3.11-bullseye
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 ENV NODE_VERSION=16.13.0
 
 
@@ -26,6 +29,7 @@ ADD ./entrypoint.sh ./
 
 RUN pip install -r requirements-dev.txt --no-cache-dir 
 EXPOSE 80
+EXPOSE 3000
 
 ENTRYPOINT [ "bash", "/app/entrypoint.sh" ]
 # ENTRYPOINT [ "python3", "manage.py", "runserver", "0.0.0.0:8000"]

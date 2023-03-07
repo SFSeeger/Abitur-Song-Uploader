@@ -1,6 +1,44 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
 {% block content %}
-    <h1>Hello World!</h1>
-    <h2>Welcome {{user}}</h2>
-    <p>{{lang_code}}</p>
+<div class="tile is-ancestor">
+    <div class="tile is-parent is-4 is-vertical">
+        <div class="tile is-child box has-text-centered">
+            <div class="icon is-large">
+                <i class="fas fa-2x fa-solid fa-music has-text-primary"></i>
+            </div>
+            <p>{% translate "Song Submitted" %}</p>
+        </div>
+        <div class="tile is-child box has-text-centered">
+            <div class="icon is-large">
+                <i class="fas fa-2x fa-regular fa-image has-text-danger"></i>
+            </div>
+            <p>{% translate "Image Submitted" %}</p>
+        </div>
+    </div>
+    <div class="tile is-parent">
+        <div class="tile is-child box has-text-centered">
+            <p class="heading">{% translate "Days until Abi" %}</p>
+            <p class="title" id="countdown"></p>
+        </div>
+    </div>
+</div>
 {% endblock content %}
+{% block scripts %}
+<script>
+    var date = new Date(2023, 6, 30);
+    setInterval(function() {
+        var today = new Date();
+    
+        var diff = Math.abs(date.getTime()-today.getTime());
+    
+        const days = parseInt((date - today) / (1000 * 60 * 60 * 24));
+        const hours = parseInt(Math.abs(date - today) / (1000 * 60 * 60) % 24);
+        const minutes = parseInt(diff / (1000 * 60) % 60);
+        const seconds = parseInt(diff / (1000) % 60);
+    
+        document.querySelector("#countdown").innerHTML = `${days}:${hours}:${minutes}:${seconds}`
+    }, 500);
+</script>
+{% endblock scripts %}

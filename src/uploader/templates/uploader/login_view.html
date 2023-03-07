@@ -1,12 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'base_with_box.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% load i18n %}
 
 {% block title %}Login{% endblock title %}
 {% block content %}
+<img src="{% static 'png/cap.png' %}" alt="" class="image is-one-third">
 <form action="." method="post">
-    {% comment %} {% csrf_token %} {% endcomment %}
     {% crispy form %}
-    {% comment %} <input type="submit" class="button is-success" value={% translate "Login" %}></input> {% endcomment %}
 </form>
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageSize = urlParams.get('redirect_to');
+
+        document.querySelector("#redirect_to").value = pageSize;
+    </script>
+{% endblock scripts %}

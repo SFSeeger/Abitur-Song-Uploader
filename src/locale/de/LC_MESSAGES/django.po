@@ -21,6 +21,7 @@ msgstr ""
 #: theme/templates/base.html:30
 msgid "Home"
 msgstr "Start"
+<<<<<<< HEAD
 
 #: theme/templates/base.html:33
 msgid "Choose Song"

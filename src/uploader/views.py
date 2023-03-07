@@ -26,7 +26,7 @@ class LoginView(FormView):
         )
         if user is not None:
             login(self.request, user)
-            return redirect(reverse("index"))
+            return redirect(form.cleaned_data.get("redirect_to", "/"))
         else:
             messages.error(self.request, _("Wrong username or password"))
             return self.form_invalid(form)
