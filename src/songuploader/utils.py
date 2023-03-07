@@ -1,4 +1,5 @@
 import os
+import shutil
 from datetime import datetime
 from typing import Optional
 
@@ -51,13 +52,31 @@ class DisabledOnDateMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-def download_song(url: str, submission: Submission):
-    out_path = os.path.join("/tmp", f"{submission.user.username}_temp.wav")
-    YouTube(url=url).streams.filter(only_audio=True).first().download(
-        output_path=os.path.dirname(out_path), filename=os.path.basename(out_path)
+class LoginRequiredTemplateView(LoginRequiredMixin, TemplateView):
+    login_url = reverse_lazy("login")
+    redirect_field_name = "redirect_to"
+
+
+def download_song(submission: Submission):
+    mp4_out_path = os.path.join("/tmp", f"{submission.user.id}.mp4")
+    mp3_out_path = os.path.join("/tmp", f"{submission.user.id}.mp3")
+    YouTube(url=submission.song_url).streams.filter(only_audio=True).first().download(
+        output_path=os.path.dirname(mp4_out_path),
+        filename=os.path.basename(mp4_out_path),
     )
-    open_file = open(out_path, "rb")
+    os.system(f"ffmpeg -i {mp4_out_path} -vn {mp3_out_path}")
+    open_file = open(mp3_out_path, "rb")
     song_file: File = File(open_file)
     submission.song = song_file
     submission.save()
+    os.remove(mp4_out_path)
+    os.remove(mp3_out_path)
+
+
+def slice_song(submission: Submission):
+    out_path = os.path.join("/tmp", os.path.basename(submission.song.name))
+    shutil.copy2(submission.song.path, out_path)
+    os.system(
+        f"ffmpeg -ss {submission.start_time} -i {out_path} -c copy -y -t {submission.end_time-submission.start_time} {submission.song.path}"
+    )
     os.remove(out_path)
