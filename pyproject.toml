@@ -20,6 +20,7 @@ requests = "^2.28.2"
 [tool.poetry.group.dev.dependencies]
 pylance = "^0.3.10"
 black = "^23.1.0"
+pylint-django = "^2.5.3"
 
 [build-system]
 requires = ["poetry-core"]

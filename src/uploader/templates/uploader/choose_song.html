@@ -1,0 +1,14 @@
+{% extends 'base_with_box.html' %}
+{% load i18n %}
+{% block title %}
+    {% translate "Choose upload method" %}
+{% endblock title %}
+
+{% block content %}
+    <a href="{% url 'from-youtube' %}" class="button is-large has-tooltip-arrow" data-tooltip="{% translate 'load song from youtube (recommended)' %}">
+        Using Youtube
+    </a>
+    <a href="{% url 'upload' %}" class="button is-large has-tooltip-arrow" data-tooltip="{% translate 'uplaod your own song from disk' %}">
+        Using File
+    </a>
+{% endblock content %}

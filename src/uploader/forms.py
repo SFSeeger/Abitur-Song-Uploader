@@ -1,14 +1,24 @@
+import requests
+import re
 from django import forms
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Hidden
+from crispy_forms.layout import Layout, Hidden, Row, Div
+from crispy_forms.bootstrap import PrependedText
 from crispy_bulma.layout import Submit, Field
-from crispy_bulma.widgets import FileUploadInput
 
 from .models import Submission
+
+
+pattern = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"'
+yt_url = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+
+
+def try_site(video_id: str) -> bool:
+    request = requests.get(f"http://img.youtube.com/vi/{video_id}/mqdefault.jpg")
+    return request.status_code == 200
 
 
 class LoginForm(forms.Form):
@@ -16,16 +26,18 @@ class LoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            # Field("username", autocomplete="off"),
-            Field(
+            PrependedText(
                 "username",
+                "fa-solid fa-user",
+                css_class="input",
                 autocomplete="off",
-                template="bulma/layout/input_with_icon.html",
-                icon_prepend="fa-solid fa-user",
             ),
-            Field("password"),
-            Hidden("redirect_to", value="", id="redirect_to")
-            # Submit("submit", _("Submit")),
+            PrependedText(
+                "password",
+                "fa-solid fa-lock",
+                css_class="input",
+            ),
+            Hidden("redirect_to", value="", id="redirect_to"),
         )
         self.helper.add_input(
             Submit(
@@ -44,17 +56,50 @@ class SubmissionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout("song_url", "start_time", "song")
+        self.helper.layout = Layout(
+            PrependedText("song_url", "fa-brands fa-youtube", css_class="input"),
+            Row(
+                Div("start_time", css_class="column"),
+                Div("end_time", css_class="column"),
+            ),
+        )
         self.helper.add_input(
             Submit("submit", _("Submit"), css_class="is-primary is-fullwidth")
         )
 
     class Meta:
         model = Submission
-        fields = ["song_url", "start_time", "song"]
-        widgets = {"song": FileUploadInput()}
+        fields = ["song_url", "start_time", "end_time"]
 
-    def clean(self):
-        cleaned_data = super().clean()
-        if cleaned_data.get("song_url") and cleaned_data.get("song"):
-            raise ValidationError(_("You can't set song url and song at the same time"))
+    def clean_song_url(self):
+        data = self.cleaned_data["song_url"]
+
+        if not (match := re.match(yt_url, data)):
+            raise ValidationError(
+                _("Not a valid YouTube url: %(value)s"),
+                code="invalid",
+                params={"value": data},
+            )
+        elif not try_site(match[6]):
+            raise ValidationError(
+                _("Could not find YouTube video"),
+                code="invalid",
+            )
+
+        return data
+
+    def clean_end_time(self):
+        start_time = self.cleaned_data["start_time"]
+        end_time = self.cleaned_data["end_time"]
+
+        if start_time > end_time:
+            raise ValidationError(
+                _("Start Time cannot be larger than End Time"), code="invalid"
+            )
+        elif (duration := (end_time - start_time)) > 30:
+            raise ValidationError(
+                _("Duration of %(duration)d larger than 30 seconds"),
+                code="invalid",
+                params={"duration": duration},
+            )
+        return end_time

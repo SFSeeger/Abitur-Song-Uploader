@@ -3,7 +3,26 @@
 
 {% block title %}Upload Song{% endblock title %}
 {% block content %}
-    <form action="." method="post">
+<form method="post">
     {% crispy form %}
 </form>
+<div id="spinnerModal" class="modal is-clipped">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="has-text-white is-flex is-justify-content-center" style="height:6rem; width:100%;">
+            <i class="fas fa-5x fa-spinner fa-pulse"></i>
+        </div>
+    </div>
+</div>
 {% endblock content %}
+
+{% block scripts %}
+<script>
+    const form = document.querySelector('form');
+    const spinner = document.querySelector("#spinnerModal");
+
+    form.addEventListener("submit", () => {
+        spinner.classList.add('is-active');
+    })
+</script>
+{% endblock scripts %}

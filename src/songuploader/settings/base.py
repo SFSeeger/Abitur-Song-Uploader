@@ -139,6 +139,8 @@ APPEND_SLASH = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bulma"
 CRISPY_TEMPLATE_PACK = "bulma"
+# Crispy form overrides
+
 
 Q_CLUSTER = {
     "name": "DjangORM",
