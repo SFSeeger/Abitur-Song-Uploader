@@ -29,6 +29,9 @@
             <a href="/" class="navbar-item">
               {% translate "Home" %}
             </a>
+            <a href="{% url 'choose-upload' %}" class="navbar-item">
+              {% translate "Choose Song" %}
+            </a>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
@@ -55,8 +58,8 @@
       <section class="section">
         <div class="container">
           <div class="columns is-centered">
-            <div class="column is-half has-background-light">
-              <div>
+            <div class="column is-half card">
+              <div class="content">
                 {% block content %} {% endblock content %}
               </div>
             </div>

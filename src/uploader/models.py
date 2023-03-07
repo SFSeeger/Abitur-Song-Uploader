@@ -14,7 +14,7 @@ class Submission(models.Model):
 
     song_url = models.URLField(_("Song URL"), max_length=512, null=True, blank=True)
     start_time = models.IntegerField(
-        _("Start Time"),
+        _("Start Time (in sec.)"),
         validators=[validators.MinValueValidator(0)],
         blank=True,
         default=0,
