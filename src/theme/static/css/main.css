@@ -46,15 +46,3 @@ body {
     flex-direction: column;
 }
 
-.site-content {
-    flex: 1;
-}
-
-.content.is-vcentered {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    /* used this for multiple child */
-    align-items: center;
-    /* if an only child */
-}

@@ -6,15 +6,19 @@
     <div class="tile is-parent is-4 is-vertical">
         <div class="tile is-child box has-text-centered">
             <div class="icon is-large">
-                <i class="fas fa-2x fa-solid fa-music has-text-primary"></i>
+                <i class="fas fa-2x fa-solid fa-music has-text-{{has_song|yesno:'primary,danger'}}"></i>
             </div>
-            <p>{% translate "Song Submitted" %}</p>
+            {% if has_song %}
+            <p>{% translate "Song submitted" %}</p>
+            {% else %}
+            <p>{% translate "Song missing" %}</p>
+            {% endif %}
         </div>
         <div class="tile is-child box has-text-centered">
             <div class="icon is-large">
                 <i class="fas fa-2x fa-regular fa-image has-text-danger"></i>
             </div>
-            <p>{% translate "Image Submitted" %}</p>
+            <p>{% translate "Image missing" %}</p>
         </div>
     </div>
     <div class="tile is-parent">

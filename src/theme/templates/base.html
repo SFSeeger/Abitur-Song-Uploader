@@ -7,47 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="{% static 'fontawsome/css/all.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link rel="shortcut icon" href="{% static 'png/favicon.ico' %}" type="image/x-icon">
+    {% include 'partials/header-links.html' %}
   </head>
   <body class="hero">
     <div class="hero-head">
-      <nav class="navbar is-transparent">
-        <div class="navbar-brand">
-          <a href="/" class="navbar-item">
-            <img src="{% static 'png/cap.png' %}" alt="Logo">
-            Abitur 2023
-          </a>
-          <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div id="navMenu" class="navbar-menu">
-          <div class="navbar-start">
-            <a href="/" class="navbar-item">
-              {% translate "Home" %}
-            </a>
-            <a href="{% url 'choose-upload' %}" class="navbar-item">
-              {% translate "Choose Song" %}
-            </a>
-          </div>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="button is-primary">{% translate "Logout" %}</a>
-                {% else %}
-                <a href="{% url 'login' %}" class="button is-primary">{% translate "Login" %}</a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      {% include 'partials/header.html' %}
     </div>
     {% if messages %}
       {% for message in messages %}
@@ -70,41 +34,10 @@
       </div>
     </main>
       
-    <div class="hero-foor">{% include 'footer.html' %}</div>
+    <div class="hero-foor">{% include 'partials/footer.html' %}</div>
 
     <script src="{% static 'fontawsome/js/all.js' %}"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-          const $notification = $delete.parentNode;
-
-          $delete.addEventListener('click', () => {
-            $notification.parentNode.removeChild($notification);
-          });
-        });
-      });
-
-      document.addEventListener('DOMContentLoaded', () => {
-
-      // Get all "navbar-burger" elements
-      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-      // Add a click event on each of them
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-
-          // Get the target from the "data-target" attribute
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-
-          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-
-          });
-        });
-      });
-    </script>
+    <script src="{% static 'js/bulma_cust.js' %}"></script>
     {% block scripts %}{% endblock scripts %}
   </body>
 </html>
