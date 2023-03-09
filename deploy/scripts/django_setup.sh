@@ -1,8 +1,11 @@
 #!/bin/bash
-python3 ./src/manage.py migrate
-python3 ./src/manage.py collectstatic --no-input
-python3 ./src/manage.py compilemessages
+set -e
+set -u
 
-python3 ./src/manage.py qcluster &
+python3 /home/gunicorn/Abitur-Song-Uploader/src/manage.py migrate
+python3 /home/gunicorn/Abitur-Song-Uploader/src/manage.py collectstatic --no-input
+python3 /home/gunicorn/Abitur-Song-Uploader/src/manage.py compilemessages
 
-gunicorn -c ./src/config/gunicorn/dev.py
+python3 /home/gunicorn/Abitur-Song-Uploader/src/manage.py qcluster &
+
+gunicorn -c /home/gunicorn/Abitur-Song-Uploader/src/config/gunicorn/dev.py
