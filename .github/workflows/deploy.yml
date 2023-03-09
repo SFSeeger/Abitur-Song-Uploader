@@ -2,8 +2,6 @@ name: Deploy
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   deployment:
@@ -23,5 +21,5 @@ jobs:
             export MYSQL_USER=${{ secrets.MYSQL_USER }}
             export MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
             pkill gunicorn
-            bash -c /home/gunicorn/Abitur-Song-Uploader/deploy/scripts/deploy.sh
-            bash -c /home/gunicorn/Abitur-Song-Uploader/deploy/scripts/django_setup.sh
+            ./home/gunicorn/Abitur-Song-Uploader/deploy/scripts/deploy.sh
+            ./home/gunicorn/Abitur-Song-Uploader/deploy/scripts/django_setup.sh
