@@ -10,5 +10,8 @@
     "--load-plugins",
     "pylint_django",
     "--django-settings-module=strc.songuploader.settings.base"
-  ]
+  ],
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///home/simon/code/Abitur-Song-Uploader/.github/workflows/deploy.yml"
+  }
 }
