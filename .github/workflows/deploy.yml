@@ -23,5 +23,5 @@ jobs:
           options: |
             --inventory ansible/hosts
             --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}}"
-            --vault-password "${{secrets.VAULT_PASS}}"
+            --vault-password "ansible/${{secrets.VAULT_PASS}}"
             --verbose
