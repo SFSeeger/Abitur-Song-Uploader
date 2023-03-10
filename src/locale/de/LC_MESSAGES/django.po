@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-05 03:33+0100\n"
+"POT-Creation-Date: 2023-03-06 11:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: theme/templates/base.html:28
+
+#: theme/templates/base.html:30
 msgid "Home"
 msgstr "Start"
+<<<<<<< HEAD
 
-#: theme/templates/base.html:35
+#: theme/templates/base.html:33
+msgid "Choose Song"
+msgstr "Song wählen"
+
+#: theme/templates/base.html:40
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: theme/templates/base.html:37
+#: theme/templates/base.html:42
 msgid "Login"
 msgstr "Einloggen"
