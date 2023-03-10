@@ -1,0 +1,50 @@
+- name: pull branch main
+  git: repo={{ repo }}
+    dest={{ repo_dir }}
+    accept_hostkey=yes
+    force=yes
+
+- name: install virtualenv
+  pip:
+    name: virtualenv
+
+- name: install python requirements
+  pip:
+    requirements: "{{ repo_dir }}/requirements.txt"
+    virtualenv: "{{repo_dir}}/.venv"
+- debug: var=result.stdout_lines
+
+- name: Install npm packages
+  npm:
+    path: "{{repo_dir}}/src/theme"
+
+- name: create static_root dir
+  file: path={{ static_dir }} state=directory mode=755
+
+- name: change perms on app directory
+  file:
+    path: "{{repo_dir}}"
+    owner: gunicorn
+    group: www-data
+    recurse: yes
+
+- name: include vault
+  include_vars:
+    file: vault.yml
+
+- name: create dotenv
+  template:
+    src: "templates/.env.j2"
+    dest: "{{ django_dir }}/.env"
+
+- name: django collectstatic
+  shell: "{{python_path}} manage.py collectstatic --noinput chdir={{ django_dir }}"
+
+- name: django compilemessages
+  shell: "{{python_path}} manage.py compilemessages chdir={{ django_dir }}"
+
+- name: django migrate
+  shell: "{{python_path}} manage.py migrate --noinput chdir={{ django_dir }}"
+  notify:
+    - daemon-reload
+    - gunicorn restart

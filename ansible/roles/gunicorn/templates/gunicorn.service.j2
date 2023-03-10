@@ -1,0 +1,22 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=gunicorn
+Group=www-data
+WorkingDirectory={{ django_dir }}
+ExecStart={{ repo_dir }}/.venv/bin/gunicorn \
+    --access-logfile - \
+    --workers 2 \
+    --timeout 120 \
+    # --bind 0.0.0.0:8000 \
+    --bind unix:/run/gunicorn.sock \
+    songuploader.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
