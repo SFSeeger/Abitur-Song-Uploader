@@ -13,7 +13,7 @@ jobs:
       - name: create files
         run: |
           touch ansible/.vault_pass
-          echo ${{secrets.VAULT_PASS}} > ansible/.vault_pass
+          echo "${{secrets.VAULT_PASS}}" > ansible/.vault_pass
 
       - name: run ansible
         uses: dawidd6/action-ansible-playbook@v2
