@@ -14,6 +14,8 @@ jobs:
         run: |
           touch ansible/.vault_pass
           echo "${{secrets.VAULT_PASS}}" > ansible/.vault_pass
+          ls -lah
+          ls -lah ansible
 
       - name: run ansible
         uses: dawidd6/action-ansible-playbook@v2
@@ -23,5 +25,5 @@ jobs:
           options: |
             --inventory ansible/hosts
             --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}}"
-            --vault-password "ansible/${{secrets.VAULT_PASS}}"
+            --vault-password-file "ansible/.vault_pass"
             --verbose
