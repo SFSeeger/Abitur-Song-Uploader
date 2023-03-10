@@ -30,7 +30,7 @@
 
 - name: include vault
   include_vars:
-    file: vault.yml
+    file: ansible/vault.yml
 
 - name: create dotenv
   template:
