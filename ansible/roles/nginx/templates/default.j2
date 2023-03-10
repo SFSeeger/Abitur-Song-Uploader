@@ -1,15 +1,21 @@
+upstream app-server {
+    # connect to this socket
+    server unix:///run/gunicorn.sock;    # for a file socket
+}
+
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name sfseeger.ddns.net www.sfseeger.ddns.net;
+    server_name _;
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/gunicorn.sock;
+        proxy_pass http://app-server;
     }
 
     location /static/ {
-        root {{static_dir}};
+        root {{ static_dir }};
+        try_files $uri $uri/;
     }
 }
 
@@ -18,11 +24,12 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass https://unix:/run/gunicorn.sock;
+        proxy_pass https://app-server;
     }
 
     location /static/ {
-        root {{static_dir}};
+        root { {static_dir }};
+        try_files $uri $uri/;
     }
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot

@@ -10,6 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
       - name: create files
         run: |
           touch ansible/.vault_pass
@@ -22,6 +27,6 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           options: |
             --inventory ansible/hosts
-            --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}}"
+            --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}} branch_name=${{ steps.extract_branch.outputs.branch }}"
             --vault-pass "${{secrets.VAULT_PASS}}"
             --verbose

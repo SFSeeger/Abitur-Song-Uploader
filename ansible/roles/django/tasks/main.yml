@@ -1,8 +1,10 @@
 - name: pull branch main
-  git: repo={{ repo }}
-    dest={{ repo_dir }}
-    accept_hostkey=yes
-    force=yes
+  git:
+    repo: "{{ repo }}"
+    dest: "{{ repo_dir }}"
+    accept_hostkey: yes
+    force: yes
+    version: "{{ branch_name | default('main', true) }}"
 
 - name: install virtualenv
   pip:
