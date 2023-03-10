@@ -11,11 +11,15 @@ jobs:
       - uses: actions/checkout@master
 
       - name: create files
-        run: echo {{secrets.VAULT_PASS}} > ansible/.vault_pass
+        run: |
+          touch ansible/.vault_pass
+          echo ${{secrets.VAULT_PASS}} > ansible/.vault_pass
 
       - name: run ansible
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: ansible/site.yml
           key: ${{secrets.SSH_KEY}}
-          options: -i hosts
+          options: |
+            --inventory ansible/hosts
+            --verbose
