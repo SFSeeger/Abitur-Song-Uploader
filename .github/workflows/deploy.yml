@@ -1,0 +1,37 @@
+name: Deploy
+on:
+  push:
+    branches: ["main", "deployment"]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@master
+      - name: copy files
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          source: "."
+          target: "/home/gunicorn/Abitur-Song-Uploader"
+
+      - name: run deploy script
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            export SECRET_KEY="${{ secrets.SECRET_KEY }}"
+            export MYSQL_DB="${{ secrets.MYSQL_DB }}"
+            export MYSQL_USER="${{ secrets.MYSQL_USER }}"
+            export MYSQL_PASSWORD="${{ secrets.MYSQL_PASSWORD }}"
+            pkill gunicorn
+            source /home/gunicorn/.venv/bin/activate
+            bash -c /home/gunicorn/Abitur-Song-Uploader/deploy/scripts/deploy.sh
+            bash -c /home/gunicorn/Abitur-Song-Uploader/deploy/scripts/django_setup.sh
