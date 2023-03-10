@@ -164,3 +164,5 @@ LANGUAGES = [
     ("de", _("German")),
     ("en", _("English")),
 ]
+
+MEDIA_ROOT = BASE_DIR / "media"
