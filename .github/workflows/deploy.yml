@@ -22,4 +22,5 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           options: |
             --inventory ansible/hosts
+            --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}}"
             --verbose
