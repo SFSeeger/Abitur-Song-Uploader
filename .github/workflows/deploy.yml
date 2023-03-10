@@ -9,6 +9,8 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@master
+        with:
+          path: "repo"
       - name: copy files
         uses: appleboy/scp-action@master
         with:
@@ -16,7 +18,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          source: "."
+          source: "repo"
           target: "/home/gunicorn/Abitur-Song-Uploader"
 
       - name: run deploy script
