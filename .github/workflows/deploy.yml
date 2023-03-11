@@ -8,18 +8,27 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: run deploy script
-        uses: appleboy/ssh-action@v0.1.8
+      - uses: actions/checkout@master
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: create files
+        run: |
+          touch ansible/.vault_pass
+          echo "${{secrets.VAULT_PASS}}" > ansible/.vault_pass
+          ls -lah
+          ls -lah ansible
+
+      - name: run ansible
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            export SECRET_KEY=${{ secrets.SECRET_KEY }}
-            export MYSQL_DB=${{ secrets.MYSQL_DB }}
-            export MYSQL_USER=${{ secrets.MYSQL_USER }}
-            export MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
-            pkill gunicorn
-            ./home/gunicorn/Abitur-Song-Uploader/deploy/scripts/deploy.sh
-            ./home/gunicorn/Abitur-Song-Uploader/deploy/scripts/django_setup.sh
+          playbook: ansible/site.yml
+          key: ${{secrets.SSH_KEY}}
+          options: |
+            --inventory ansible/hosts
+            --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}} branch_name=${{ steps.extract_branch.outputs.branch }}"
+            --vault-password-file "ansible/.vault_pass"
+            --verbose

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-05 03:43+0100\n"
+"POT-Creation-Date: 2023-03-06 11:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: uploader/forms.py:20
+#: uploader/forms.py:30 uploader/forms.py:45
 msgid "Submit"
 msgstr "Absenden"
 
-#: uploader/forms.py:22
+#: uploader/forms.py:33
 msgid "Username"
 msgstr "Benutzername"
 
-#: uploader/forms.py:24
+#: uploader/forms.py:35
 msgid "Password"
 msgstr "Passwort"
 
-#: uploader/models.py:14
+#: uploader/forms.py:56
+msgid "You can't set song url and song at the same time"
+msgstr ""
+
+#: uploader/models.py:15
 msgid "Song URL"
 msgstr "Song URL"
 
-#: uploader/models.py:15
-msgid "Start Time"
-msgstr "Anfangs Zeit"
-
 #: uploader/models.py:17
+#, fuzzy
+#| msgid "Start Time"
+msgid "Start Time (in sec.)"
+msgstr "Anfangs Zeit (in sek.)"
+
+#: uploader/models.py:24
 msgid "Song File"
 msgstr "Song Datei"
 
-#: uploader/views.py:30
+#: uploader/templates/uploader/choose_upload_type.html:3
+msgid "Choose Music"
+msgstr "Musik Wählen"
+
+#: uploader/templates/uploader/choose_upload_type.html:5
+msgid "How do you want to choose your song?"
+msgstr "Wie willst du deinen Song wählen?"
+
+#: uploader/templates/uploader/choose_upload_type.html:11
+msgid "From Youtube"
+msgstr "Von Youtube"
+
+#: uploader/templates/uploader/choose_upload_type.html:18
+#, fuzzy
+#| msgid "Song File"
+msgid "From File"
+msgstr "Mit Datei"
+
+#: uploader/views.py:33
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"

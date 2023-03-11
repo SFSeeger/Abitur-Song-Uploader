@@ -1,5 +1,5 @@
 from .base import *
 
-ALLOWED_HOSTS = ["sfseeger.ddns.net"]
-STATIC_ROOT = "/var/www/data/"
+ALLOWED_HOSTS = ["*"]
+STATIC_ROOT = "/var/www/data/static"
 STATIC_URL = "/static/"

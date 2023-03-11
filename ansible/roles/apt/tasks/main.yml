@@ -1,0 +1,13 @@
+- name: Running apt update
+  apt: update_cache=yes
+- name: Installing required packages
+  apt: name={{item}} state=present
+  with_items:
+    - git
+    - python3-pip
+    - nginx
+    - gettext
+    - default-libmysqlclient-dev
+    - curl
+    - nodejs
+    - npm
