@@ -15,12 +15,3 @@
     state: started
   notify:
     - gunicorn restart
-
-- name: Enable gunicorn service
-  service:
-    name: gunicorn.service
-    enabled: true
-    state: started
-  notify:
-    - daemon-reload
-    - gunicorn restart

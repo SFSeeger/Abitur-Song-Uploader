@@ -41,6 +41,13 @@
 - name: django collectstatic
   shell: "{{python_path}} manage.py collectstatic --noinput chdir={{ django_dir }}"
 
+- name: change perms on static directory
+  file:
+    path: "{{ static_dir }}"
+    owner: gunicorn
+    group: www-data
+    recurse: yes
+
 - name: django compilemessages
   shell: "{{python_path}} manage.py compilemessages chdir={{ django_dir }}"
 

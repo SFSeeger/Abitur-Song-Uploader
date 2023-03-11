@@ -61,7 +61,7 @@ ROOT_URLCONF = "songuploader.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["web/theme/templates"],
+        "DIRS": [BASE_DIR / "theme/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
