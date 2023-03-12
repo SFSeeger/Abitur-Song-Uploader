@@ -5,9 +5,10 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Hidden, Row, Div
+from crispy_forms.layout import Hidden, Row, Div
 from crispy_forms.bootstrap import PrependedText
-from crispy_bulma.layout import Submit, Field
+from crispy_bulma.layout import Submit, Field, Layout, UploadField
+from crispy_bulma.forms import FileField
 
 from .models import Submission
 
@@ -52,7 +53,25 @@ class LoginForm(forms.Form):
     redirect_to = forms.CharField(max_length=512, required=False)
 
 
-class SubmissionForm(forms.ModelForm):
+class SubmissionBaseForm(forms.ModelForm):
+    def clean_end_time(self):
+        start_time = self.cleaned_data["start_time"]
+        end_time = self.cleaned_data["end_time"]
+
+        if start_time > end_time:
+            raise ValidationError(
+                _("Start Time cannot be larger than End Time"), code="invalid"
+            )
+        elif (duration := (end_time - start_time)) > 30:
+            raise ValidationError(
+                _("Duration of %(duration)d larger than 30 seconds"),
+                code="invalid",
+                params={"duration": duration},
+            )
+        return end_time
+
+
+class SubmissionForm(SubmissionBaseForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -88,18 +107,24 @@ class SubmissionForm(forms.ModelForm):
 
         return data
 
-    def clean_end_time(self):
-        start_time = self.cleaned_data["start_time"]
-        end_time = self.cleaned_data["end_time"]
 
-        if start_time > end_time:
-            raise ValidationError(
-                _("Start Time cannot be larger than End Time"), code="invalid"
-            )
-        elif (duration := (end_time - start_time)) > 30:
-            raise ValidationError(
-                _("Duration of %(duration)d larger than 30 seconds"),
-                code="invalid",
-                params={"duration": duration},
-            )
-        return end_time
+class SubmissionUploadForm(SubmissionBaseForm):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            UploadField("song", css_class="input"),
+            Row(
+                Div("start_time", css_class="column"),
+                Div("end_time", css_class="column"),
+            ),
+        )
+        self.helper.add_input(
+            Submit("submit", _("Submit"), css_class="is-primary is-fullwidth")
+        )
+
+    song = FileField(required=True)
+
+    class Meta:
+        model = Submission
+        fields = ["song", "start_time", "end_time"]

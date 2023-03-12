@@ -7,21 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock title %}</title>
-    {% include 'partials/header-links.html' %}
+    {% include 'partials/head-links.html' %}
   </head>
   <body class="hero">
     <div class="hero-head">
       {% include 'partials/header.html' %}
     </div>
     {% if messages %}
-      {% for message in messages %}
-      <div {% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
-          <button class="delete"></button>
-          {{message}}
-      </div>
-      {% endfor %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
+      <button class="delete"></button>
+      {{message}}
+    </div>
+    {% endfor %}
     {% endif %}
-      
+    
     <main class="hero-body">
       <div class="container">
         <div class="columns is-centered">
@@ -33,11 +33,10 @@
         </div>
       </div>
     </main>
-      
+    
     <div class="hero-foor">{% include 'partials/footer.html' %}</div>
-
-    <script src="{% static 'fontawsome/js/all.js' %}"></script>
-    <script src="{% static 'js/bulma_cust.js' %}"></script>
+    
+    {% include 'partials/scripts.html' %}
     {% block scripts %}{% endblock scripts %}
   </body>
 </html>

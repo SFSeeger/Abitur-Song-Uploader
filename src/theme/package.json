@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "animate.css": "^4.1.1",
     "bulma-tooltip": "npm:@creativebulma/bulma-tooltip@^1.2.0",
     "fontawsome": "npm:@fortawesome/fontawesome-free@^6.3.0"
   }

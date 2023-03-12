@@ -3,7 +3,7 @@
 
 {% block title %}Upload Song{% endblock title %}
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     {% crispy form %}
 </form>
 <div id="spinnerModal" class="modal is-clipped">

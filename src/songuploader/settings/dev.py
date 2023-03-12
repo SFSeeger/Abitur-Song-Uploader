@@ -12,3 +12,6 @@ DATABASES = {
         "PORT": "3306",
     }
 }
+
+MEDIA_ROOT = "media/"
+FILE_UPLOAD_PERMISSIONS = 0o644

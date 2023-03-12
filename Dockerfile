@@ -20,7 +20,7 @@ WORKDIR /app/web
 COPY src/ ./src/
 
 WORKDIR /app/web/theme
-RUN npm -i
+RUN npm install
 
 RUN chown -R root /app
 WORKDIR /app

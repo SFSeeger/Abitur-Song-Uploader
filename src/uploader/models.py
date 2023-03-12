@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def generate_filename(self, filename):
-    name = "uploads/%s" % (self.user.get_username())
+    name = "%s/%s" % (self.user.id, filename)
     return name
 
 
