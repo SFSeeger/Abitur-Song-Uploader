@@ -61,7 +61,7 @@ ROOT_URLCONF = "songuploader.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["web/theme/templates"],
+        "DIRS": [BASE_DIR / "theme/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -83,11 +83,11 @@ WSGI_APPLICATION = "songuploader.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "db",
+        "NAME": os.environ.get("MYSQL_DB"),
         "USER": os.environ.get("MYSQL_USER"),
         "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
-        "HOST": "db",
-        "PORT": "3306",
+        "HOST": "localhost",
+        "PORT": 3306,
     }
 }
 

@@ -1,0 +1,10 @@
+- name: setup project on host
+  hosts: all
+  remote_user: ansible
+  become: yes
+
+  roles:
+    - {role: apt, become: yes, tags: "apt"}
+    - {role: gunicorn, become: yes, tags: "gunicorn"}
+    - {role: nginx, become: yes, tags: "nginx"}
+    - {role: django, tags: "django"}

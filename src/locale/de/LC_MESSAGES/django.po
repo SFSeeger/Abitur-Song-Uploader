@@ -27,6 +27,10 @@ msgstr "Start"
 msgid "Choose Song"
 msgstr "Song wählen"
 
+#: theme/templates/base.html:33
+msgid "Choose Song"
+msgstr "Song wählen"
+
 #: theme/templates/base.html:40
 msgid "Logout"
 msgstr "Ausloggen"

@@ -10,5 +10,15 @@
     "--load-plugins",
     "pylint_django",
     "--django-settings-module=strc.songuploader.settings.base"
-  ]
+  ],
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///home/simon/code/Abitur-Song-Uploader/.github/workflows/deploy.yml",
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": [
+      "file:///home/simon/code/Abitur-Song-Uploader/ansible/packages.yml",
+      "file:///home/simon/code/Abitur-Song-Uploader/ansible/update.yml",
+      "file:///home/simon/code/Abitur-Song-Uploader/ansible/deployment.yml",
+      "file:///home/simon/code/Abitur-Song-Uploader/ansible/main.yml",
+      "file:///home/simon/code/Abitur-Song-Uploader/ansible/vars.yml"
+    ]
+  }
 }

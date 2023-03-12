@@ -1,0 +1,34 @@
+name: Deploy
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: create files
+        run: |
+          touch ansible/.vault_pass
+          echo "${{secrets.VAULT_PASS}}" > ansible/.vault_pass
+          ls -lah
+          ls -lah ansible
+
+      - name: run ansible
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ansible/site.yml
+          key: ${{secrets.SSH_KEY}}
+          options: |
+            --inventory ansible/hosts
+            --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}} branch_name=${{ steps.extract_branch.outputs.branch }}"
+            --vault-password-file "ansible/.vault_pass"
+            --verbose
