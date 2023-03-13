@@ -110,6 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Email Config
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
