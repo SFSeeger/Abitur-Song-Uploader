@@ -12,3 +12,7 @@ DATABASES = {
         "PORT": "3306",
     }
 }
+
+EMAIL_HOST = "mailhog"
+DEFAULT_FROM_EMAIL = "RG Abi Song <sfseeger.ddns.net>"
+EMAIL_PORT = 1025
