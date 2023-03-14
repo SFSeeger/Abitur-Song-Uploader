@@ -22,6 +22,9 @@
 - name: create static_root dir
   file: path={{ static_dir }} state=directory mode=755
 
+- name: create media_root dir
+  file: path={{ media_dir }} state=directory mode=755
+
 - name: change perms on app directory
   file:
     path: "{{repo_dir}}"

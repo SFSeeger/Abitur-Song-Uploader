@@ -1,5 +1,6 @@
 {% load crispy_forms_field %}
 <div class="field">
+  {# Label #}
   <div class="label is-normal">
       <label class="label" for={{field.id}}>
         {{field.label}}
@@ -8,26 +9,31 @@
         {% endif %}
         </label>
   </div>
+  {# wrapper #}
   <p class="control has-icons-left has-icons-right">
 
+    {# field #}
     {% if field.errors %}
       {% crispy_field field "class" "is-danger" "placeholder" field.label %}
     {% else %}
       {% crispy_field field "placeholder" field.label %}
     {% endif %}
 
-
+    {# icon1 #}
     {% if crispy_prepended_text %}
-      <span class="icon is-small is-left">
-        <i class="{{crispy_prepended_text}}"></i>
-      </span>
+    <span class="icon is-small is-left">
+      <i class="{{crispy_prepended_text}}"></i>
+    </span>
     {% endif %}
+
+    {# icon1 #}
     {% if crispy_appended_text %}
       <span class="icon is-small is-right">
         <i class="{{crispy_appended_text}}"></i>
       </span>
     {% endif %}
   </p>
+
   {% if not exclude_field_wrapper %}
       {% if form_show_errors %}
         {% for error in field.errors %}
@@ -39,7 +45,6 @@
       {% endif %}
 
       {% include 'bulma/layout/help_text.html' %}
-    {% if form_horizontal %}</div></div>{% endif %}
-  </div>
-{% endif %}
+  {% endif %}
+
 </div>
