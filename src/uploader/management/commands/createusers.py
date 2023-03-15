@@ -27,7 +27,7 @@ class Command(BaseCommand):
         User = get_user_model()
         df = pd.read_csv(options.get("csvfile"), delimiter=";")
         for idx, row in tqdm(df.iterrows(), total=df.shape[0]):
-            password = "".join(random.choice(pool) for i in range(8))
+            password = "".join(random.choice(pool) for i in range(6))
             first_name = row["first_name"]
             last_name = row["last_name"]
             email = row["email"]
@@ -43,19 +43,24 @@ class Command(BaseCommand):
                     **row,
                 )
                 user.save()
+            context = {
+                "first_name": first_name,
+                "username": username,
+                "password": password,
+            }
 
             msg = EmailMultiAlternatives(
                 subject="Here are your Credentials",
                 body=render_to_string(
                     "uploader/email/text/password_notification.txt",
-                    {"username": username, "password": password},
+                    context,
                 ),
                 to=[user.email],
                 alternatives=[
                     (
                         render_to_string(
                             "uploader/email/html/credentials.html",
-                            {"username": username, "password": password},
+                            context,
                         ),
                         "text/html",
                     )
