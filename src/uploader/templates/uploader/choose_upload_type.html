@@ -5,17 +5,17 @@
     <h1 class="title is-2 has-text-centered">{% trans "How do you want to choose your song?" %}</h1>
     <div class="columns">
         <div class="column">
-            <a href="{% url 'from-youtube' %}" class="button is-large is-fullwidth id-fullheight is-primary">
+            <a href="{% url 'from-youtube' %}" class="button is-large is-fullwidth id-fullheight is-primary has-tooltip-arrow" data-tooltip="{% translate 'load song from youtube (recommended)' %}">
                 <span class="icon is-large"><i class="fa-brands fa-youtube"></i></span>
                 <br>
-                {% translate "From Youtube" %} 
+                {% translate "Using Youtube" %} 
             </a>
         </div>
         <div class="column">
-            <a href="{% url 'song-upload' %}" class="button is-large is-fullwidth id-fullheight is-primary">
+            <a href="{% url 'from-file' %}" class="button is-large is-fullwidth id-fullheight is-primary has-tooltip-arrow" data-tooltip="{% translate 'uplaod your own song from disk' %}">
                 <span class="icon is-large"><i class="fa-solid fa-file"></i></span>
                 <br>
-                {% translate "From File" %}
+                {% translate "Using File" %}
             </a>
         </div>
     </div>

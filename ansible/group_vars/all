@@ -3,5 +3,6 @@ repo_dir: "/home/gunicorn/app"
 django_dir: "{{repo_dir}}/src"
 django_project: "songuploader"
 static_dir: "/var/www/data/static"
+media_dir: "/var/www/data/media"
 
 python_path: "{{repo_dir}}/.venv/bin/python3"

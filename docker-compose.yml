@@ -15,11 +15,20 @@ services:
     volumes:
       - my-db:/var/lib/mysql
 
+  mailhog:
+    image: mailhog/mailhog
+    restart: unless-stopped
+    logging:
+      driver: 'none' # disable saving logs
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+
   web:
     build: .
     ports:
       - "8080:80"
-      - 3000:3000
+      - "3000:3000"
     expose:
       - 80
     restart: unless-stopped
