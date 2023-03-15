@@ -15,7 +15,7 @@ class LoginRequiredTemplateView(LoginRequiredMixin, TemplateView):
     template_name: str = None
 
 def download_song(url: str, submission: Submission):
-    out_path = os.path.join("/tmp", f"{submission.user.username}_temp.wav")
+    out_path = os.path.join("/tmp", f"{submission.user.username}_temp.mp4")
     YouTube(url=url).streams.filter(only_audio=True).first().download(output_path=os.path.dirname(out_path), filename=os.path.basename(out_path))
     open_file = open(out_path, 'rb')
     song_file: File = File(open_file)
