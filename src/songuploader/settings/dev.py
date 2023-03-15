@@ -13,7 +13,7 @@ DATABASES = {
     }
 }
 
-MEDIA_ROOT = "media/"
+MEDIA_ROOT = BASE_DIR / "media/"
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 EMAIL_HOST = "mailhog"
