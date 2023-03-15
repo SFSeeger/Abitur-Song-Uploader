@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-06 11:08+0000\n"
+"POT-Creation-Date: 2023-03-12 00:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: uploader/forms.py:30 uploader/forms.py:45
+#: uploader/forms.py:45 uploader/forms.py:86 uploader/forms.py:123
 msgid "Submit"
 msgstr "Absenden"
 
-#: uploader/forms.py:33
+#: uploader/forms.py:49
 msgid "Username"
 msgstr "Benutzername"
 
-#: uploader/forms.py:35
+#: uploader/forms.py:51
 msgid "Password"
 msgstr "Passwort"
 
-#: uploader/forms.py:56
-msgid "You can't set song url and song at the same time"
-msgstr ""
+#: uploader/forms.py:63
+msgid "Start Time cannot be larger than End Time"
+msgstr "Anfangs Zeit kann nicht größer als Endzeit sein"
+
+#: uploader/forms.py:67
+#, python-format
+msgid "Duration of %(duration)d larger than 30 seconds"
+msgstr "Laufzeit von %(duration)d länger als 30 sekunden"
+
+#: uploader/forms.py:98
+#, python-format
+msgid "Not a valid YouTube url: %(value)s"
+msgstr "Keine valide YouTube url: %(value)s"
+
+#: uploader/forms.py:104
+msgid "Could not find YouTube video"
+msgstr "Konnte YouTube video nicht finden"
 
 #: uploader/models.py:15
 msgid "Song URL"
@@ -44,9 +58,27 @@ msgstr "Song URL"
 msgid "Start Time (in sec.)"
 msgstr "Anfangs Zeit (in sek.)"
 
-#: uploader/models.py:24
+#: uploader/models.py:22
+msgid "End Time"
+msgstr "Endzeit"
+
+#: uploader/models.py:28
 msgid "Song File"
 msgstr "Song Datei"
+
+#: uploader/templates/uploader/choose_song.html:4
+msgid "Choose upload method"
+msgstr "Wähle methode zum hochladen"
+
+#: uploader/templates/uploader/choose_song.html:8
+#: uploader/templates/uploader/choose_upload_type.html:8
+msgid "load song from youtube (recommended)"
+msgstr "Lade den song von Youtube (empfohlen)"
+
+#: uploader/templates/uploader/choose_song.html:11
+#: uploader/templates/uploader/choose_upload_type.html:15
+msgid "uplaod your own song from disk"
+msgstr "Lade deinen eigenen Song vom Laufwerk hoch"
 
 #: uploader/templates/uploader/choose_upload_type.html:3
 msgid "Choose Music"
@@ -57,15 +89,40 @@ msgid "How do you want to choose your song?"
 msgstr "Wie willst du deinen Song wählen?"
 
 #: uploader/templates/uploader/choose_upload_type.html:11
-msgid "From Youtube"
+#, fuzzy
+#| msgid "From Youtube"
+msgid "Using Youtube"
 msgstr "Von Youtube"
 
 #: uploader/templates/uploader/choose_upload_type.html:18
 #, fuzzy
 #| msgid "Song File"
-msgid "From File"
-msgstr "Mit Datei"
+msgid "Using File"
+msgstr "Song Datei"
 
-#: uploader/views.py:33
+#: uploader/templates/uploader/test.html:12
+#, fuzzy
+#| msgid "Song File"
+msgid "Song submitted"
+msgstr "Song hochgeladen"
+
+#: uploader/templates/uploader/test.html:14
+msgid "Song missing"
+msgstr "Song fehlt"
+
+#: uploader/templates/uploader/test.html:21
+msgid "Image missing"
+msgstr "Bild fehlt"
+
+#: uploader/templates/uploader/test.html:26
+msgid "Days until Abi"
+msgstr "Tage bis zum Abitur"
+
+#: uploader/views/views.py:33
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
+
+#, fuzzy
+#~| msgid "Song File"
+#~ msgid "From File"
+#~ msgstr "Mit Datei"

@@ -1,6 +1,8 @@
 #Own
 src/static/
 node_modules
+media
+users.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

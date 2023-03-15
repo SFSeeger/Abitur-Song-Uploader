@@ -31,4 +31,3 @@ jobs:
             --inventory ansible/hosts
             --extra-vars "ansible_sudo_pass=${{secrets.SUDO_PASSWD}} branch_name=${{ steps.extract_branch.outputs.branch }}"
             --vault-password-file "ansible/.vault_pass"
-            --verbose
