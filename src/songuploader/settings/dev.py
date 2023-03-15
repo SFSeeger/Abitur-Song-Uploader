@@ -15,3 +15,7 @@ DATABASES = {
 
 MEDIA_ROOT = "media/"
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+EMAIL_HOST = "mailhog"
+DEFAULT_FROM_EMAIL = "RG Abi Song <sfseeger.ddns.net>"
+EMAIL_PORT = 1025
