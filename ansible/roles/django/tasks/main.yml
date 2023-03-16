@@ -69,7 +69,7 @@
 
 - name: Enable qcluster
   service:
-    name: qcluster.socket
+    name: qcluster.service
     enabled: true
     state: started
   notify:
