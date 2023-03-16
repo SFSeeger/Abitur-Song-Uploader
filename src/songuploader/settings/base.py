@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "crispy_bulma",
     "django_q",
     "uploader",
+    "voting"
 ]
 
 MIDDLEWARE = [
