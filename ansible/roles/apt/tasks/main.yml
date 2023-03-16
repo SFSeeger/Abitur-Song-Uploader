@@ -1,6 +1,6 @@
 - name: add grafana keyring
   get_url:
-    src: https://apt.grafana.com/gpg.key
+    url: https://apt.grafana.com/gpg.key
     dest: /usr/share/keyrings/grafana.key
 
 - name: add repository
