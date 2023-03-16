@@ -7,6 +7,6 @@
     - {role: apt, become: yes, tags: "apt"}
     - {role: gunicorn, become: yes, tags: "gunicorn"}
     - {role: nginx, become: yes, tags: "nginx"}
-    - {role: prometheus, become: yes, tags: "prometheus"}
-    - {role: node_exporter, become: yes, tags: "node_exporter"}
+    # - {role: prometheus, become: yes, tags: "prometheus"}
+    # - {role: node_exporter, become: yes, tags: "node_exporter"}
     - {role: django, tags: "django"}
