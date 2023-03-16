@@ -59,3 +59,18 @@
   notify:
     - daemon-reload
     - gunicorn restart
+
+- name: create qcluster procfile
+  template:
+    src: "templates/qcluster.service.j2"
+    dest: "/etc/systemd/system/qcluster.service"
+  notify:
+    - daemon-reload
+
+- name: Enable qcluster
+  service:
+    name: qcluster.socket
+    enabled: true
+    state: started
+  notify:
+    - qcluster restart
