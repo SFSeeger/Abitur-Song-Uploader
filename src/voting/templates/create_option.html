@@ -1,1 +1,7 @@
-Create
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form action="option" method="post">
+    {% crispy form %}
+</form>
+{% endblock content %}
