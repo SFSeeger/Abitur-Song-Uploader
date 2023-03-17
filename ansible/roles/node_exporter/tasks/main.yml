@@ -1,0 +1,20 @@
+---
+# tasks file for roles/exporters
+- name: install node_exporter
+  unarchive:
+    src: https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-arm64.tar.gz
+    dest: /opt/node_exporter
+    owner: prometheus
+
+- name: copy procfile
+  template:
+    src: "templates/node_exporter.service.j2"
+    dest: "/etc/systemd/system/node_exporter.socket"
+
+- name: Enable node_exporter
+  service:
+    name: node_exporter
+    enabled: true
+    state: started
+  notify:
+    - node_exporter restart
