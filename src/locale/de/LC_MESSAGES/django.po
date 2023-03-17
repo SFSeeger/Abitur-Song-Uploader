@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 18:10+0100\n"
+"POT-Creation-Date: 2023-03-17 20:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,17 +38,14 @@ msgstr "Ausloggen"
 msgid "Login"
 msgstr "Einloggen"
 
-#: voting/forms.py:16
-msgid "Submit"
-msgstr "Absenden"
+#~ msgid "Submit"
+#~ msgstr "Absenden"
 
-#: voting/forms.py:28
-msgid "Only 5 options possible"
-msgstr "Nur 5 Antworten möglich"
+#~ msgid "Only 5 options possible"
+#~ msgstr "Nur 5 Antworten möglich"
 
-#: voting/templates/voting/vote.html:5
-msgid "Please choose 5 themes"
-msgstr "Bitte 5 auswälen"
+#~ msgid "Please choose 5 themes"
+#~ msgstr "Bitte 5 auswählen"
 
 #~ msgid "Choose Song"
 #~ msgstr "Song wählen"

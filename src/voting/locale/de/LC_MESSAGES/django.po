@@ -17,11 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: voting/forms.py:16
+msgid "Submit"
+msgstr "Absenden"
 
-#: songuploader/settings/base.py:172
-msgid "German"
-msgstr "Deutsch"
+#: voting/forms.py:28
+msgid "Only 5 options possible"
+msgstr "Nur 5 Optionen möglich"
 
-#: songuploader/settings/base.py:173
-msgid "English"
-msgstr "Englisch"
+#: voting/templates/voting/vote.html:5
+msgid "Please choose 5 themes"
+msgstr "Bitte 5 auswählen"
