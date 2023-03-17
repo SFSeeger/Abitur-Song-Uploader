@@ -1,0 +1,33 @@
+---
+# tasks file for roles/prometheus
+- name: setup prometheus user
+  user:
+    name: prometheus
+    create_home: false
+    group: prometheus
+
+- name: install prometheus
+  unarchive:
+    src: https://github.com/prometheus/prometheus/releases/download/v2.37.6/prometheus-2.37.6.linux-arm64.tar.gz
+    dest: /opt/prometheus
+    owner: prometheus
+
+- name: copy procfile
+  template:
+    src: "templates/prometheus.service.j2"
+    dest: "/etc/systemd/system/prometheus.socket"
+
+- name: copy config
+  template:
+    src: "templates/prometheus.yml.j2"
+    dest: "/opt/prometheus/prometheus.yml"
+  notify:
+    - daemon-reload
+
+- name: Enable prometheus
+  service:
+    name: prometheus
+    enabled: true
+    state: started
+  notify:
+    - prometheus restart

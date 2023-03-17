@@ -1,5 +1,2 @@
-- name: daemon-reload
-  shell: systemctl daemon-reload
-
 - name: gunicorn restart
   service: name=gunicorn state=restarted
