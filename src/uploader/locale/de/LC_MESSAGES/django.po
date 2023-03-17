@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-12 00:57+0000\n"
+"POT-Creation-Date: 2023-03-17 18:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,27 +100,34 @@ msgstr "Von Youtube"
 msgid "Using File"
 msgstr "Song Datei"
 
-#: uploader/templates/uploader/test.html:12
+#: uploader/templates/uploader/test.html:14
 #, fuzzy
 #| msgid "Song File"
 msgid "Song submitted"
 msgstr "Song hochgeladen"
 
-#: uploader/templates/uploader/test.html:14
+#: uploader/templates/uploader/test.html:16
 msgid "Song missing"
 msgstr "Song fehlt"
 
-#: uploader/templates/uploader/test.html:21
+#: uploader/templates/uploader/test.html:23
 msgid "Image missing"
 msgstr "Bild fehlt"
 
-#: uploader/templates/uploader/test.html:26
-msgid "Days until Abi"
-msgstr "Tage bis zum Abitur"
+#: uploader/templates/uploader/test.html:31
+msgid "Place your theme vote here!"
+msgstr "Stimme hier für die Mottowoche ab!"
+
+#: uploader/templates/uploader/test.html:37
+msgid "New features coming soon! Stay tuned"
+msgstr "Neue Features kommen bald! Bleib gespannt"
 
 #: uploader/views/views.py:33
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
+
+#~ msgid "Days until Abi"
+#~ msgstr "Tage bis zum Abitur"
 
 #, fuzzy
 #~| msgid "Song File"
