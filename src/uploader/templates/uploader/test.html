@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block title %}Abitur 2023 Songuploader{% endblock title %}
+
 {% block content %}
 <div class="tile is-ancestor">
     <div class="tile is-parent is-4 is-vertical">
@@ -9,9 +11,9 @@
                 <i class="fas fa-2x fa-solid fa-music has-text-{{has_song|yesno:'primary,danger'}}"></i>
             </div>
             {% if has_song %}
-            <p>{% translate "Song submitted" %}</p>
+                <p>{% translate "Song submitted" %}</p>
             {% else %}
-            <p>{% translate "Song missing" %}</p>
+                <p>{% translate "Song missing" %}</p>
             {% endif %}
         </div>
         <div class="tile is-child box has-text-centered">
@@ -21,28 +23,19 @@
             <p>{% translate "Image missing" %}</p>
         </div>
     </div>
-    <div class="tile is-parent">
+    <div class="tile is-parent is-vertical">
         <div class="tile is-child box has-text-centered">
-            <p class="heading">{% translate "Days until Abi" %}</p>
-            <p class="title" id="countdown"></p>
+            <div class="icon is-large">
+                <i class="fas fa-2x fa-solid fa-poll has-text-secondary"></i>
+            </div>
+            <p><a href={% url 'add-vote' %}>{% translate "Place your theme vote here!" %}</a></p>
+        </div>
+        <div class="tile is-child box has-text-centered">
+            <div class="icon is-large">
+                <i class="fas fa-2x fa-solid fa-wrench has-text-secondary"></i>
+            </div>
+            <p>{% translate "New features coming soon! Stay tuned" %}</p>
         </div>
     </div>
 </div>
 {% endblock content %}
-{% block scripts %}
-<script>
-    var date = new Date(2023, 6, 30);
-    setInterval(function() {
-        var today = new Date();
-    
-        var diff = Math.abs(date.getTime()-today.getTime());
-    
-        const days = parseInt((date - today) / (1000 * 60 * 60 * 24));
-        const hours = parseInt(Math.abs(date - today) / (1000 * 60 * 60) % 24);
-        const minutes = parseInt(diff / (1000 * 60) % 60);
-        const seconds = parseInt(diff / (1000) % 60);
-    
-        document.querySelector("#countdown").innerHTML = `${days}:${hours}:${minutes}:${seconds}`
-    }, 500);
-</script>
-{% endblock scripts %}

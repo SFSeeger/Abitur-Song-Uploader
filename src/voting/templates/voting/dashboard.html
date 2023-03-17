@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content%}
-    Dashboard
-    <canvas id="myChart"></canvas>
+<h1 class="title">Dashboard</h1>
+<div>
+  {{votes}} Votes of 136
+  <progress class="progress is-primary" value="{{votes}}" max="136"></progress>
+</div>
+<canvas id="myChart"></canvas>
 {% endblock content%}
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script charset="utf-8">
 
-<script>
   const ctx = document.getElementById('myChart');
 
+  const data = JSON.parse('{{chart}}');
+
   new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: Object.keys(data),
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
+        data: Object.values(data),
+        borderWidth: 0
       }]
     },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
   });
 </script>
 {% endblock scripts %}
