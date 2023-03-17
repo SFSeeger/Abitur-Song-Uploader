@@ -5,6 +5,7 @@ import random
 import string
 
 from django_q.tasks import async_task
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth import get_user_model
 from django.core.mail import EmailMultiAlternatives
@@ -47,6 +48,7 @@ class Command(BaseCommand):
                 "first_name": first_name,
                 "username": username,
                 "password": password,
+                "public_domain": settings.PUBLIC_DOMAIN,
             }
 
             msg = EmailMultiAlternatives(
