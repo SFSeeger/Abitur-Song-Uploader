@@ -1,11 +1,12 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse
-from django.views.generic.edit import FormView, CreateView
-from django.shortcuts import redirect
-
+from django.views.generic.edit import FormView
+from django.shortcuts import redirect, render
+from django.views.generic import TemplateView
 from songuploader.utils import ConfiguredLoginViewMixin
 from .forms import VoteForm
 from .models import Vote, Option
+import json
 
 
 class SubmitVoteFormView(ConfiguredLoginViewMixin, FormView):
@@ -29,3 +30,12 @@ class SubmitVoteFormView(ConfiguredLoginViewMixin, FormView):
         vote.options.set(form.cleaned_data["options"])
         vote.save()
         return super().form_valid(form)
+
+class ShowDashboardView(TemplateView):
+    template_name = "voting/dashboard.html"
+
+    def get_context_data(self, **kwargs: Any):
+        response_data = {}
+        for option in Option.objects.all():
+            response_data[option.name] = option.vote_set.count()
+        return {'chart': json.dumps(response_data)}
