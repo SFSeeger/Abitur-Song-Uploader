@@ -42,7 +42,6 @@ services:
 
     volumes:
       - ./src/:/app/web/.
-      - ./.env:/app/web/.
 
 volumes:
   my-db:

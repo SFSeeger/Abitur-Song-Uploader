@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_q",
     "django_prometheus",
     "uploader",
+    "voting",
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "songuploader.context_processors.get_public_domain",
             ],
         },
     },
@@ -172,3 +174,5 @@ LANGUAGES = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
+
+PUBLIC_DOMAIN = "https://intern.rgabi.de"

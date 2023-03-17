@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-12 00:57+0000\n"
+"POT-Creation-Date: 2023-03-17 18:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: songuploader/settings/base.py:164
+#: songuploader/settings/base.py:168
 msgid "German"
 msgstr "Deutsch"
 
-#: songuploader/settings/base.py:165
+#: songuploader/settings/base.py:169
 msgid "English"
 msgstr "Englisch"
