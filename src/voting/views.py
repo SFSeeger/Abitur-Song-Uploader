@@ -43,7 +43,11 @@ class DashboardView(LoginRequiredTemplateView):
         response_data = {}
         for option in Option.objects.all():
             response_data[option.name] = option.vote_set.count()
+        response_data = dict(
+            sorted(response_data.items(), key=lambda item: item[1])[::-1]
+        )
         context["chart"] = mark_safe(json.dumps(response_data))
+        context["data"] = response_data
         context["votes"] = Vote.objects.all().count()
 
         return context

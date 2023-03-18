@@ -29,7 +29,7 @@
             <div class="navbar-item">
                 <form action="{% url 'set_language' %}" method="post"  onchange="this.submit()">
                     {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}"/>
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}"/>
                     <div class="control has-icons-left">
                         <div class="select is-rounded is-link is-small">
                             <select  name="language">

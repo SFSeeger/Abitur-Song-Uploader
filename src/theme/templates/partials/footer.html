@@ -1,12 +1,13 @@
+{% load i18n %}
 <footer class="footer">
     <div class="content has-text-centered">
         <div class="columns">
             <div class="column">
                 <h4 class="bd-footer-title">
-                    Website by <a href="https://github.com/SFSeeger" target="_blank">Simon Felix Seeger</a>
+                    {% trans "Website by" %} <a href="https://github.com/SFSeeger" target="_blank">Simon Felix Seeger</a>
                 </h4>
                 <h5>
-                    and <a href="https://github.com/JulySteuer" target="_blank">Julian Steuer</a>
+                    {% trans "and" %} <a href="https://github.com/JulySteuer" target="_blank">Julian Steuer</a>
                 </h5>
             </div>
             <div class="column">
@@ -22,7 +23,7 @@
                         <span class="icon">
                             <i class="fa-brands fa-github"></i>
                         </span>
-                        Visit on Github
+                        {% trans "Visit on Github" %}
                     </span>
                 </a>
             </div>
