@@ -17,35 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: voting/forms.py:16
+msgid "Submit"
+msgstr "Absenden"
 
-#: theme/templates/partials/header.html:18
-msgid "Home"
-msgstr "Start"
+#: voting/forms.py:28
+msgid "Only 5 options possible"
+msgstr "Nur 5 optionen sind möglich"
 
-#: theme/templates/partials/header.html:23
-msgid "Upload song"
-msgstr "Song hochladen"
-
-#: theme/templates/partials/header.html:26
-msgid "Theme Vote"
-msgstr "Mottowoche Abstimmung"
-
-#: theme/templates/partials/header.html:33
-msgid "Logout"
-msgstr "Ausloggen"
-
-#: theme/templates/partials/header.html:35
-msgid "Login"
-msgstr "Einloggen"
-
-#~ msgid "Submit"
-#~ msgstr "Absenden"
-
-#~ msgid "Only 5 options possible"
-#~ msgstr "Nur 5 Antworten möglich"
-
-#~ msgid "Please choose 5 themes"
-#~ msgstr "Bitte 5 auswälen"
-
-#~ msgid "Choose Song"
-#~ msgstr "Song wählen"
+#: voting/templates/voting/vote.html:5
+msgid "Please choose 5 themes"
+msgstr "Bitte 5 auswählen"

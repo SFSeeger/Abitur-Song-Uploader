@@ -1,23 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2023 Simon Felix Seeger
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <simon.f.seeger@gmx.de>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-18 00:11+0100\n"
-"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
+"POT-Creation-Date: 2023-03-18 01:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: de \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: theme/templates/partials/header.html:18
 msgid "Home"
 msgstr "Start"
@@ -28,24 +27,12 @@ msgstr "Song hochladen"
 
 #: theme/templates/partials/header.html:26
 msgid "Theme Vote"
-msgstr "Mottowoche Abstimmung"
+msgstr "Abstimmung Mottowoche"
 
-#: theme/templates/partials/header.html:33
+#: theme/templates/partials/header.html:54
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: theme/templates/partials/header.html:35
+#: theme/templates/partials/header.html:56
 msgid "Login"
 msgstr "Einloggen"
-
-#~ msgid "Submit"
-#~ msgstr "Absenden"
-
-#~ msgid "Only 5 options possible"
-#~ msgstr "Nur 5 Antworten möglich"
-
-#~ msgid "Please choose 5 themes"
-#~ msgstr "Bitte 5 auswälen"
-
-#~ msgid "Choose Song"
-#~ msgstr "Song wählen"
