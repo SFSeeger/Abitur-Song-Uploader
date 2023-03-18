@@ -17,7 +17,8 @@
         <a href="/" class="navbar-item">
             {% translate "Home" %}
         </a>
-        <a href="{% url 'choose-song' %}" class="navbar-item">
+        {% comment %} {% url 'choose-song' %} {% endcomment %}
+        <a href="{% url 'under-construction' %}" class="navbar-item">
             {% translate "Upload song" %}
         </a>
         <a href="{% url 'add-vote' %}" class="navbar-item">
@@ -25,15 +26,36 @@
         </a>
         </div>
         <div class="navbar-end">
-        <div class="navbar-item">
-            <div class="buttons">
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="button is-primary">{% translate "Logout" %}</a>
-            {% else %}
-            <a href="{% url 'login' %}" class="button is-primary">{% translate "Login" %}</a>
-            {% endif %}
+            <div class="navbar-item">
+                <form action="{% url 'set_language' %}" method="post"  onchange="this.submit()">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}"/>
+                    <div class="control has-icons-left">
+                        <div class="select is-rounded is-link is-small">
+                            <select  name="language">
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="icon is-small is-left">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="button is-primary">{% translate "Logout" %}</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="button is-primary">{% translate "Login" %}</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </nav>

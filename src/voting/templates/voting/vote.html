@@ -1,6 +1,7 @@
 {% extends 'base_with_box.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% block title %}{% trans "Choose Theme" %}{% endblock title %}
 {% block content %}
     {% blocktrans %}Please choose 5 themes{% endblocktrans %}
     <form method="post">
