@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-18 00:59+0100\n"
+"POT-Creation-Date: 2023-03-18 00:26+0100\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: songuploader/settings/base.py:173
-msgid "German"
-msgstr "Deutsch"
+#: voting/forms.py:16
+msgid "Submit"
+msgstr "Absenden"
 
-#: songuploader/settings/base.py:174
-msgid "English"
-msgstr "Englisch"
+#: voting/forms.py:28
+msgid "Only 5 options possible"
+msgstr "Maximal 5 optionen möglich"
 
-#: songuploader/utils.py:30
-msgid "The side you tried to access is under construction"
-msgstr "An dieser seite wird noch gebaut"
+#: voting/templates/voting/vote.html:4
+msgid "Choose Theme"
+msgstr "Motto wählen"
+
+#: voting/templates/voting/vote.html:6
+msgid "Please choose 5 themes"
+msgstr "Bitte 5 auswählen"

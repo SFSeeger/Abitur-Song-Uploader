@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 from pytube import YouTube
 from songuploader.settings import MEDIA_ROOT
 from django.core.files import File
@@ -18,6 +19,18 @@ class ConfiguredLoginViewMixin(LoginRequiredMixin):
 
 class LoginRequiredTemplateView(ConfiguredLoginViewMixin, TemplateView):
     template_name: str = None
+
+
+class UnderConstructionView(View):
+    def get(self, request, *args, **kwargs):
+        message = '<span class="icon-text"><span class="icon"><i class="fa-solid fa-wrench"></i></span><span>%s</span></span>'
+        messages.info(
+            request,
+            mark_safe(
+                message % _("The side you tried to access is under construction")
+            ),
+        )
+        return redirect("index")
 
 
 def download_song(url: str, submission: Submission):

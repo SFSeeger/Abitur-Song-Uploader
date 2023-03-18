@@ -73,6 +73,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.i18n",
                 "songuploader.context_processors.get_public_domain",
             ],
         },
@@ -151,9 +152,9 @@ CRISPY_TEMPLATE_PACK = "bulma"
 
 
 Q_CLUSTER = {
-    "name": "DjangORM",
+    "name": "songuploader",
     "workers": 4,
-    "timeout": 90,
+    "timeout": 120,
     "retry": 120,
     "queue_limit": 50,
     "bulk": 10,
@@ -162,8 +163,8 @@ Q_CLUSTER = {
 
 MESSAGE_TAGS = {
     message_constants.DEBUG: "is-success is-light",
-    message_constants.INFO: "is-primary",
-    message_constants.SUCCESS: "issuccess",
+    message_constants.INFO: "is-info",
+    message_constants.SUCCESS: "is-success",
     message_constants.WARNING: "is-warning",
     message_constants.ERROR: "is-danger",
 }

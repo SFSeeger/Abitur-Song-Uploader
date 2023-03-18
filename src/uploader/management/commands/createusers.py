@@ -50,22 +50,15 @@ class Command(BaseCommand):
                 "password": password,
                 "public_domain": settings.PUBLIC_DOMAIN,
             }
-
-            msg = EmailMultiAlternatives(
-                subject="Here are your Credentials",
-                body=render_to_string(
-                    "uploader/email/text/password_notification.txt",
-                    context,
+            async_task(
+                "django.core.mail.send_mail",
+                "Here are your Credentials",
+                render_to_string(
+                    "uploader/email/text/password_notification.txt", context
                 ),
-                to=[user.email],
-                alternatives=[
-                    (
-                        render_to_string(
-                            "uploader/email/html/credentials.html",
-                            context,
-                        ),
-                        "text/html",
-                    )
-                ],
+                None,
+                recipient_list=[user.email],
+                html_message=render_to_string(
+                    "uploader/email/html/credentials.html", context
+                ),
             )
-            msg.send()
