@@ -1,9 +1,9 @@
 from .base import *
 
 ALLOWED_HOSTS = ["sfseeger.ddns.net", "intern.rgabi.de"]
-STATIC_ROOT = "/var/www/data/static"
+STATIC_ROOT = "/var/www/data/static/"
 STATIC_URL = "/static/"
-MEDIA_ROOT = "/var/www/data/media"
+MEDIA_ROOT = "/var/www/data/media/"
 
 EMAIL_HOST = "smtp.gmail.com"
 DEFAULT_FROM_EMAIL = f"RG Abi 2023 <{os.environ.get('EMAIL_HOST_USER')}>"

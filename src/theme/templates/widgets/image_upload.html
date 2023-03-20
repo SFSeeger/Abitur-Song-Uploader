@@ -1,0 +1,34 @@
+{% load pictures %}
+{% if widget.is_initial %}
+  {{ widget.initial_text }}:
+  <a href="{{ widget.value.url }}">
+    {{ widget.value }}
+  </a>
+  {% if not widget.required %}
+  <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+  <label for="{{ widget.checkbox_id }}">
+    {{ widget.clear_checkbox_label }}
+  </label>
+  {% endif %}
+{% endif %}
+  <div class="file has-name is-boxed is-centered is-medium">
+    <label class="file-label">
+      <input type="file" name="{{ widget.name }}" data-target="{{ widget.attrs.id }}_{{ widget.name }}">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          {% if widget.is_initial %}
+            {{ widget.input_text }}
+          {% else %}
+            Choose a file ...
+          {% endif %}
+        </span>
+      </span>
+      <div class="file-name">
+        {{widget.value | pprint}}
+        {% comment %} {% picture widget.value img_alt="Spiderman" ratio="4/3" %} {% endcomment %}
+      </div>
+    </label>
+  </div>

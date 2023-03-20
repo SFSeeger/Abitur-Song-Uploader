@@ -177,6 +177,6 @@ LANGUAGES = [
     ("en", _("English")),
 ]
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / "media/"
 
 PUBLIC_DOMAIN = "https://intern.rgabi.de"

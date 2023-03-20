@@ -1,6 +1,6 @@
 from typing import Any
 from pathlib import Path
-from django.http import FileResponse, HttpResponseNotFound
+from django.http import FileResponse, Http404
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
@@ -23,4 +23,4 @@ class FileDownload(ConfiguredLoginViewMixin, View):
             f = open(file, "rb")
             return FileResponse(f)
         except FileNotFoundError:
-            return HttpResponseNotFound()
+            raise Http404

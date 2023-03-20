@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-20 16:32+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: imageupload/forms.py:22
+msgid "Submit"
+msgstr "Absenden"
+
+#: imageupload/models.py:11
+msgid "Picture"
+msgstr "Bild"
+
+#: imageupload/models.py:11
+msgid "Baby Picture"
+msgstr "Baby Bild"
+
+#: imageupload/models.py:12
+msgid "Image Type"
+msgstr "Art des Bildes"
+
+#: imageupload/models.py:15
+msgid "User"
+msgstr "Nutzter"
+
+#: imageupload/models.py:19
+msgid "Image"
+msgstr "Bild"
+
+#: imageupload/models.py:22
+msgid "description"
+msgstr "Beschreibung"
+
+#: imageupload/models.py:24
+msgid "Changed at"
+msgstr "Verändert am"
+
+#: imageupload/models.py:25
+msgid "Created at"
+msgstr "Hochgeladen am"
+
+#: imageupload/models.py:28
+msgid "User Image"
+msgstr "Nutzer Bild"
+
+#: imageupload/models.py:29
+msgid "User Images"
+msgstr "Nutzer Bilder"
+
+#: imageupload/templates/imageupload/userimage_form.html:5
+msgid "Choose Image"
+msgstr "Bild wählen"

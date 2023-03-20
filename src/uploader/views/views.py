@@ -8,6 +8,7 @@ from django.views.generic.edit import FormView
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from imageupload.models import UserImage
 
 from songuploader.utils import ConfiguredLoginViewMixin
 
@@ -46,4 +47,5 @@ class IndexView(ConfiguredLoginViewMixin, TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context["has_song"] = Submission.objects.filter(user=self.request.user).first()
+        context["image"] = UserImage.objects.filter(user=self.request.user).first()
         return context

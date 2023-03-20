@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 18:10+0100\n"
+"POT-Creation-Date: 2023-03-20 16:32+0100\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,21 +48,21 @@ msgstr "Keine valide YouTube url: %(value)s"
 msgid "Could not find YouTube video"
 msgstr "Konnte YouTube video nicht finden"
 
-#: uploader/models.py:15
+#: uploader/models.py:12
 msgid "Song URL"
 msgstr "Song URL"
 
-#: uploader/models.py:17
+#: uploader/models.py:14
 #, fuzzy
 #| msgid "Start Time"
 msgid "Start Time (in sec.)"
 msgstr "Anfangs Zeit (in sek.)"
 
-#: uploader/models.py:22
+#: uploader/models.py:19
 msgid "End Time"
 msgstr "Endzeit"
 
-#: uploader/models.py:28
+#: uploader/models.py:25
 msgid "Song File"
 msgstr "Song Datei"
 
@@ -110,19 +110,25 @@ msgstr "Song hochgeladen"
 msgid "Song missing"
 msgstr "Song fehlt"
 
-#: uploader/templates/uploader/test.html:23
+#: uploader/templates/uploader/test.html:24
+#, fuzzy
+#| msgid "Song File"
+msgid "Image submitted"
+msgstr "Bild hochgeladen"
+
+#: uploader/templates/uploader/test.html:26
 msgid "Image missing"
 msgstr "Bild fehlt"
 
-#: uploader/templates/uploader/test.html:31
+#: uploader/templates/uploader/test.html:35
 msgid "Place your theme vote here!"
 msgstr "Stimme hier für die Mottowoche ab!"
 
-#: uploader/templates/uploader/test.html:37
+#: uploader/templates/uploader/test.html:41
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
-#: uploader/views/views.py:33
+#: uploader/views/views.py:34
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 

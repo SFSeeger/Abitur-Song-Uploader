@@ -18,9 +18,13 @@
         </div>
         <div class="tile is-child box has-text-centered">
             <div class="icon is-large">
-                <i class="fas fa-2x fa-regular fa-image has-text-danger"></i>
+                <i class="fas fa-2x fa-regular fa-image has-text-{{image|yesno:'primary,danger'}}"></i>
             </div>
-            <p>{% translate "Image missing" %}</p>
+            {% if image %}
+                <p>{% translate "Image submitted" %}</p>
+            {% else %}
+                <p>{% translate "Image missing" %}</p>
+            {% endif %}
         </div>
     </div>
     <div class="tile is-parent is-vertical">

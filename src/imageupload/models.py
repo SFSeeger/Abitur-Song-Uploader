@@ -21,13 +21,12 @@ class UserImage(models.Model):
     )
     description = models.CharField(_("description"), max_length=512)
 
-    changed_at = models.DateTimeField(_("Changed at"))
-    created_at = models.DateTimeField(_("Created at"), auto_created=True)
-
-    def save(self, *args, **kwargs) -> None:
-        self.changed_at = timezone.now()
-        return super().save(*args, **kwargs)
+    changed_at = models.DateTimeField(_("Changed at"), auto_now=True)
+    created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
 
     class Meta:
         verbose_name = _("User Image")
         verbose_name_plural = _("User Images")
+
+    def __str__(self) -> str:
+        return self.user.get_username()
