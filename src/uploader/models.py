@@ -3,10 +3,7 @@ from django.core import validators
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-
-def generate_filename(self, filename):
-    name = "%s/%s" % (self.user.id, filename)
-    return name
+from songuploader.utils import generate_filename
 
 
 class Submission(models.Model):

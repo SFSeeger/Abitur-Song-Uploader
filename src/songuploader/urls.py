@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from pictures.conf import get_settings
 
 from songuploader.utils import UnderConstructionView
 
@@ -27,3 +28,8 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path("construction/", UnderConstructionView.as_view(), name="under-construction"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if get_settings().USE_PLACEHOLDERS:
+    urlpatterns += [
+        path("_pictures/", include("pictures.urls")),
+    ]

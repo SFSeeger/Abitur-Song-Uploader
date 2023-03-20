@@ -14,7 +14,6 @@ from django.views.generic import TemplateView, View
 from pytube import YouTube
 
 from songuploader.settings import MEDIA_ROOT
-from uploader.models import Submission
 
 
 class ConfiguredLoginViewMixin(LoginRequiredMixin):
@@ -51,7 +50,25 @@ class DisabledOnDateMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-def download_song(url: str, submission: Submission):
+class DisabledOnDateMixin:
+    end_date: datetime
+    date_redirect_url: str
+    message_content: Optional[str] = None
+
+    def dispatch(self, request, *args, **kwargs):
+        if timezone.now() >= self.end_date:
+            if self.message_content:
+                messages.info(request, self.message_content)
+            return redirect(self.date_redirect_url)
+        return super().dispatch(request, *args, **kwargs)
+
+
+def generate_filename(self, filename):
+    name = "%s/%s" % (self.user.id, filename)
+    return name
+
+
+def download_song(url: str, submission):
     out_path = os.path.join("/tmp", f"{submission.user.username}_temp.wav")
     YouTube(url=url).streams.filter(only_audio=True).first().download(
         output_path=os.path.dirname(out_path), filename=os.path.basename(out_path)

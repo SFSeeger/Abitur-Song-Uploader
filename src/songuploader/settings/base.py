@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     "django_q",
     "django_extensions",
     "django_prometheus",
+    "pictures",
     "uploader",
     "voting",
+    "imageupload",
 ]
 
 MIDDLEWARE = [
