@@ -1171,15 +1171,19 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pytube"
-version = "12.1.3"
+version = "12.1.2"
 description = "Python 3 library for downloading YouTube Videos."
 category = "main"
 optional = false
 python-versions = ">=3.6"
-files = [
-    {file = "pytube-12.1.3-py3-none-any.whl", hash = "sha256:b3c3d19afc99a5fe1b8bbe20ce65d5c594de3a9953ce00f88b92a6b258afb656"},
-    {file = "pytube-12.1.3.tar.gz", hash = "sha256:6a56ce9bbc03a6aaf62a1e5a54bae003c70fe2aa1c86c279037c031d59f571b3"},
-]
+files = []
+develop = false
+
+[package.source]
+type = "git"
+url = "https://github.com/julySteuer/pytube"
+reference = "master"
+resolved_reference = "3f42bb6b70ee26e2d07bfe51f82e5792b20367eb"
 
 [[package]]
 name = "pytz"
@@ -1525,4 +1529,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "9234b79e0d8cfc8fd6a7d1393a9ea7dd9968aca0c594cfa9202a0d3bef83e180"
+content-hash = "e91da3bbf37a57c5e72f77b125fc14010ca96cf6241d0a2b9afc0180cfb4a6ff"
