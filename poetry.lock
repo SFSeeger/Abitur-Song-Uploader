@@ -888,10 +888,14 @@ description = "Python 3 library for downloading YouTube Videos."
 category = "main"
 optional = false
 python-versions = ">=3.6"
-files = [
-    {file = "pytube-12.1.2-py3-none-any.whl", hash = "sha256:a844800002744f33107f4440543f9a5f1fd9fcd97dad35cf2dd4803212352d9a"},
-    {file = "pytube-12.1.2.tar.gz", hash = "sha256:2d34a484f81cae106ea84e8c00871f97dcc293e8ed8c074e65abc4119f02c98f"},
-]
+files = []
+develop = false
+
+[package.source]
+type = "git"
+url = "https://github.com/julySteuer/pytube"
+reference = "master"
+resolved_reference = "3f42bb6b70ee26e2d07bfe51f82e5792b20367eb"
 
 [[package]]
 name = "pytz"
@@ -1169,4 +1173,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4fa856ac3f83dcd9a2c2950813ed5be9c8b5a8695cbf056945cbe8286d39f7f0"
+content-hash = "6cb452b1f6ea070223d923a127ad932cf1565d906935e44e483fb44bf54e4a66"
