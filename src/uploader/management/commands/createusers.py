@@ -14,6 +14,10 @@ from django.template.loader import render_to_string
 pool = string.ascii_letters + string.digits
 
 
+def generate_password() -> str:
+    return "".join(random.choice(pool) for i in range(6))
+
+
 class Command(BaseCommand):
     help = "Creates users an sends them their passwords"
 
@@ -28,22 +32,27 @@ class Command(BaseCommand):
         User = get_user_model()
         df = pd.read_csv(options.get("csvfile"), delimiter=";")
         for idx, row in tqdm(df.iterrows(), total=df.shape[0]):
-            password = "".join(random.choice(pool) for i in range(6))
+            password = generate_password()
             first_name = row["first_name"]
             last_name = row["last_name"]
             email = row["email"]
             username = first_name + last_name
             username = username.strip(".").replace(" ", "").lower()
 
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
+            if not (user := User.objects.filter(username=username)):
                 user = User.objects.create_user(
                     username=username,
                     password=password,
                     **row,
                 )
                 user.save()
+            elif user.first().last_login == None:
+                user = user.first()
+                user.email = email
+                user.password = generate_password()
+                user.save()
+            else:
+                continue
             context = {
                 "first_name": first_name,
                 "username": username,
