@@ -1,5 +1,6 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -33,3 +34,7 @@ class UserImageUpdateView(ConfiguredLoginViewMixin, UpdateView):
     model = UserImage
     form_class = UserImageForm
     success_url = reverse_lazy("index")
+
+
+class UserImageDetailView(DetailView):
+    model = UserImage

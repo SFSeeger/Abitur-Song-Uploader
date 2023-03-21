@@ -1,0 +1,6 @@
+{% extends "base_with_box.html" %}
+{% load pictures %}
+{% block content %}
+    {{object.image|pprint}}
+    {% picture object.image%}
+{% endblock content %}

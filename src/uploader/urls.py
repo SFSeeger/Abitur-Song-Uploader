@@ -42,7 +42,7 @@ song_urlpatterns = [
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("song/", include(song_urlpatterns)),
-    path("file/<str:filename>/", FileDownload.as_view(), name="download-file"),
+    path("media/<str:filename>/", FileDownload.as_view(), name="download-file"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 ]
