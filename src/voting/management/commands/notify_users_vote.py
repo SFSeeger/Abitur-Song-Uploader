@@ -12,11 +12,19 @@ class Command(BaseCommand):
     def handle(self, *args: Any, **options: Any) -> Optional[str]:
         User = get_user_model()
         users = User.objects.filter(vote=None)
+        user_count = users.count()
+        if (
+            not input(
+                f"You are about to notify {user_count} users!\nContinue? [Y/n] "
+            ).lower()
+            == "y"
+        ):
+            return "Command aborted!"
         mails = []
         context = {
             "public_domain": settings.PUBLIC_DOMAIN,
         }
-        for user in tqdm(users, total=users.count()):
+        for user in tqdm(users, total=user_count):
             context["first_name"] = user.first_name
             message = mail.EmailMultiAlternatives(
                 subject="Final Reminder: Vote for Themed Week in the Next 24 Hours",
