@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bulma",
     "django_q",
+    "django_extensions",
     "django_prometheus",
     "uploader",
     "voting",
@@ -177,4 +178,3 @@ LANGUAGES = [
 MEDIA_ROOT = BASE_DIR / "media"
 
 PUBLIC_DOMAIN = "https://intern.rgabi.de"
-

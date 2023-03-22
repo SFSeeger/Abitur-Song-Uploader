@@ -1,0 +1,11 @@
+{% extends 'email/notification_base.html' %}
+{% block title %}Vote for Themed Week in the Next 24 Hours{% endblock title %}
+{% block catch %}
+    Hi {{first_name}}, <br />
+    we want to give everybody the chance to leave a vote for the coming themed week.
+{% endblock catch %}
+{% block description %}
+    This is just a friendly reminder that the voting for the upcoming themed week will be closing in the next 24 hours. We hope that you have had the chance to review the options and select your preferred theme for the week.<br />
+    If you haven't had the chance to vote yet, please do so as soon as possible to make sure your preferred theme is considered.<br/>
+    To cast your vote, simply log in to your account and visit the voting page. If you have any trouble accessing the page or experience any other issues, please let us know as soon as possible so we can assist you.
+{% endblock description %}

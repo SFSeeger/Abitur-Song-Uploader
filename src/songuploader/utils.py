@@ -1,15 +1,20 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+import os
+from datetime import datetime
+from typing import Optional
+
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.files import File
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, View
+from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import TemplateView, View
 from pytube import YouTube
+
 from songuploader.settings import MEDIA_ROOT
-from django.core.files import File
 from uploader.models import Submission
-import os
 
 
 class ConfiguredLoginViewMixin(LoginRequiredMixin):
@@ -31,6 +36,19 @@ class UnderConstructionView(View):
             ),
         )
         return redirect("index")
+
+
+class DisabledOnDateMixin:
+    end_date: datetime
+    date_redirect_url: str
+    message_content: Optional[str] = None
+
+    def dispatch(self, request, *args, **kwargs):
+        if timezone.now() >= self.end_date:
+            if self.message_content:
+                messages.info(request, self.message_content)
+            return redirect(self.date_redirect_url)
+        return super().dispatch(request, *args, **kwargs)
 
 
 def download_song(url: str, submission: Submission):
