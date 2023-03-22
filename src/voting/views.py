@@ -1,21 +1,34 @@
-from typing import Any
-from django.http import HttpRequest, HttpResponse
-from django.urls import reverse_lazy
-from django.utils.safestring import mark_safe
-from django.views.generic.edit import FormView
-from django.shortcuts import redirect, render
-from django.views.generic import TemplateView
-
-from songuploader.utils import ConfiguredLoginViewMixin, LoginRequiredTemplateView
-from .forms import VoteForm
-from .models import Vote, Option
 import json
+from typing import Any
+
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.utils import timezone
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
+
+from songuploader.utils import (
+    ConfiguredLoginViewMixin,
+    DisabledOnDateMixin,
+    LoginRequiredTemplateView,
+)
+
+from .forms import VoteForm
+from .models import Option, Vote
 
 
-class VoteFormView(ConfiguredLoginViewMixin, FormView):
+class VoteFormView(ConfiguredLoginViewMixin, DisabledOnDateMixin, FormView):
     template_name = "voting/vote.html"
     form_class = VoteForm
     success_url = reverse_lazy("vote-dashboard")
+
+    end_date = timezone.make_aware(
+        timezone.datetime(2023, 3, 23, 23, 59), timezone.get_default_timezone()
+    )
+    date_redirect_url = "vote-dashboard"
 
     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         if Vote.objects.filter(user=self.request.user):
