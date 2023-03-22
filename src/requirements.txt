@@ -11,6 +11,7 @@ colorama==0.4.6 ; python_version >= "3.10" and python_version < "4.0" and platfo
 crispy-bulma==0.8.3 ; python_version >= "3.10" and python_version < "4.0"
 cryptography==39.0.2 ; python_version >= "3.10" and python_version < "4.0"
 debugpy==1.6.6 ; python_version >= "3.10" and python_version < "4.0"
+django-cleanup==7.0.0 ; python_version >= "3.10" and python_version < "4.0"
 django-crispy-forms==2.0 ; python_version >= "3.10" and python_version < "4.0"
 django-extensions==3.2.1 ; python_version >= "3.10" and python_version < "4.0"
 django-picklefield==3.1 ; python_version >= "3.10" and python_version < "4"

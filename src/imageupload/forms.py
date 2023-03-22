@@ -1,14 +1,13 @@
-from django import forms
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Hidden, Row, Div
-from crispy_forms.bootstrap import PrependedText
-from crispy_bulma.layout import Submit, Field, Layout, UploadField
 from crispy_bulma.forms import FileField
+from crispy_bulma.layout import Field, Layout, Submit, UploadField
 from crispy_bulma.widgets import FileUploadInput
-
+from crispy_forms.bootstrap import PrependedText
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Div, Hidden, Row
+from django import forms
 from django.utils.translation import gettext_lazy as _
-from .models import UserImage
+
+from .models import Profile, UserImage
 
 
 class UserImageForm(forms.ModelForm):
@@ -19,7 +18,6 @@ class UserImageForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             UploadField("image", css_class="input"),
-            "description",
         )
         self.helper.add_input(
             Submit("submit", _("Submit"), css_class="is-primary is-fullwidth")
@@ -27,4 +25,20 @@ class UserImageForm(forms.ModelForm):
 
     class Meta:
         model = UserImage
-        fields = ["image", "description"]
+        fields = ["image"]
+
+
+class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            
+        )
+        self.helper.add_input(
+            Submit("submit", _("Submit"), css_class="is-primary is-fullwidth")
+        )
+
+    class Meta:
+        model = Profile
+        exclude = ["user"]

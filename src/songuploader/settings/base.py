@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 from django.contrib.messages import constants as message_constants
 from django.utils.translation import gettext_lazy as _
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "uploader",
     "voting",
     "imageupload",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [

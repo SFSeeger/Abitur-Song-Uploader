@@ -1,13 +1,16 @@
 from typing import Any
+
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 
 from songuploader.utils import ConfiguredLoginViewMixin
-from .forms import UserImageForm
-from .models import UserImage
+
+from .forms import ProfileForm, UserImageForm
+from .models import Profile, UserImage
+
 
 # Create your views here.
 class UserImageCreateView(ConfiguredLoginViewMixin, CreateView):
@@ -36,5 +39,32 @@ class UserImageUpdateView(ConfiguredLoginViewMixin, UpdateView):
     success_url = reverse_lazy("index")
 
 
-class UserImageDetailView(DetailView):
-    model = UserImage
+class ProfileCreateView(ConfiguredLoginViewMixin, CreateView):
+    model = Profile
+    form_class = ProfileForm
+
+    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        if profile := self.model.objects.filter(user=self.request.user).first():
+            return redirect("detail-profile", pk=profile.pk)
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form: UserImageForm) -> HttpResponse:
+        if profile := self.model.objects.filter(user=self.request.user).first():
+            return redirect("detail-profile", pk=profile.pk)
+        self.model.objects.create(
+            **form.cleaned_data,
+            user=self.request.user,
+        )
+        return redirect("detail-profile", pk=profile.id)
+
+
+class ProfileUpdateView(ConfiguredLoginViewMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+
+    def get_success_url(self) -> str:
+        return reverse_lazy("detail-profile", pk=self.get_object().id)
+
+
+class ProfileDetailView(DetailView):
+    model = Profile

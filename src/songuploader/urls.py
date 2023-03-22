@@ -13,10 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
 from pictures.conf import get_settings
 
 from songuploader.utils import UnderConstructionView
@@ -24,7 +24,7 @@ from songuploader.utils import UnderConstructionView
 urlpatterns = [
     path("", include("uploader.urls")),
     path("vote/", include("voting.urls")),
-    path("image/", include("imageupload.urls")),
+    path("profile/", include("imageupload.urls")),
     path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     path("construction/", UnderConstructionView.as_view(), name="under-construction"),

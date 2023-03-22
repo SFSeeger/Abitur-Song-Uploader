@@ -1,15 +1,15 @@
 import argparse
-import pandas as pd
-from tqdm import tqdm
 import random
 import string
 
-from django_q.tasks import async_task
+import pandas as pd
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth import get_user_model
 from django.core.mail import EmailMultiAlternatives
+from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
+from django_q.tasks import async_task
+from tqdm import tqdm
 
 pool = string.ascii_letters + string.digits
 
