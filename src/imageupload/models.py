@@ -9,15 +9,21 @@ from songuploader.utils import generate_filename
 # Create your models here.
 class UserImage(models.Model):
     type_choices = ((0, _("Picture")), (1, _("Baby Picture")))
+
     image_type = models.IntegerField(_("Image Type"), choices=type_choices)
 
     user = models.ForeignKey(
         "auth.user", on_delete=models.CASCADE, verbose_name=_("User")
     )
 
+    width = models.IntegerField()
+    height = models.IntegerField()
     image = PictureField(
         _("Image"),
         upload_to=generate_filename,
+        aspect_ratios=[None, "1/1", "15/16"],
+        width_field="width",
+        height_field="height",
     )
     description = models.CharField(_("description"), max_length=512)
 

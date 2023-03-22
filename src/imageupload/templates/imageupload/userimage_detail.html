@@ -1,6 +1,5 @@
 {% extends "base_with_box.html" %}
 {% load pictures %}
 {% block content %}
-    {{object.image|pprint}}
-    {% picture object.image%}
+    {% picture object.image ratio="15/16" %}
 {% endblock content %}

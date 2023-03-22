@@ -37,7 +37,7 @@ class Command(BaseCommand):
             last_name = row["last_name"]
             email = row["email"]
             username = first_name + last_name
-            username = username.strip(".").replace(" ", "").lower()
+            username = username.replace(".", "").replace(" ", "").lower()
 
             if not (user := User.objects.filter(username=username)):
                 user = User.objects.create_user(

@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, re_path, include
 
 from songuploader.utils import LoginRequiredTemplateView
 from .forms import SubmissionUploadForm
@@ -42,7 +42,7 @@ song_urlpatterns = [
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("song/", include(song_urlpatterns)),
-    path("media/<str:filename>/", FileDownload.as_view(), name="download-file"),
+    re_path(r"^media/(?P<path>.*)/$", FileDownload.as_view(), name="download-file"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 ]
