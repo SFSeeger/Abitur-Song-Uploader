@@ -177,5 +177,4 @@ LANGUAGES = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
-
 PUBLIC_DOMAIN = "https://intern.rgabi.de"

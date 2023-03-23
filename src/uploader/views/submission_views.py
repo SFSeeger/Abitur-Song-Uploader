@@ -1,17 +1,17 @@
 from typing import Any
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, UpdateView
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic.edit import CreateView, UpdateView
 from django_q.tasks import async_task
 
 from songuploader.utils import ConfiguredLoginViewMixin, download_song
 
 from ..forms import SubmissionForm
 from ..models import Submission
-
 
 
 class SubmissionCreateView(ConfiguredLoginViewMixin, CreateView):
