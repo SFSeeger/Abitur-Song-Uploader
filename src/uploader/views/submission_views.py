@@ -32,7 +32,7 @@ class SubmissionCreateView(ConfiguredLoginViewMixin, CreateView):
         submission = Submission.objects.create(
             **form.cleaned_data, user=self.request.user
         )
-        async_task(self.submit_action, submission.song_url, submission)
+        async_task(self.submit_action, submission)
         return HttpResponseRedirect(self.success_url)
 
 
@@ -49,5 +49,5 @@ class SubmissionUpdateView(ConfiguredLoginViewMixin, UpdateView):
         submission.start_time = form.cleaned_data["start_time"]
         submission.end_time = form.cleaned_data["end_time"]
         submission.save()
-        async_task(self.submit_action, submission.song_url, submission)
+        async_task(self.submit_action, submission)
         return HttpResponseRedirect(self.success_url)
