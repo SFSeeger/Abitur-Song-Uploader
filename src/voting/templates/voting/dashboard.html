@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block title %}{% trans "Vote Dashboard" %}{% endblock title %}
+{% block content%}
+<h1 class="title">{% trans "Dashboard" %}</h1>
+
+<div>
+  {{votes}} {% trans "Votes out of" %} 136
+  <progress class="progress is-primary" value="{{votes}}" max="136"></progress>
+</div>
+<canvas id="myChart"></canvas>
+
+<div class="box mt-5">
+  <div class="has-text-centered m-2">
+    <h3 class="title is-4 m-0">{% trans "Current Winners" %}</h3>
+    <p class="heading">{% trans "Ammount of votes" %}</p>
+  </div>
+  <div class="level">
+    {% for point, value in data.items %}
+    {% if not forloop.counter > 5 %}
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">{{point|truncatechars:"14"}}</p>
+          <p class="title">{{value}}</p>
+        </div>
+      </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock content%}
+
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script charset="utf-8">
+  const ctx = document.getElementById('myChart');
+  const data = JSON.parse("{{data|safe}}".replaceAll("'", "\""));
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: Object.keys(data),
+      datasets: [{
+        label: ' # of Votes',
+        data: Object.values(data),
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          lables: {
+            font: {
+              family: "BlinkMacSystemFont,-apple-system,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',Helvetica,Arial,sans-serif"
+            }
+          }
+        }
+      }
+    },
+  });
+</script>
+{% endblock scripts %}

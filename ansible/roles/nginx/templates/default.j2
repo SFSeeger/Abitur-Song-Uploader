@@ -3,8 +3,14 @@ upstream app-server {
 }
 
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen [::]:443 ssl ipv6only=on;
+    listen 443 ssl; # managed by Certbot
+    server_name intern.rgabi.de sfseeger.ddns.net;
+
+    ssl_certificate /etc/letsencrypt/live/intern.rgabi.de/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/intern.rgabi.de/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
     location / {
         include proxy_params;
@@ -21,35 +27,23 @@ server {
 }
 
 server {
-    listen [::]:443 ssl ipv6only=on;
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/sfseeger.ddns.net/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/sfseeger.ddns.net/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-    location / {
-            include proxy_params;
-            proxy_pass http://app-server;
-    }
-
-    location /static/ {
-            alias {{ static_dir }}/;
-            autoindex on;
-            autoindex_exact_size off;
-            autoindex_format html;
-            autoindex_localtime on;
-    }
-}
-
-server {
-     if ($host = sfseeger.ddns.net) {
+    if ($host = intern.rgabi.de) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
+    listen 80;
+    listen [::]:80;
+    server_name intern.rgabi.de;
+    return 404; # managed by Certbot
+}
 
-        listen 80;
-        listen [::]:80;
+server {
+    if ($host = sfseeger.ddns.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    listen [::]:80;
     server_name sfseeger.ddns.net;
     return 404; # managed by Certbot
 }

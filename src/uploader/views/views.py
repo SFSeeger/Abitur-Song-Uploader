@@ -46,5 +46,4 @@ class IndexView(ConfiguredLoginViewMixin, TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context["has_song"] = Submission.objects.filter(user=self.request.user).first()
-        context["lang_code"] = self.request.LANGUAGE_CODE
         return context

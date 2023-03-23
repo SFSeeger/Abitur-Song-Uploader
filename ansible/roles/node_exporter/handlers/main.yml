@@ -1,0 +1,4 @@
+---
+# handlers file for roles/exporters
+- name: node_exporter restart
+  service: name=node_exporter state=restarted

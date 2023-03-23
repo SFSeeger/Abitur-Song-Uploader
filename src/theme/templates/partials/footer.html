@@ -1,24 +1,32 @@
+{% load i18n %}
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>
-            Website by Simon Felix Seeger
-        </p>
-        <span>
-            <a href="https://bulma.io">
-                <img
-                    src="https://bulma.io/images/made-with-bulma.png"
-                    alt="Made with Bulma"
-                    width="128"
-                    height="24">
-            </a>
-            <a href="https://github.com/SFSeeger/Abitur-Song-Uploader">
-                <span class="icon-text">
-                    <span class="icon">
-                        <i class="fa-brands fa-github"></i>
+        <div class="columns">
+            <div class="column">
+                <h4 class="bd-footer-title">
+                    {% trans "Website by" %} <a href="https://github.com/SFSeeger" target="_blank">Simon Felix Seeger</a>
+                </h4>
+                <h5>
+                    {% trans "and" %} <a href="https://github.com/JulySteuer" target="_blank">Julian Steuer</a>
+                </h5>
+            </div>
+            <div class="column">
+                <a href="https://bulma.io">
+                    <img
+                        src="https://bulma.io/images/made-with-bulma.png"
+                        alt="Made with Bulma"
+                        width="128"
+                        height="24">
+                </a>
+                <a href="https://github.com/SFSeeger/Abitur-Song-Uploader">
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fa-brands fa-github"></i>
+                        </span>
+                        {% trans "Visit on Github" %}
                     </span>
-                    Visit on Github
-                </span>
-            </a>
-        </span>
+                </a>
+            </div>
+        </div>
     </div>
 </footer>

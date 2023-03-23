@@ -1,0 +1,29 @@
+{% extends 'base_with_box.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Choose Theme" %}{% endblock title %}
+{% block content %}
+    {% blocktrans %}Please choose 5 themes{% endblocktrans %}
+    <form method="post" id="voteForm">
+        {% crispy form %}
+    </form>
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        const form = document.querySelector("#voteForm");
+
+        const update_checkboxes = () => {
+            const checked = document.querySelectorAll(".checkbox>input:checked").length;
+            const unchecked = document.querySelectorAll(".checkbox>input:not(:checked)");
+            if(checked >= 5){
+                unchecked.forEach((i) => i.setAttribute("disabled", "disabled"));
+            }
+            else{
+                unchecked.forEach((i) => i.removeAttribute("disabled"));
+            }
+        }
+        update_checkboxes();
+        form.addEventListener("change", update_checkboxes);
+    </script>
+{% endblock scripts %}

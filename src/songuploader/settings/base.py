@@ -42,10 +42,14 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bulma",
     "django_q",
+    "django_extensions",
+    "django_prometheus",
     "uploader",
+    "voting",
 ]
 
 MIDDLEWARE = [
+    "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 
 ROOT_URLCONF = "songuploader.urls"
@@ -69,6 +74,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.i18n",
+                "songuploader.context_processors.get_public_domain",
             ],
         },
     },
@@ -82,7 +89,7 @@ WSGI_APPLICATION = "songuploader.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "django_prometheus.db.backends.mysql",
         "NAME": os.environ.get("MYSQL_DB"),
         "USER": os.environ.get("MYSQL_USER"),
         "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
@@ -146,9 +153,9 @@ CRISPY_TEMPLATE_PACK = "bulma"
 
 
 Q_CLUSTER = {
-    "name": "DjangORM",
+    "name": "songuploader",
     "workers": 4,
-    "timeout": 90,
+    "timeout": 120,
     "retry": 120,
     "queue_limit": 50,
     "bulk": 10,
@@ -157,8 +164,8 @@ Q_CLUSTER = {
 
 MESSAGE_TAGS = {
     message_constants.DEBUG: "is-success is-light",
-    message_constants.INFO: "is-primary",
-    message_constants.SUCCESS: "issuccess",
+    message_constants.INFO: "is-info",
+    message_constants.SUCCESS: "is-success",
     message_constants.WARNING: "is-warning",
     message_constants.ERROR: "is-danger",
 }
@@ -169,4 +176,7 @@ LANGUAGES = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
+
 MEDIA_URL="/media/"
+
+PUBLIC_DOMAIN = "https://intern.rgabi.de"

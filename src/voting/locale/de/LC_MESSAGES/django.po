@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023 Simon Felix Seeger
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <simon.f.seeger@gmx.de>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-23 18:31+0100\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: de \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: voting/forms.py:16
+msgid "Submit"
+msgstr "Absenden"
+
+#: voting/forms.py:28
+msgid "Only 5 options possible"
+msgstr "Maximal 5 optionen möglich"
+
+#: voting/templates/voting/dashboard.html:5
+msgid "Vote Dashboard"
+msgstr "Mottowoche Übersicht"
+
+#: voting/templates/voting/dashboard.html:7
+#, fuzzy
+#| msgid "Vote Dashboard"
+msgid "Dashboard"
+msgstr "Mottowoche Übersicht"
+
+#: voting/templates/voting/dashboard.html:10
+msgid "Votes out of"
+msgstr "Stimmen von"
+
+#: voting/templates/voting/dashboard.html:17
+msgid "Current Winners"
+msgstr "Aktuelle Gewinner"
+
+#: voting/templates/voting/dashboard.html:18
+msgid "Ammount of votes"
+msgstr "Anzahl der Stimmen"
+
+#: voting/templates/voting/vote.html:4
+msgid "Choose Theme"
+msgstr "Motto wählen"
+
+#: voting/templates/voting/vote.html:6
+msgid "Please choose 5 themes"
+msgstr "Bitte 5 auswählen"
+
+#: voting/views.py:32
+msgid "The poll is now closed"
+msgstr "Die Abstimmung ist beendet"

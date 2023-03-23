@@ -1,0 +1,107 @@
+[
+   {
+      "model": "voting.option",
+      "pk": 1,
+      "fields": {
+         "name": "Kindheitshelden"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 2,
+      "fields": {
+         "name": "Zur\u00fcck in der Zeit"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 3,
+      "fields": {
+         "name": "B\u00f6sewichte"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 4,
+      "fields": {
+         "name": "Nationalit\u00e4t"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 5,
+      "fields": {
+         "name": "Berufe"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 6,
+      "fields": {
+         "name": "Metgala / High-Fasion"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 7,
+      "fields": {
+         "name": "Genderswap"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 8,
+      "fields": {
+         "name": "Film/Serien Charaktere"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 9,
+      "fields": {
+         "name": "1.Schultag"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 10,
+      "fields": {
+         "name": "Mafia"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 11,
+      "fields": {
+         "name": "Pyjama"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 12,
+      "fields": {
+         "name": "Gruppenkost\u00fcm"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 13,
+      "fields": {
+         "name": "Assi"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 14,
+      "fields": {
+         "name": "Nutten und Zuh\u00e4lter"
+      }
+   },
+   {
+      "model": "voting.option",
+      "pk": 15,
+      "fields": {
+         "name": "Kult"
+      }
+   }
+]

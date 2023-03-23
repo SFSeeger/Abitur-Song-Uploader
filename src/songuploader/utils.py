@@ -1,11 +1,24 @@
+import os
+from datetime import datetime
+from typing import Optional
+
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.files import File
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.utils import timezone
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, View
 from pytube import YouTube
 from songuploader.settings import MEDIA_ROOT
 from django.core.files import File
 from uploader.models import Submission
 import os 
+
+from songuploader.settings import MEDIA_ROOT
+from uploader.models import Submission
 
 
 class ConfiguredLoginViewMixin(LoginRequiredMixin):
@@ -15,7 +28,7 @@ class ConfiguredLoginViewMixin(LoginRequiredMixin):
 
 class LoginRequiredTemplateView(ConfiguredLoginViewMixin, TemplateView):
     template_name: str = None
-
+    
 def download_song(submission: Submission):
     out_path = os.path.join("/tmp", f"{submission.user.username}.mp4")
     YouTube(url=submission.song_url).streams.filter(only_audio=True).first().download(output_path=os.path.dirname(out_path), filename=os.path.basename(out_path))
@@ -24,3 +37,27 @@ def download_song(submission: Submission):
     submission.song = song_file
     submission.save()
     os.remove(out_path)
+
+class UnderConstructionView(View):
+    def get(self, request, *args, **kwargs):
+        message = '<span class="icon-text"><span class="icon"><i class="fa-solid fa-wrench"></i></span><span>%s</span></span>'
+        messages.info(
+            request,
+            mark_safe(
+                message % _("The side you tried to access is under construction")
+            ),
+        )
+        return redirect("index")
+
+
+class DisabledOnDateMixin:
+    end_date: datetime
+    date_redirect_url: str
+    message_content: Optional[str] = None
+
+    def dispatch(self, request, *args, **kwargs):
+        if timezone.now() >= self.end_date:
+            if self.message_content:
+                messages.info(request, self.message_content)
+            return redirect(self.date_redirect_url)
+        return super().dispatch(request, *args, **kwargs)

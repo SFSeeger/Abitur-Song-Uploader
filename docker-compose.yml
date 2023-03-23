@@ -28,7 +28,7 @@ services:
     build: .
     ports:
       - "8080:80"
-      - "3000:3000"
+      - "3456:3000"
     expose:
       - 80
     restart: unless-stopped
@@ -42,7 +42,6 @@ services:
 
     volumes:
       - ./src/:/app/web/.
-      - ./.env:/app/web/.
 
 volumes:
   my-db:

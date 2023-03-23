@@ -1,27 +1,31 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2023 Simon Felix Seeger
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <simon.f.seeger@gmx.de>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-12 00:57+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2023-03-23 18:31+0100\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: songuploader/settings/base.py:164
+#: songuploader/settings/base.py:174
 msgid "German"
 msgstr "Deutsch"
 
-#: songuploader/settings/base.py:165
+#: songuploader/settings/base.py:175
 msgid "English"
 msgstr "Englisch"
+
+#: songuploader/utils.py:35
+msgid "The side you tried to access is under construction"
+msgstr "An dieser seite wird noch gebaut"
