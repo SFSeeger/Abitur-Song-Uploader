@@ -2,10 +2,11 @@ from django.db import models
 from django.core import validators
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+import os
 
 
 def generate_filename(self, filename):
-    name = "%s/%s" % (self.user.id, filename)
+    name = "%s/%s" % (self.user.id, os.path.basename(filename))
     return name
 
 
