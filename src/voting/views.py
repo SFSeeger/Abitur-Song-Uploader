@@ -26,9 +26,10 @@ class VoteFormView(ConfiguredLoginViewMixin, DisabledOnDateMixin, FormView):
     success_url = reverse_lazy("vote-dashboard")
 
     end_date = timezone.make_aware(
-        timezone.datetime(2023, 3, 23, 23, 59), timezone.get_default_timezone()
+        timezone.datetime(2023, 3, 23, 18, 00), timezone.get_default_timezone()
     )
     date_redirect_url = "vote-dashboard"
+    message_content = _("The poll is now closed")
 
     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         if Vote.objects.filter(user=self.request.user):

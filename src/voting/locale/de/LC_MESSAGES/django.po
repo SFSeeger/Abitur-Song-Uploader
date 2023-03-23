@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-18 22:34+0100\n"
+"POT-Creation-Date: 2023-03-23 18:31+0100\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,3 +55,7 @@ msgstr "Motto wählen"
 #: voting/templates/voting/vote.html:6
 msgid "Please choose 5 themes"
 msgstr "Bitte 5 auswählen"
+
+#: voting/views.py:32
+msgid "The poll is now closed"
+msgstr "Die Abstimmung ist beendet"
