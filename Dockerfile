@@ -7,7 +7,7 @@ ENV NODE_VERSION=16.13.0
 
 
 RUN apt-get update
-RUN apt-get install -y default-libmysqlclient-dev gettext curl
+RUN apt-get install -y default-libmysqlclient-dev gettext curl ffmpeg
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
