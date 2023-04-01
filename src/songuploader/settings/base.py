@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django_prometheus",
     "uploader",
     "voting",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [

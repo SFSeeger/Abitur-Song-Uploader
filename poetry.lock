@@ -365,19 +365,19 @@ files = [
 
 [[package]]
 name = "crispy-bulma"
-version = "0.8.3"
+version = "0.9.0"
 description = "Bulma template pack for django-crispy-forms"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "crispy-bulma-0.8.3.tar.gz", hash = "sha256:aee5e5b43fedca6ca9046555af9fc3c83d8cb650f10d70188c6a68fd33388ab6"},
-    {file = "crispy_bulma-0.8.3-py3-none-any.whl", hash = "sha256:3b2b0b6d74a95677cec4ae2acbc1e986de5e764d5f5f8d5af816b50260355131"},
+    {file = "crispy-bulma-0.9.0.tar.gz", hash = "sha256:2f77a8b26ac1ff3743e7bf7f95f78229e9dc12e101b2af35166d282635b37474"},
+    {file = "crispy_bulma-0.9.0-py3-none-any.whl", hash = "sha256:1613d001adea6612f28cdff66ac1d57b9475e817863b276f2412558d7051c303"},
 ]
 
 [package.dependencies]
-Django = ">=2.2"
-django-crispy-forms = ">=1.12.0"
+Django = ">=3.2"
+django-crispy-forms = ">=2.0"
 
 [package.extras]
 test = ["pytest", "pytest-django"]
@@ -486,6 +486,18 @@ tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-cleanup"
+version = "7.0.0"
+description = "Deletes old files."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-cleanup-7.0.0.tar.gz", hash = "sha256:28a969f889c661eba0d9438978693980f09482c97983bd08ee52955dae8d71e4"},
+    {file = "django_cleanup-7.0.0-py2.py3-none-any.whl", hash = "sha256:f50d54de48527d66ff05d74d2c3aafcdadc6c94ba280ece14a7e4c5b2c591447"},
+]
 
 [[package]]
 name = "django-crispy-forms"
@@ -1529,4 +1541,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "e91da3bbf37a57c5e72f77b125fc14010ca96cf6241d0a2b9afc0180cfb4a6ff"
+content-hash = "caa104c239c429d85796ee1409ea7047401a790f934f3647f7fb6c2f8280b155"

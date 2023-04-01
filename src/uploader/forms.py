@@ -1,17 +1,16 @@
-import requests
 import re
+
+import requests
+from crispy_bulma.forms import FileField
+from crispy_bulma.layout import Field, Layout, Submit, UploadField
+from crispy_forms.bootstrap import PrependedText
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Div, Hidden, Row
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Hidden, Row, Div
-from crispy_forms.bootstrap import PrependedText
-from crispy_bulma.layout import Submit, Field, Layout, UploadField
-from crispy_bulma.forms import FileField
-
 from .models import Submission
-
 
 pattern = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"'
 yt_url = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 17:29+0200\n"
+"POT-Creation-Date: 2023-04-01 17:55+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: songuploader/settings/base.py:174
+#: songuploader/settings/base.py:175
 msgid "German"
 msgstr "Deutsch"
 
-#: songuploader/settings/base.py:175
+#: songuploader/settings/base.py:176
 msgid "English"
 msgstr "Englisch"
 
-#~ msgid "The side you tried to access is under construction"
-#~ msgstr "An dieser seite wird noch gebaut"
+#: songuploader/utils.py:36
+msgid "The side you tried to access is under construction"
+msgstr "An dieser Seite wird noch gebaut"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 17:29+0200\n"
+"POT-Creation-Date: 2023-04-01 17:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: theme/templates/base.html:49 theme/templates/partials/header.html:18
-msgid "Home"
-msgstr "Start"
-
-#: theme/templates/base.html:52
-msgid "Choose Song"
-msgstr ""
-
-#: theme/templates/base.html:59 theme/templates/partials/header.html:54
-msgid "Logout"
-msgstr "Ausloggen"
-
-#: theme/templates/base.html:61 theme/templates/partials/header.html:56
-msgid "Login"
-msgstr "Einloggen"
 
 #: theme/templates/partials/footer.html:7
 msgid "Website by"
@@ -46,6 +30,10 @@ msgstr "und"
 msgid "Visit on Github"
 msgstr "Auf Github ansehen"
 
+#: theme/templates/partials/header.html:18
+msgid "Home"
+msgstr "Start"
+
 #: theme/templates/partials/header.html:23
 msgid "Upload song"
 msgstr "Song hochladen"
@@ -53,3 +41,11 @@ msgstr "Song hochladen"
 #: theme/templates/partials/header.html:26
 msgid "Theme Vote"
 msgstr "Abstimmung Mottowoche"
+
+#: theme/templates/partials/header.html:54
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: theme/templates/partials/header.html:56
+msgid "Login"
+msgstr "Einloggen"

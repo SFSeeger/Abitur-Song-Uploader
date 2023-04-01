@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 18:31+0100\n"
+"POT-Creation-Date: 2023-04-01 17:55+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,21 +48,21 @@ msgstr "Keine valide YouTube url: %(value)s"
 msgid "Could not find YouTube video"
 msgstr "Konnte YouTube video nicht finden"
 
-#: uploader/models.py:15
+#: uploader/models.py:16
 msgid "Song URL"
 msgstr "Song URL"
 
-#: uploader/models.py:17
+#: uploader/models.py:18
 #, fuzzy
 #| msgid "Start Time"
 msgid "Start Time (in sec.)"
 msgstr "Anfangs Zeit (in sek.)"
 
-#: uploader/models.py:22
+#: uploader/models.py:23
 msgid "End Time"
 msgstr "Endzeit"
 
-#: uploader/models.py:28
+#: uploader/models.py:29
 msgid "Song File"
 msgstr "Song Datei"
 
