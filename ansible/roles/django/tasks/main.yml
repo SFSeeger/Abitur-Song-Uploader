@@ -26,7 +26,13 @@
   file: path={{ media_dir }} state=directory mode=755
 
 - name: create backup dir
-  file: path={{ backup_dir }} state=directory mode=750
+  file:
+    path: "{{ backup_dir }}"
+    state: directory
+    mode: 750
+    owner: gunicorn
+    group: www-data
+    recurse: yes
 
 - name: change perms on app directory
   file:
