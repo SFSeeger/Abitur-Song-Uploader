@@ -6,6 +6,7 @@ from django.core import validators
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+import os
 
 
 def generate_filename(self, filename):
