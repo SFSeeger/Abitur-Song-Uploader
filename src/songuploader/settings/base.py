@@ -175,12 +175,17 @@ CRON_TASKS = {
     "dbbackup": {
         "args": "dbbackup",
         "schedule_type": "D",
-        "run_at": "02:15",
+        "run_at": "02:05",
     },
     "remove_files": {
         "args": "remove_unused_files",
         "schedule_type": "D",
-        "run_at": "02:20",
+        "run_at": "02:10",
+    },
+    "backup_media": {
+        "args": "backup_media",
+        "schedule_type": "D",
+        "run_at": "02:15",
     },
 }
 
@@ -201,4 +206,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 PUBLIC_DOMAIN = "https://intern.rgabi.de"
 
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
-DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups"}
+DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}
+
+MEDIA_BACKUP_DIR = "/var/local/songuploader/backups/media/"
