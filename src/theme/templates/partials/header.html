@@ -17,8 +17,7 @@
         <a href="/" class="navbar-item">
             {% translate "Home" %}
         </a>
-        {% comment %} {% url 'choose-song' %} {% endcomment %}
-        <a href="{% url 'under-construction' %}" class="navbar-item">
+        <a href="{% url 'choose-song' %}" class="navbar-item">
             {% translate "Upload song" %}
         </a>
         <a href="{% url 'add-vote' %}" class="navbar-item">

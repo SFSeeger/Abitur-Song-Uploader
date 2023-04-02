@@ -1,14 +1,12 @@
-from django.urls import path, include
+from django.urls import include, path
+from django.views.generic.base import TemplateView
 
-from songuploader.utils import LoginRequiredTemplateView
+from songuploader.utils import LoginRequiredTemplateView, slice_song
+
 from .forms import SubmissionUploadForm
-from .views.submission_views import SubmissionCreateView, SubmissionUpdateView
 from .views.file_views import FileDownload
-from .views.views import (
-    LoginView,
-    LogoutView,
-    IndexView,
-)
+from .views.submission_views import SubmissionCreateView, SubmissionUpdateView
+from .views.views import IndexView, LoginView, LogoutView
 
 song_urlpatterns = [
     path(
@@ -27,17 +25,22 @@ song_urlpatterns = [
     path(
         "from-file/",
         SubmissionCreateView.as_view(
-            form_class=SubmissionUploadForm, update_name="update-from-file"
+            form_class=SubmissionUploadForm,
+            update_name="update-from-file",
+            submit_action=slice_song,
         ),
         name="from-file",
     ),
     path(
         "from-file/update/<int:pk>",
-        SubmissionUpdateView.as_view(form_class=SubmissionUploadForm),
+        SubmissionUpdateView.as_view(
+            form_class=SubmissionUploadForm, submit_action=slice_song
+        ),
         name="update-from-file",
     ),
     path("upload/", SubmissionCreateView.as_view(), name="upload"),
 ]
+
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),

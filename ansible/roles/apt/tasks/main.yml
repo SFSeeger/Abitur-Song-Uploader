@@ -17,6 +17,7 @@
     - nginx
     - gettext
     - default-libmysqlclient-dev
+    - default-mysql-client
     - curl
     - nodejs
     - npm
@@ -24,3 +25,4 @@
     - software-properties-common
     - wget
     - grafana
+    - ffmpeg
