@@ -4,5 +4,6 @@ django_dir: "{{repo_dir}}/src"
 django_project: "songuploader"
 static_dir: "/var/www/data/static"
 media_dir: "/var/www/data/media"
+backup_dir: "/var/local/songuploader/backups"
 
 python_path: "{{repo_dir}}/.venv/bin/python3"

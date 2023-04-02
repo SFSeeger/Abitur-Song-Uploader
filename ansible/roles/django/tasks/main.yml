@@ -25,6 +25,9 @@
 - name: create media_root dir
   file: path={{ media_dir }} state=directory mode=755
 
+- name: create backup dir
+  file: path={{ backup_dir }} state=directory mode=750
+
 - name: change perms on app directory
   file:
     path: "{{repo_dir}}"
