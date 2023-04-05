@@ -9,3 +9,21 @@
 
 {% include 'helpers/submit_spinner.html' %}
 {% endblock content %}
+{% block scripts %}
+<script>
+    start_time = document.querySelector("#id_start_time");
+    end_time = document.querySelector("#id_end_time");
+
+    start_time.addEventListener("change", () => {
+        data = start_time.value.match(/^(\d+):(\d+)$/g);
+        a = 0;
+        if (data){
+            a = parseInt(data[0]) * 60;
+            a = a+parseInt(data[1])
+            start_time.value = a;
+        }
+        end_time.value=parseInt(start_time.value)+30;
+    })
+
+</script>
+{% endblock scripts %}
