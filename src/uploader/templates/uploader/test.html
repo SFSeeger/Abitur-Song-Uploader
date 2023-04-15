@@ -10,11 +10,13 @@
             <div class="icon is-large">
                 <i class="fas fa-2x fa-solid fa-music has-text-{{has_song|yesno:'primary,danger'}}"></i>
             </div>
-            {% if has_song %}
-                <p>{% translate "Song submitted" %}</p>
-            {% else %}
-                <p>{% translate "Song missing" %}</p>
-            {% endif %}
+            <div>
+                {% if has_song %}
+                    <a href="{{has_song.song.url}}">{% translate "Song submitted" %}</a>
+                {% else %}
+                    <a href="{% url 'choose-song' %}">{% translate "Song missing" %}</a>
+                {% endif %}
+            </div>
         </div>
         <div class="tile is-child box has-text-centered">
             <div class="icon is-large">

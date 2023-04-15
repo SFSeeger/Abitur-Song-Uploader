@@ -15,7 +15,12 @@ from ..models import Submission
 
 
 def download_slice(view, submission: Submission):
-    async_chain([(download_song, [submission]), (slice_song, [submission])])
+    async_chain(
+        [
+            (download_song, [submission]),
+            (slice_song, [submission]),
+        ]
+    )
 
 
 def slice_anon(view, submission: Submission):

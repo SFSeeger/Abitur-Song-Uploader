@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.generic.base import TemplateView
 
 from songuploader.utils import LoginRequiredTemplateView, slice_song
@@ -45,7 +45,7 @@ song_urlpatterns = [
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("song/", include(song_urlpatterns)),
-    path("file/<str:filename>/", FileDownload.as_view(), name="download-file"),
+    re_path(r"^media/(?P<path>.*)/$", FileDownload.as_view(), name="download-file"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 ]

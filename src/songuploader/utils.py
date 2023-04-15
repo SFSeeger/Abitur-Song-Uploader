@@ -13,6 +13,10 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, View
 from pytube import YouTube
+from songuploader.settings import MEDIA_ROOT
+from django.core.files import File
+from uploader.models import Submission
+import os 
 
 from songuploader.settings import MEDIA_ROOT
 from uploader.models import Submission
@@ -25,7 +29,7 @@ class ConfiguredLoginViewMixin(LoginRequiredMixin):
 
 class LoginRequiredTemplateView(ConfiguredLoginViewMixin, TemplateView):
     template_name: str = None
-
+    
 
 class UnderConstructionView(View):
     def get(self, request, *args, **kwargs):
@@ -50,7 +54,6 @@ class DisabledOnDateMixin:
                 messages.info(request, self.message_content)
             return redirect(self.date_redirect_url)
         return super().dispatch(request, *args, **kwargs)
-
 
 class LoginRequiredTemplateView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy("login")
@@ -80,3 +83,4 @@ def slice_song(submission: Submission):
         f"ffmpeg -ss {submission.start_time} -i {out_path} -c copy -y -t {submission.end_time-submission.start_time} {submission.song.path}"
     )
     os.remove(out_path)
+

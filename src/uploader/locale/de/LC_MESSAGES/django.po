@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 17:55+0200\n"
+"POT-Creation-Date: 2023-04-05 22:47+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,51 +18,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: uploader/forms.py:45 uploader/forms.py:86 uploader/forms.py:123
+#: uploader/forms.py:44 uploader/forms.py:85 uploader/forms.py:122
 msgid "Submit"
 msgstr "Absenden"
 
-#: uploader/forms.py:49
+#: uploader/forms.py:48
 msgid "Username"
 msgstr "Benutzername"
 
-#: uploader/forms.py:51
+#: uploader/forms.py:50
 msgid "Password"
 msgstr "Passwort"
 
-#: uploader/forms.py:63
+#: uploader/forms.py:62
 msgid "Start Time cannot be larger than End Time"
 msgstr "Anfangs Zeit kann nicht größer als Endzeit sein"
 
-#: uploader/forms.py:67
+#: uploader/forms.py:66
 #, python-format
 msgid "Duration of %(duration)d larger than 30 seconds"
 msgstr "Laufzeit von %(duration)d länger als 30 sekunden"
 
-#: uploader/forms.py:98
+#: uploader/forms.py:97
 #, python-format
 msgid "Not a valid YouTube url: %(value)s"
 msgstr "Keine valide YouTube url: %(value)s"
 
-#: uploader/forms.py:104
+#: uploader/forms.py:103
 msgid "Could not find YouTube video"
 msgstr "Konnte YouTube video nicht finden"
 
-#: uploader/models.py:16
+#: uploader/models.py:20
 msgid "Song URL"
 msgstr "Song URL"
 
-#: uploader/models.py:18
-#, fuzzy
-#| msgid "Start Time"
+#: uploader/models.py:22
 msgid "Start Time (in sec.)"
 msgstr "Anfangs Zeit (in sek.)"
 
-#: uploader/models.py:23
+#: uploader/models.py:27
 msgid "End Time"
 msgstr "Endzeit"
 
-#: uploader/models.py:29
+#: uploader/models.py:33
 msgid "Song File"
 msgstr "Song Datei"
 
@@ -89,36 +87,30 @@ msgid "How do you want to choose your song?"
 msgstr "Wie willst du deinen Song wählen?"
 
 #: uploader/templates/uploader/choose_upload_type.html:11
-#, fuzzy
-#| msgid "From Youtube"
 msgid "Using Youtube"
 msgstr "Von Youtube"
 
 #: uploader/templates/uploader/choose_upload_type.html:18
-#, fuzzy
-#| msgid "Song File"
 msgid "Using File"
 msgstr "Song Datei"
 
-#: uploader/templates/uploader/test.html:14
-#, fuzzy
-#| msgid "Song File"
+#: uploader/templates/uploader/test.html:15
 msgid "Song submitted"
 msgstr "Song hochgeladen"
 
-#: uploader/templates/uploader/test.html:16
+#: uploader/templates/uploader/test.html:17
 msgid "Song missing"
 msgstr "Song fehlt"
 
-#: uploader/templates/uploader/test.html:23
+#: uploader/templates/uploader/test.html:25
 msgid "Image missing"
 msgstr "Bild fehlt"
 
-#: uploader/templates/uploader/test.html:31
+#: uploader/templates/uploader/test.html:33
 msgid "These are the Themes next week"
 msgstr "Hier sind die gewählten Mottos!"
 
-#: uploader/templates/uploader/test.html:37
+#: uploader/templates/uploader/test.html:39
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
@@ -126,13 +118,3 @@ msgstr "Neue Features kommen bald! Bleib gespannt"
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 
-#~ msgid "Place your theme vote here!"
-#~ msgstr "Stimme hier für die Mottowoche ab!"
-
-#~ msgid "Days until Abi"
-#~ msgstr "Tage bis zum Abitur"
-
-#, fuzzy
-#~| msgid "Song File"
-#~ msgid "From File"
-#~ msgstr "Mit Datei"

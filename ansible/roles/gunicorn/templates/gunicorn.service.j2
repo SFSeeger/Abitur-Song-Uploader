@@ -8,7 +8,8 @@ User=gunicorn
 Group=www-data
 WorkingDirectory={{ django_dir }}
 ExecStart={{ repo_dir }}/.venv/bin/gunicorn \
-    --access-logfile - \
+    --access-logfile /var/log/gunicorn/access.log \
+    --error-logfile /var/log/gunicorn/error.log \
     --workers 2 \
     --bind unix:/run/gunicorn.sock \
     songuploader.wsgi:application

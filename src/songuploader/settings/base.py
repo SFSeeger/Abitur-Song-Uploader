@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "django_q",
     "django_extensions",
     "django_prometheus",
+    "dbbackup",
+    "django_helpers",
     "uploader",
     "voting",
     "django_cleanup.apps.CleanupConfig",
@@ -164,6 +166,29 @@ Q_CLUSTER = {
     "orm": "default",
 }
 
+CRON_TASKS = {
+    "clearsessions": {
+        "args": "clearsessions",
+        "schedule_type": "D",
+        "run_at": "02:00",
+    },
+    "dbbackup": {
+        "args": "dbbackup",
+        "schedule_type": "D",
+        "run_at": "02:05",
+    },
+    "remove_files": {
+        "args": "remove_unused_files",
+        "schedule_type": "D",
+        "run_at": "02:10",
+    },
+    "backup_media": {
+        "args": "backup_media",
+        "schedule_type": "D",
+        "run_at": "02:15",
+    },
+}
+
 MESSAGE_TAGS = {
     message_constants.DEBUG: "is-success is-light",
     message_constants.INFO: "is-info",
@@ -178,4 +203,10 @@ LANGUAGES = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL="/media/"
 PUBLIC_DOMAIN = "https://intern.rgabi.de"
+
+DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
+DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}
+
+MEDIA_BACKUP_DIR = "/var/local/songuploader/backups/media/"

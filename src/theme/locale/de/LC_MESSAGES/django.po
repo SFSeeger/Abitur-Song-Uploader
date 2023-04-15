@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 17:55+0200\n"
+"POT-Creation-Date: 2023-04-05 22:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,18 +34,18 @@ msgstr "Auf Github ansehen"
 msgid "Home"
 msgstr "Start"
 
-#: theme/templates/partials/header.html:23
+#: theme/templates/partials/header.html:21
 msgid "Upload song"
 msgstr "Song hochladen"
 
-#: theme/templates/partials/header.html:26
+#: theme/templates/partials/header.html:24
 msgid "Theme Vote"
 msgstr "Abstimmung Mottowoche"
 
-#: theme/templates/partials/header.html:54
+#: theme/templates/partials/header.html:52
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: theme/templates/partials/header.html:56
+#: theme/templates/partials/header.html:54
 msgid "Login"
 msgstr "Einloggen"
