@@ -1,0 +1,23 @@
+{% extends "base_with_box.html" %}
+{% load i18n %}
+{% block title %}{% trans "Internal Server Error" %}{% endblock title %}
+{% block content %}
+    {% blocktrans %}
+    <p class="title has-text-danger has-text-centered">A Fatal Server Error Occurred</p>
+    <div class="has-text-centered">
+        Please contact the administrator immediately! <br>
+        <span class="icon-text">
+            <span class="icon">
+                <i class="fa-solid fa-envelope"></i>
+            </span>
+            <span> <a href="mailto:simon.f.seeger@gmx.de">simon.f.seeger@gmx.de</a></span>
+        </span>
+        <span class="icon-text">
+            <span class="icon">
+                <i class="fa-solid fa-phone"></i>
+            </span>
+            <span> <a href="tel:+4917631085001">+49 176 31085001</a></span>
+        </span>
+    </div>
+    {% endblocktrans %}
+{% endblock content %}

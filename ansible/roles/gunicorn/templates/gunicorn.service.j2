@@ -8,6 +8,8 @@ User=gunicorn
 Group=www-data
 WorkingDirectory={{ django_dir }}
 ExecStart={{ repo_dir }}/.venv/bin/gunicorn \
+    --log-level debug \ 
+    --capture-output \
     --access-logfile /var/log/gunicorn/access.log \
     --error-logfile /var/log/gunicorn/error.log \
     --workers 2 \

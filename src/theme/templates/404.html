@@ -1,0 +1,14 @@
+{% extends "base_with_box.html" %}
+{% load i18n %}
+{% block title %}{% trans "Resource not found" %}{% endblock title %}
+{% block content %}
+
+<p class="has-text-centered">
+    {% blocktrans %}
+    <span class="has-text-warning title">Resource not found</span> <br>
+    The resource you tried to access does not exist. <br>
+    You can return to the main page <a href="/">here</a><br><br><br>
+    If you think this is a mistake contact the admin at <a href="mailto:simon.f.seeger@gmx.de">simon.f.seeger@gmx.de</a>
+    {% endblocktrans %}
+</p>
+{% endblock content %}

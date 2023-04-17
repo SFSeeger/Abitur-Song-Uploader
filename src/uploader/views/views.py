@@ -1,13 +1,14 @@
 from typing import Any
-from django.http import HttpResponse
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, View
-from django.views.generic.edit import FormView
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import TemplateView, View
+from django.views.generic.edit import FormView
 
 from songuploader.utils import ConfiguredLoginViewMixin
 

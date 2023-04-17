@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-05 22:47+0200\n"
+"POT-Creation-Date: 2023-04-17 15:29+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,19 +48,19 @@ msgstr "Keine valide YouTube url: %(value)s"
 msgid "Could not find YouTube video"
 msgstr "Konnte YouTube video nicht finden"
 
-#: uploader/models.py:20
+#: uploader/models.py:19
 msgid "Song URL"
 msgstr "Song URL"
 
-#: uploader/models.py:22
+#: uploader/models.py:21
 msgid "Start Time (in sec.)"
 msgstr "Anfangs Zeit (in sek.)"
 
-#: uploader/models.py:27
+#: uploader/models.py:26
 msgid "End Time"
 msgstr "Endzeit"
 
-#: uploader/models.py:33
+#: uploader/models.py:32
 msgid "Song File"
 msgstr "Song Datei"
 
@@ -75,7 +75,9 @@ msgstr "Lade den song von Youtube (empfohlen)"
 
 #: uploader/templates/uploader/choose_song.html:11
 #: uploader/templates/uploader/choose_upload_type.html:15
-msgid "uplaod your own song from disk"
+#, fuzzy
+#| msgid "uplaod your own song from disk"
+msgid "upload your own song from disk"
 msgstr "Lade deinen eigenen Song vom Laufwerk hoch"
 
 #: uploader/templates/uploader/choose_upload_type.html:3
@@ -99,22 +101,30 @@ msgid "Song submitted"
 msgstr "Song hochgeladen"
 
 #: uploader/templates/uploader/test.html:17
+#, fuzzy
+#| msgid "Song missing"
+msgid "Song processing"
+msgstr "Song wird vorbereitet"
+
+#: uploader/templates/uploader/test.html:19
 msgid "Song missing"
 msgstr "Song fehlt"
 
-#: uploader/templates/uploader/test.html:25
+#: uploader/templates/uploader/test.html:27
 msgid "Image missing"
 msgstr "Bild fehlt"
 
-#: uploader/templates/uploader/test.html:33
+#: uploader/templates/uploader/test.html:35
 msgid "These are the Themes next week"
 msgstr "Hier sind die gewählten Mottos!"
 
-#: uploader/templates/uploader/test.html:39
+#: uploader/templates/uploader/test.html:41
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
-#: uploader/views/views.py:33
+#: uploader/views/views.py:34
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 
+#~ msgid "uplaod your own song from disk"
+#~ msgstr "Lade deinen eigenen Song vom Laufwerk hoch"
