@@ -11,8 +11,10 @@
                 <i class="fas fa-2x fa-solid fa-music has-text-{{has_song|yesno:'primary,danger'}}"></i>
             </div>
             <div>
-                {% if has_song %}
+                {% if has_song.song %}
                     <a href="{{has_song.song.url}}">{% translate "Song submitted" %}</a>
+                {% elif has_song %}
+                    <p>{% trans "Song processing" %}</p>
                 {% else %}
                     <a href="{% url 'choose-song' %}">{% translate "Song missing" %}</a>
                 {% endif %}
