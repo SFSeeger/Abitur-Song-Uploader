@@ -203,7 +203,7 @@ LANGUAGES = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL="/media/"
+MEDIA_URL = "/media/"
 PUBLIC_DOMAIN = "https://intern.rgabi.de"
 
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"

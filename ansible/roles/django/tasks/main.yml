@@ -26,7 +26,7 @@
   file:
     path: "{{ media_dir }}"
     state: directory
-    mode: 660
+    mode: 750
     owner: gunicorn
     group: www-data
     recurse: yes
@@ -35,7 +35,7 @@
   file:
     path: "{{ backup_dir }}"
     state: directory
-    mode: 660
+    mode: 750
     owner: gunicorn
     group: www-data
     recurse: yes
