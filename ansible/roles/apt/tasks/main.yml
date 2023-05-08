@@ -1,28 +1,21 @@
-- name: add grafana keyring
-  get_url:
-    url: https://apt.grafana.com/gpg.key
-    dest: /usr/share/keyrings/grafana.key
-
-- name: add repository
-  shell: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
-
 - name: Running apt update
   apt: update_cache=yes
 
 - name: Installing required packages
-  apt: name={{item}} state=present
-  with_items:
-    - git
-    - python3-pip
-    - nginx
-    - gettext
-    - default-libmysqlclient-dev
-    - default-mysql-client
-    - curl
-    - nodejs
-    - npm
-    - apt-transport-https
-    - software-properties-common
-    - wget
-    - grafana
-    - ffmpeg
+  apt:
+    pkg:
+      - git
+      - python3-pip
+      - nginx
+      - gettext
+      - default-libmysqlclient-dev
+      - default-mysql-client
+      - curl
+      - nodejs
+      - npm
+      - apt-transport-https
+      - software-properties-common
+      - wget
+      - ffmpeg
+    state: latest
+    update_cache: true

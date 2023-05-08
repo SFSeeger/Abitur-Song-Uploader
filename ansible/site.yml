@@ -1,12 +1,24 @@
-- name: setup project on host
-  hosts: all
+- name: setup mysql database
+  hosts: mysql
   remote_user: ansible
   become: yes
 
   roles:
-    - {role: apt, become: yes, tags: "apt"}
-    - {role: gunicorn, become: yes, tags: "gunicorn"}
-    - {role: nginx, become: yes, tags: "nginx"}
-    # - {role: prometheus, become: yes, tags: "prometheus"}
-    # - {role: node_exporter, become: yes, tags: "node_exporter"}
-    - {role: django, tags: "django"}
+    - {role: mysql, become: yes, tags: "mysql"}
+
+- name: setup project on host
+  hosts: web
+  remote_user: ansible
+  become: yes
+
+  roles:
+    - {role: apt, become: yes, tags: ["web", "rerun"]}
+    - {role: user_creation, become: yes, tags: "web"}
+    - {role: gunicorn, become: yes, tags: ["web", "rerun"]}
+    - {role: nginx, become: yes, tags: ["web", "rerun"]}
+
+    - {role: grafana, become: yes, tags: ["web", "monitoring"]}
+    - {role: prometheus, become: yes, tags: ["web", "monitoring"]}
+    - {role: node_exporter, become: yes, tags: ["web", "monitoring"]}
+    
+    - {role: django, tags: ["web", "rerun"]}

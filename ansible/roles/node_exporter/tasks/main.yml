@@ -1,15 +1,52 @@
 ---
-# tasks file for roles/exporters
-- name: install node_exporter
-  unarchive:
-    src: https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-arm64.tar.gz
-    dest: /opt/node_exporter
+- name: create node_exporter data directory
+  file:
+    path: "{{ node_exporter_db_dir }}"
+    state: directory
     owner: prometheus
+    group: prometheus
+    mode: 0755
+
+- block:
+    - name: download node_exporter binary to local folder
+      become: false
+      get_url:
+        url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+        dest: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+        checksum: "sha256:{{ __node_exporter_checksum }}"
+      register: _download_archive
+      until: _download_archive is succeeded
+      retries: 5
+      delay: 2
+      # run_once: true # <-- this cannot be set due to multi-arch support
+      delegate_to: localhost
+      check_mode: false
+
+    - name: unpack node_exporter binaries
+      become: false
+      unarchive:
+        src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+        dest: "/tmp"
+        creates: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}/node-exporter"
+      delegate_to: localhost
+      check_mode: false
+
+    - name: propagate official node_exporter binaries
+      copy:
+        src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}/node_exporter"
+        dest: "{{ _node_exporter_binary_install_dir }}/node_exporter/"
+        mode: 0755
+        owner: prometheus
+        group: prometheus
+      notify:
+        - restart node_exporter
+  when:
+    - not prometheus_skip_install
 
 - name: copy procfile
   template:
     src: "templates/node_exporter.service.j2"
-    dest: "/etc/systemd/system/node_exporter.socket"
+    dest: "/etc/systemd/system/node_exporter.service"
 
 - name: Enable node_exporter
   service:
@@ -17,4 +54,4 @@
     enabled: true
     state: started
   notify:
-    - node_exporter restart
+    - restart node_exporter
