@@ -1,0 +1,6 @@
+node_exporter_db_dir: "/opt/node_exporter/"
+node_exporter_version: "1.5.0"
+go_arch: arm64
+__node_exporter_checksum: e031a539af9a619c06774788b54c23fccc2a852d41437315725a086ccdb0ed16
+_node_exporter_binary_install_dir: "/opt"
+node_exporter_skip_install: false

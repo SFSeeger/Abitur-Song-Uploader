@@ -1,0 +1,6 @@
+prometheus_db_dir: "/opt/prometheus/"
+prometheus_version: "2.37.8"
+go_arch: arm64
+__prometheus_checksum: 2172088577619231c6b7e0733affaa98ff65e1c5cbb4e741ee0c6aa02cbdd1d5
+_prometheus_binary_install_dir: "/opt"
+prometheus_skip_install: false

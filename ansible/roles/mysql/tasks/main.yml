@@ -1,0 +1,57 @@
+---
+- name: include vault
+  include_vars:
+    file: vault.yml
+
+- name: install mysql
+  apt:
+    pkg:
+      - mysql-server
+      - default-libmysqlclient-dev
+      - build-essential
+      - python3-pip
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+
+- name: install mysqlclient
+  pip:
+    name: mysqlclient
+
+- name: start up the mysql service
+  shell: "service mysql start"
+- name: ensure mysql is enabled to run on startup
+  service: name=mysql state=started enabled=true
+
+- name: update mysql root password for all root accounts
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_password }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: create new database
+  mysql_db: name="{{mysql_db}}" state="present" login_user="root" login_password="{{ mysql_root_password }}"
+
+- name: update permission on database
+  mysql_user:
+    name: "{{ mysql_user }}"
+    host: "{{ item }}"
+    password: "{{ mysql_password }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    check_implicit_admin: yes
+    priv: "{{ mysql_db }}.*:ALL"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost

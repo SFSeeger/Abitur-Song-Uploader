@@ -44,7 +44,7 @@
   file:
     path: "{{repo_dir}}"
     owner: gunicorn
-    group: www-data
+    group: gunicorn
     recurse: yes
 
 - name: include vault
