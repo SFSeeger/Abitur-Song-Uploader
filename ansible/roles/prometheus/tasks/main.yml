@@ -69,7 +69,7 @@
 - name: copy config
   template:
     src: "templates/prometheus.yml.j2"
-    dest: "/opt/prometheus/prometheus.yml"
+    dest: "{{ prometheus_db_dir }}/prometheus.yml"
   notify:
     - daemon-reload
 
