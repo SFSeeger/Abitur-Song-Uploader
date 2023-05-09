@@ -2,9 +2,9 @@
   file:
     path: "{{ log_dir }}"
     state: directory
-    mode: 750
     owner: gunicorn
-    group: gunicorn
+    group: www-data
+    mode: 0760
     recurse: yes
 
 - name: create procfile

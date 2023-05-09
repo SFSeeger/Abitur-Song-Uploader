@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 User=gunicorn
-Group=www-data
+Group=gunicorn
 WorkingDirectory={{ django_dir }}
 ExecStart={{ repo_dir }}/.venv/bin/gunicorn \
     --log-level debug \
