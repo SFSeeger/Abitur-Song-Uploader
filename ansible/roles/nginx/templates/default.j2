@@ -12,6 +12,12 @@ server {
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
+    ## Deny illegal Host headers
+    if ($host !~* ^(intern.rgabi.de|sfseeger.ddns.net)$ ) {
+        return 444;
+    }
+
+
     location / {
         include proxy_params;
         proxy_pass http://app-server;
