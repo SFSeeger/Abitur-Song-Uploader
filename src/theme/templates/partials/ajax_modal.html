@@ -1,0 +1,17 @@
+{% load i18n %}
+<div id="{{modal_name}}modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+        {% blocktrans %}Do you really want to delete {{object_type}} {{object}}?{% endblocktrans %}
+        <div class="columns">
+            <div class="column is-two-thirds"></div>
+            <div class="column">
+                <button class="button is-secondary">{% trans "Cancel" %}</button>
+                <button class="button is-danger">{% trans "Delete" %}</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>

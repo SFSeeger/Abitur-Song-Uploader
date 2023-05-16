@@ -1,0 +1,45 @@
+{% extends 'filter_generic.html' %}
+{% load i18n %}
+{% block title %}{% trans "Questions for" %} {{poll}}{% endblock title %}
+{% block actions %}
+    <a href="{% url 'question-create' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Question' %}">
+        <i class="fa-solid fa-circle-question"></i>
+        <i class="fa-solid fa-plus pl-1"></i>
+    </a>
+{% endblock actions %}
+{% block table_header %}
+<thead>
+    <tr>
+        <td>
+            {% trans "Position" %}
+        </td>
+        <td>
+            {% trans "Name" %}
+        </td>
+        <td>
+            {% trans "Question Type" %}
+        </td>
+        <td>
+            {% trans "Max Answers" %}
+        </td>
+    </tr>
+</thead>
+{% endblock table_header %}
+{% block table_content %}
+    <tr>
+        <td>
+            <a href="{% url 'question-detail' obj.id %}">{{obj.position}}</a>
+        </td>
+        <td>
+            <a href="{% url 'question-detail' obj.id %}">
+                <strong>{{obj}}</strong>
+            </a>
+        </td>
+        <td>
+            <span>{{obj.get_question_type_display}}</span>
+        </td>
+        <td>
+            <span>{{obj.max_answers}}</span>
+        </td>
+    </tr>
+{% endblock table_content %}

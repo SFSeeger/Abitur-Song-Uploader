@@ -1,0 +1,29 @@
+{% extends 'base_with_box.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block title %} {% if object %}{% blocktrans %}Update {{object}}{% endblocktrans %}{% else %}{% trans "Add Question" %}{% endif %} {% endblock title %}
+{% block content %}
+    <form method="post">
+        {% crispy form %}
+    </form>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    qt_select = document.querySelector("#{{form.question_type.auto_id}}");
+    max_answers = document.querySelector("#{{form.max_answers.auto_id}}");
+    max_answers.disabled = true;
+    
+    qt_select.addEventListener("change", () => {
+        if(qt_select.value != 2) {
+            max_answers.disabled = true;
+            max_answers.value = 1;
+        }
+        else {
+            max_answers.disabled = false;
+        }
+    })
+
+</script>
+{% endblock scripts %}

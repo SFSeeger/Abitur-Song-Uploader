@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% blocktrans %}Create Options{% endblocktrans %}{% endblock title %}
+{% block content %}
+    <form id="form-container" method="post">
+        {% csrf_token %}
+        {{formset.management_form}}
+        {% for form in formset %}
+        <div id="main-form">
+            <div class="card mb-2">
+                <div class="card-content">
+                    {{form | crispy }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <button id="add-form" type="button" class="button">
+            <span class="icon is-small"><i class="fa-solid fa-add"></i></span>
+            <span>{% trans "Add another value" %}</span>
+        </button>
+        <button class="button is-fullsize is-primary" type="submit">{% if has_next %}{% trans "Answer Question" %}{% else %}{% trans "Finish answering" %}{% endif %}</button>
+    </form>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/dynamic_formset.js' %}"></script>
+{% endblock scripts %}

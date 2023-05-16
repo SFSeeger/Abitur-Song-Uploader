@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+<select name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    <optgroup label="{% trans "All" %}" data-selectall="true">
+    {% for group_name, group_choices, group_index in widget.optgroups %}
+        {% if group_name %}
+            <optgroup label="{{ group_name }}" data-selectall="true">
+        {% endif %}
+        {% for option in group_choices %}
+            {% include option.template_name with widget=option %}
+        {% endfor %}
+        {% if group_name %}
+            </optgroup>
+        {% endif %}
+    {% endfor %}
+    </optgroup>
+</select>
+
+<script>
+    new SlimSelect({
+        select: '#id_{{widget.name}}',
+        settings: {
+            allowDeselect: true,
+            closeOnSelect: {{widget.attrs.multiple|yesno:"false,true"}},
+            {% if not create_url %}
+            searchText: '{% trans "No Results" %}',
+            {% else %}
+            searchText: '<a href="{{create_url}}">{% trans "Create missing option" %}</a>',
+            {% endif %}
+            placeholderText: "{% trans "Select Options" %}"
+        }
+    })
+</script>
