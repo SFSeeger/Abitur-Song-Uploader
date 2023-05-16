@@ -1,0 +1,23 @@
+{% extends 'filter_generic.html' %}
+{% load i18n %}
+{% block title %}{% trans "Polls" %}{% endblock title %}
+{% block actions %}
+    <a href="{% url 'poll-create' %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Poll' %}">
+        <i class="fa-solid fa-square-poll-vertical"></i>
+        <i class="fa-solid fa-plus pl-1"></i>
+    </a>
+{% endblock actions %}
+{% block table_content %}
+    <tr>
+        <td>
+            <a href="{% url 'question-filter' obj.id %}">
+                <strong>{{obj}}</strong><br>
+                <p class="has-text-grey">{{obj.description|truncatewords:5}}</p>
+            </a>
+        </td>
+        <td>
+            <span>{{obj.start_date}}</span><br>
+            <soan>{{obj.end_date}}</soan>
+        </td>
+    </tr>
+{% endblock table_content %}

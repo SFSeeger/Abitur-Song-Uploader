@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django_helpers",
     "uploader",
     "voting",
+    "polls",
+    "theme",
     "django_cleanup.apps.CleanupConfig",
 ]
 

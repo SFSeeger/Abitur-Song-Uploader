@@ -1,0 +1,42 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    {% include 'partials/head-links.html' %}
+  </head>
+  <body class="hero">
+    <div class="hero-head">
+      {% include 'partials/header.html' %}
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
+      <button class="delete"></button>
+      {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <main class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column">
+            <div>
+              {% block content %} {% endblock content %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="hero-foor">{% include 'partials/footer.html' %}</div>
+
+    {% include 'partials/scripts.html' %}
+    {% block scripts %}{% endblock scripts %}
+  </body>
+</html>

@@ -20,9 +20,25 @@
         <a href="{% url 'choose-song' %}" class="navbar-item">
             {% translate "Upload song" %}
         </a>
-        <a href="{% url 'add-vote' %}" class="navbar-item">
-            {% translate "Theme Vote" %}
-        </a>
+        {% if perms.auth.admin or perms.polls.can_create_polls %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    {% trans "Admin Sites" %}
+                </a>
+                <div class="navbar-dropdown">
+                {% if perms.polls.can_create_polls %}
+                    <a class="navbar-item" href="{% url 'poll-filter' %}">
+                        {% trans "Poll Management" %}
+                    </a>
+                {% endif %}
+                {% if perms.auth.admin %}
+                <a class="navbar-item" href="{% url 'admin:index' %}">
+                    {% trans "Django Admin" %}
+                </a>
+                {% endif %}
+                </div>
+            </div>
+        {% endif %}
         </div>
         <div class="navbar-end">
             <div class="navbar-item">

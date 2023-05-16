@@ -1,0 +1,89 @@
+{% extends 'base_fullsize.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock title %}
+{% block content %}
+    <div class="columns">
+        <div class="column is-two-thirds">
+            <div class="card">
+                <div class="card-header p-3 is-flex is-justify-content-space-between">
+                    <div class="field mb-0">
+                        <p class="control has-icons-left">
+                            <input type="text" class="input is-rounded" form="filter" name="search" autofocus="autofocus" id="search" {% if filter.form.search.value %}value="{{filter.form.search.value}}" {% endif %} placeholder="{% trans "Search" %}...">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                        </p>
+                    </div>
+                    {% block actions %}
+                    {% endblock actions %}
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table is-fullwidth is-striped is-hoverable">
+                            {% block table_header %}{% endblock table_header %}
+                            {% for obj in page_obj %}
+                                {% block table_content %}{% endblock table_content %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <a class="button is-large is-fullwidth mb-5 is-danger" href=".">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fa-solid fa-filter-circle-xmark"></i></span>
+                            <span>{% trans "Reset Filter" %}</span>
+                        </span>
+                    </a>
+                    <form method="get" id="filter">
+                        {{ filter.form|crispy }}
+                        {% block filter_extra %}{% endblock filter_extra %}
+                        <div class="field">
+                            <label for="id_page_size">{% trans "Page Size" %}</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select name="page_size" id="id_page_size">
+                                        <option value="10" {% if request.GET.page_size == "10" %}selected{% endif %}>10</option>
+                                        <option value="25" {% if request.GET.page_size == "25" %}selected{% endif %}>25</option>
+                                        <option value="50" {% if request.GET.page_size == "50" %}selected{% endif %}>50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="paginator" class="mt-5">
+        {% include 'partials/paginator.html' with page_obj=page_obj %}
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    var typingTimer;
+
+    filter = document.querySelector("#filter");
+    filter.addEventListener('change', () => submit_form())
+
+    search = document.querySelector('#search')
+    search_hidden = document.querySelector("#id_search")
+
+    search.addEventListener("keydown", () => clearTimeout(typingTimer))
+    search.addEventListener("keyup", () => {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(submit_form, 300)
+    })
+
+    const submit_form = () => {
+            search_hidden.value = search.value;
+            filter.submit();
+        }
+</script>
+{% endblock scripts %}

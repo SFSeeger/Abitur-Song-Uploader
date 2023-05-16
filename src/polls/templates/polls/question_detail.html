@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Question" %} {{object}} {% endblock title %}
+{% block content %}
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{% url 'poll-filter' %}">{% trans "Polls" %}</a></li>
+        <li><a href="{{object.poll.get_absolute_url}}">{{object.poll}}</a></li>
+        <li class="is-active"><a href="#" aria-current="page">{{object}}</a></li>
+    </ul>
+    </nav>
+    <div class="card mb-5">
+        <div class="card-header">
+            <h1 class="card-header-title title mb-0">{{object}}</h1>
+            <span class="card-header-icon">
+                <a href="{% url 'question-update' object.id %}"><i class="fa-solid fa-pen"></i></a>
+            </span>
+        </div>
+        <div class="card-content">
+            <div class="mb-2">
+                <p class="has-text-gray">{% trans "Description" %}</p>
+                <p class="is-size-5">{{object.description}}</p>
+            </div>
+            <div class="mb-2">
+                <p class="has-text-gray">{% trans "Question Type" %}</p>
+                <p class="is-size-5">{{object.get_question_type_display}}</p>
+            </div>
+            <div class="mb-2">
+                <p class="has-text-gray">{% trans "Max Answers" %}</p>
+                <p class="is-size-5">{{object.max_answers}}</p>
+            </div>
+        </div>
+    </div>
+    {% if object.question_type == 2 %}
+        <div class="card mb-5">
+            <div class="card-header">
+                <h1 class="card-header-title title mb-0">{% trans "Options" %}</h1>
+                <span class="card-header-icon">
+                    <a href="{% url 'question-option-create' object.id %}"><i class="fa-solid fa-add"></i></a>
+                </span>
+            </div>
+            <div class="card-content">
+                {% for option in object.option_set.all %}
+                    <div class="columns">
+                        <div class="column has-text-weight-bold">{{option}}</div>
+                        <span class="card-header-icon">
+                            <button class="button is-small is-danger is-inverted js-modal-trigger" data-target="OptionDeleteModal" data-value="{{option.id}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </span>
+                    </div>
+                {% empty %}
+                <div class="is-fullwidth has-text-centered">{% trans "No options yet..." %}</div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% include 'partials/ajax_modal.html' with modal_name="OptionDeleteModal" object_type="Option" %}
+{% endblock content %}
