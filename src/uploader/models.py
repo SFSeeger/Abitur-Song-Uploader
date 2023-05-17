@@ -7,10 +7,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
-
-def generate_filename(self, filename):
-    name = "%s/%s%s" % (self.user.id, self.user.id, os.path.splitext(filename)[1])
-    return name
+from theme.utils import generate_filename
 
 
 class Submission(models.Model):

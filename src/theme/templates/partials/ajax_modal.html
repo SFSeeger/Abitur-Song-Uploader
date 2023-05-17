@@ -1,17 +1,23 @@
 {% load i18n %}
-<div id="{{modal_name}}modal" class="modal">
+<div id="{{modal_name}}" class="modal">
   <div class="modal-background"></div>
-  <div class="modal-content">
-    <div class="box">
-        {% blocktrans %}Do you really want to delete {{object_type}} {{object}}?{% endblocktrans %}
-        <div class="columns">
-            <div class="column is-two-thirds"></div>
-            <div class="column">
-                <button class="button is-secondary">{% trans "Cancel" %}</button>
-                <button class="button is-danger">{% trans "Delete" %}</button>
-            </div>
-        </div>
-    </div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{% blocktrans %}Delete {{object_type}}{% endblocktrans %}</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+        {% blocktrans %}Do you really want to delete this {{object_type}}?{% endblocktrans %}
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-secondary">{% trans "Cancel" %}</button>
+      <button class="button is-danger">{% trans "Delete" %}</button>
+    </footer>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
 </div>
+<script>
+function fill_data($target){
+  modal_data = $target.dataset.value
+}
+
+</script>

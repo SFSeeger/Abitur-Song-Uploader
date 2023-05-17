@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Thank you for answering" %}{% endblock title %}
+{% block content %}
+    <h1 class="title">{% trans "Thank you for answering" %}</h1>
+    <a href="{% url "index" %}">{% trans "Return to main page" %}</a>
+{% endblock content %}

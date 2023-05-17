@@ -41,9 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
             closeAllModals();
         }
     });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
         const $notification = $delete.parentNode;
 
@@ -51,10 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
             $notification.parentNode.removeChild($notification);
         });
     });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -73,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
 
 window.onload = function () {
     // Apply this to all upload fields

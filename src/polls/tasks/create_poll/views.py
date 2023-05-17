@@ -66,7 +66,9 @@ class OptionCreateView(PermissionRequiredMixin, TemplateView):
                         option = form.save(commit=False)
                         option.question = question
                         option.save()
-            return HttpResponseRedirect(reverse("question-detail", question.id))
+            return HttpResponseRedirect(
+                reverse("question-detail", kwargs={"pk": question.id})
+            )
         return self.render_to_response(self.get_context_data(formset=formset))
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
