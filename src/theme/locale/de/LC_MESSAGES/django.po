@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 15:17+0200\n"
+"POT-Creation-Date: 2023-05-18 01:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,11 +33,12 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"    <span class=\"has-text-warning title\">Ressource nicht gefunden</span> <br>\n"
+"    <span class=\"has-text-warning title\">Ressource nicht gefunden</span> "
+"<br>\n"
 "    Die aufgerufene Ressource konnte nicht gefunden werden. <br>\n"
 "    Kehre <a href=\"/\">hier</a> zur Hauptseite zurück><br><br><br>\n"
-"    Wenn du denkst, dass dies ein Fehler ist, kontaktiere einen admin unter <a href=\"mailto:"
-"simon.f.seeger@gmx.de\">simon.f.seeger@gmx.de</a>\n"
+"    Wenn du denkst, dass dies ein Fehler ist, kontaktiere einen admin unter "
+"<a href=\"mailto:simon.f.seeger@gmx.de\">simon.f.seeger@gmx.de</a>\n"
 "    "
 
 #: theme/templates/500.html:3
@@ -45,6 +46,29 @@ msgid "Internal Server Error"
 msgstr "Interner Server Fehler"
 
 #: theme/templates/500.html:5
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "    <p class=\"title has-text-danger has-text-centered\">A Fatal Server "
+#| "Error Occurred</p>\n"
+#| "    <div class=\"has-text-centered\">\n"
+#| "        Please contact the administrator immediately! <br>\n"
+#| "        <span class=\"icon-text\">\n"
+#| "            <span class=\"icon\">\n"
+#| "                <i class=\"fa-solid fa-envelope\"></i>\n"
+#| "            </span>\n"
+#| "            <span> <a href=\"mailto:simon.f.seeger@gmx.de\">simon.f."
+#| "seeger@gmx.de</a></span>\n"
+#| "        </span>\n"
+#| "        <span class=\"icon-text\">\n"
+#| "            <span class=\"icon\">\n"
+#| "                <i class=\"fa-solid fa-phone\"></i>\n"
+#| "            </span>\n"
+#| "            <span> <a href=\"tel:+4917631085001\">+49 176 31085001</a></"
+#| "span>\n"
+#| "        </span>\n"
+#| "    </div>\n"
+#| "    "
 msgid ""
 "\n"
 "    <p class=\"title has-text-danger has-text-centered\">A Fatal Server "
@@ -57,13 +81,6 @@ msgid ""
 "            </span>\n"
 "            <span> <a href=\"mailto:simon.f.seeger@gmx.de\">simon.f."
 "seeger@gmx.de</a></span>\n"
-"        </span>\n"
-"        <span class=\"icon-text\">\n"
-"            <span class=\"icon\">\n"
-"                <i class=\"fa-solid fa-phone\"></i>\n"
-"            </span>\n"
-"            <span> <a href=\"tel:+4917631085001\">+49 176 31085001</a></"
-"span>\n"
 "        </span>\n"
 "    </div>\n"
 "    "
@@ -90,6 +107,36 @@ msgstr ""
 "    </div>\n"
 "    "
 
+#: theme/templates/filter_generic.html:13
+msgid "Search"
+msgstr "Suchen"
+
+#: theme/templates/filter_generic.html:40
+msgid "Reset Filter"
+msgstr "Filter zurücksetzen"
+
+#: theme/templates/filter_generic.html:47
+msgid "Page Size"
+msgstr "Seitenlänge"
+
+#: theme/templates/partials/ajax_modal.html:6
+#, python-format
+msgid "Delete %(object_type)s"
+msgstr "%(object_type)s löschen"
+
+#: theme/templates/partials/ajax_modal.html:10
+#, python-format
+msgid "Do you really want to delete this %(object_type)s?"
+msgstr "Willst du wirklich diese %(object_type)s löschen?"
+
+#: theme/templates/partials/ajax_modal.html:13
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: theme/templates/partials/ajax_modal.html:14
+msgid "Delete"
+msgstr "Löschen"
+
 #: theme/templates/partials/footer.html:7
 msgid "Website by"
 msgstr "Website von"
@@ -110,14 +157,49 @@ msgstr "Start"
 msgid "Upload song"
 msgstr "Song hochladen"
 
-#: theme/templates/partials/header.html:24
-msgid "Theme Vote"
-msgstr "Abstimmung Mottowoche"
+#: theme/templates/partials/header.html:26
+msgid "Admin Sites"
+msgstr "Admin Seiten"
 
-#: theme/templates/partials/header.html:52
+#: theme/templates/partials/header.html:31
+msgid "Poll Management"
+msgstr "Umfragen management"
+
+#: theme/templates/partials/header.html:36
+msgid "Django Admin"
+msgstr "Django Admin"
+
+#: theme/templates/partials/header.html:68
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: theme/templates/partials/header.html:54
+#: theme/templates/partials/header.html:70
 msgid "Login"
 msgstr "Einloggen"
+
+#: theme/templates/partials/paginator.html:5
+msgid "Previous"
+msgstr "Vorherige"
+
+#: theme/templates/partials/paginator.html:6
+msgid "Next page"
+msgstr "Nächste Seite"
+
+#: theme/templates/widgets/slim_select.html:4
+msgid "All"
+msgstr "Alle"
+
+#: theme/templates/widgets/slim_select.html:26
+msgid "No Results"
+msgstr "Keine Ergebnisse"
+
+#: theme/templates/widgets/slim_select.html:28
+msgid "Create missing option"
+msgstr "Fehlende option erstellen"
+
+#: theme/templates/widgets/slim_select.html:30
+msgid "Select Options"
+msgstr "Option auswählen"
+
+#~ msgid "Theme Vote"
+#~ msgstr "Abstimmung Mottowoche"
