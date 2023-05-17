@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Answer {{object}}{% endblock title %}
+{% block content %}
+    <h1 class="title">{% blocktrans %}Start answering {{object}}{% endblocktrans %}</h1>
+    <p class="subtitle">{{object.description}}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="button is-fullwidth is-primary is-rounded" type="submit">{% trans "Start Answering" %}</button>
+    </form>
+{% endblock content %}

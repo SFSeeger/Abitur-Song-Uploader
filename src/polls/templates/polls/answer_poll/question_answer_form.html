@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Answer Question" %}{% endblock title %}
+{% block content %}
+    <h1 class="title">{% blocktrans %}Start answering {{question}}{% endblocktrans %}</h1>
+    <p class="subtitle">{{question.description}}</p>
+
+    <p>{% trans "Question" %} {{view.kwargs.question_idx|add:"1"}}/{{poll.question_set.count}}</p>
+    <form method="post" id="mainForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button class="button is-primary is-fullwidth is-rounded">{% trans "Submit" %}</button>
+    </form>
+{% endblock content %}
+{% block scripts %}
+<script>
+    const form = document.querySelector("#mainForm");
+
+        const update_checkboxes = () => {
+            const checked = document.querySelectorAll(".checkbox>input:checked").length;
+            const unchecked = document.querySelectorAll(".checkbox>input:not(:checked)");
+            if(checked >= {{question.max_answers}}){
+                unchecked.forEach((i) => i.setAttribute("disabled", "disabled"));
+            }
+            else{
+                unchecked.forEach((i) => i.removeAttribute("disabled"));
+            }
+        }
+        update_checkboxes();
+        form.addEventListener("change", update_checkboxes);
+</script>
+{% endblock scripts %}

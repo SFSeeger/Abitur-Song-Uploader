@@ -13,7 +13,12 @@
 <script>
     qt_select = document.querySelector("#{{form.question_type.auto_id}}");
     max_answers = document.querySelector("#{{form.max_answers.auto_id}}");
-    max_answers.disabled = true;
+    if(qt_select.value != 2) {
+            max_answers.disabled = true;
+    }
+    else {
+        max_answers.disabled = false;
+    }
     
     qt_select.addEventListener("change", () => {
         if(qt_select.value != 2) {
