@@ -1,0 +1,221 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-18 01:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: polls/forms.py:23
+msgid "Create Question"
+msgstr "Frage Erstellen"
+
+#: polls/forms.py:51
+msgid "Max Answers has to be one on this question type"
+msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
+
+#: polls/models.py:23 polls/models.py:120 polls/models.py:155
+#: polls/templates/polls/question_filter.html:17
+msgid "Name"
+msgstr "Name"
+
+#: polls/models.py:25 polls/models.py:175 polls/models.py:191
+#: polls/templates/polls/answer_poll/question_answer_form.html:9
+#: polls/templates/polls/question_detail.html:3
+msgid "Question"
+msgstr "Frage"
+
+#: polls/models.py:32
+msgid "Option"
+msgstr "Option"
+
+#: polls/models.py:33 polls/templates/polls/question_detail.html:37
+msgid "Options"
+msgstr "Optionen"
+
+#: polls/models.py:44
+msgid "Value"
+msgstr "Wert"
+
+#: polls/models.py:55
+msgid "Image"
+msgstr "Bild"
+
+#: polls/models.py:64
+msgid "Values"
+msgstr "Werte"
+
+#: polls/models.py:108
+#, python-format
+msgid "Only %(max_answers)s options possible"
+msgstr "Nur %(max_answers)s Optionen möglich"
+
+#: polls/models.py:121 polls/models.py:156
+#: polls/templates/polls/question_detail.html:21
+msgid "Description"
+msgstr "Beschreibung"
+
+#: polls/models.py:122
+msgid "Start Date"
+msgstr "Anfangsdatum"
+
+#: polls/models.py:123
+msgid "End Date"
+msgstr "Enddatum"
+
+#: polls/models.py:124
+msgid "Can be answered multiple times"
+msgstr "Kann öfters beantwortet werden"
+
+#: polls/models.py:133 polls/models.py:165 polls/models.py:182
+msgid "Poll"
+msgstr "Umfrage"
+
+#: polls/models.py:134 polls/templates/polls/poll_filter.html:3
+#: polls/templates/polls/question_detail.html:7
+msgid "Polls"
+msgstr "Umfragen"
+
+#: polls/models.py:136
+msgid "Can open Polls"
+msgstr "Kann Umfragen öffnen"
+
+#: polls/models.py:137
+msgid "Can close Polls"
+msgstr "Kann Umfragen schließen"
+
+#: polls/models.py:144
+msgid "Text Type"
+msgstr "Texttyp"
+
+#: polls/models.py:145
+msgid "Image Type"
+msgstr "Bildtyp"
+
+#: polls/models.py:146
+msgid "Multiple Choice Type"
+msgstr "Mehrfachauswahltyp"
+
+#: polls/models.py:150 polls/templates/polls/question_detail.html:25
+#: polls/templates/polls/question_filter.html:20
+msgid "Question Type"
+msgstr "Fragentyp"
+
+#: polls/models.py:152 polls/templates/polls/question_filter.html:14
+msgid "Position"
+msgstr "Position"
+
+#: polls/models.py:152
+msgid "Order in which questions are displayed"
+msgstr "Reihefolge in welchem die Fragen angezeigt werden"
+
+#: polls/models.py:158 polls/templates/polls/question_detail.html:29
+#: polls/templates/polls/question_filter.html:23
+msgid "Max Answers"
+msgstr "Maximale Antworten"
+
+#: polls/models.py:159
+msgid "Max amounts of Answers that can be given"
+msgstr "Maximale Anzahl an Fragen die geben werden kann"
+
+#: polls/models.py:176
+msgid "Questions"
+msgstr "Fragen"
+
+#: polls/models.py:185
+msgid "User"
+msgstr "Nutzer"
+
+#: polls/models.py:194
+msgid "Response"
+msgstr "Reaktion"
+
+#: polls/tasks/answer_poll/views.py:48
+msgid "You have already answered this poll"
+msgstr "Du hast diese Umfrage bereits beantwortet"
+
+#: polls/tasks/create_poll/forms.py:20
+msgid "Create Poll"
+msgstr "Umfrage erstellen"
+
+#: polls/templates/polls/answer_poll/poll_done.html:3
+#: polls/templates/polls/answer_poll/poll_done.html:5
+msgid "Thank you for answering"
+msgstr "Vielen dank für ihre Antwort"
+
+#: polls/templates/polls/answer_poll/poll_done.html:6
+msgid "Return to main page"
+msgstr "Zurück zur hauptseite kehren"
+
+#: polls/templates/polls/answer_poll/question_answer_form.html:4
+#: polls/templates/polls/option_form.html:23
+msgid "Answer Question"
+msgstr "Frage beantworten"
+
+#: polls/templates/polls/answer_poll/question_answer_form.html:6
+#, python-format
+msgid "Start answering %(question)s"
+msgstr "Beantworte %(question)s"
+
+#: polls/templates/polls/answer_poll/question_answer_form.html:13
+msgid "Submit"
+msgstr "Absenden"
+
+#: polls/templates/polls/answer_poll/start_poll.html:5
+#, python-format
+msgid "Start answering %(object)s"
+msgstr "%(object)s beantworten"
+
+#: polls/templates/polls/answer_poll/start_poll.html:10
+msgid "Start Answering"
+msgstr "Antworten beginnen"
+
+#: polls/templates/polls/option_form.html:5
+msgid "Create Options"
+msgstr "Option erstellen"
+
+#: polls/templates/polls/option_form.html:21
+msgid "Add another value"
+msgstr "Füge einen neuen Wert hinzu"
+
+#: polls/templates/polls/option_form.html:23
+msgid "Finish answering"
+msgstr "Beantworten abschließen"
+
+#: polls/templates/polls/poll_filter.html:5
+#: polls/templates/polls/poll_form.html:5
+msgid "Add Poll"
+msgstr "Umfrage hinzufügen"
+
+#: polls/templates/polls/poll_form.html:5
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: polls/templates/polls/question_detail.html:53
+msgid "No options yet..."
+msgstr "Noch keine Optionen..."
+
+#: polls/templates/polls/question_filter.html:3
+msgid "Questions for"
+msgstr "Fragen für"
+
+#: polls/templates/polls/question_filter.html:5
+#: polls/templates/polls/question_form.html:5
+msgid "Add Question"
+msgstr "Frage hinzufügen"
+
+#: polls/templates/polls/question_form.html:5
+#, python-format
+msgid "Update %(object)s"
+msgstr "%(object)s aktualisieren"
