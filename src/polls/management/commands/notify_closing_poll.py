@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from tqdm import tqdm
 
 from polls.models import Poll
+from polls.utils import get_poll_users
 
 
 class Command(BaseCommand):
@@ -29,11 +30,7 @@ class Command(BaseCommand):
         polls = Poll.objects.filter(end_date=check_date)
         mails = []
         for poll in polls:
-            diff = set(User.objects.all().values_list("id", flat=True)) - set(
-                poll.response_set.all().values_list("user", flat=True)
-            )
-
-            users = User.objects.filter(id__in=diff)
+            users = get_poll_users(poll)
             user_count = users.count()
             context = {
                 "public_domain": settings.PUBLIC_DOMAIN,

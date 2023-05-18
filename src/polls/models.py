@@ -1,9 +1,3 @@
-# Create your models here.
-import os
-from typing import Any, Dict, Mapping, Optional, Type, Union
-
-from crispy_bulma.layout import Submit
-from crispy_forms.helper import FormHelper
 from django import forms
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
@@ -92,14 +86,16 @@ class MULTIPLE_CHOICE_ANSWER_FORM(forms.ModelForm):
 
         super().__init__(*args, **kwargs)
 
-        if self.choices.count() > 15:
-            self.fields["value"].widget = slim_select.MultipleSlimSelect(
-                choices=self.choices
-            )
+        widget = None
+        if self.choices.count() > 3:
+            widget = slim_select.MultipleSlimSelect(max_answers=self.max_answers)
         else:
-            self.fields["value"].widget = forms.widgets.CheckboxSelectMultiple(
-                choices=self.choices
-            )
+            widget = forms.widgets.CheckboxSelectMultiple
+
+        self.fields["value"] = forms.ModelMultipleChoiceField(
+            widget=widget,
+            queryset=self.choices,
+        )
 
     def clean_value(self):
         data = self.cleaned_data["value"]

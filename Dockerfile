@@ -17,13 +17,11 @@ RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 WORKDIR /app/web
-COPY src/ ./src/
+COPY --chown=root:root src/ ./src/
 
 WORKDIR /app/web/theme
-COPY src/theme/ .
+COPY --chown=root:root src/theme/ .
 RUN npm i
-
-RUN chown -R root /app
 WORKDIR /app
 ADD ./requirements-dev.txt ./
 ADD ./entrypoint.sh ./
@@ -32,5 +30,5 @@ RUN pip install -r requirements-dev.txt --no-cache-dir
 EXPOSE 80
 EXPOSE 3000
 
+WORKDIR /app/web
 ENTRYPOINT [ "bash", "/app/entrypoint.sh" ]
-# ENTRYPOINT [ "python3", "manage.py", "runserver", "0.0.0.0:8000"]

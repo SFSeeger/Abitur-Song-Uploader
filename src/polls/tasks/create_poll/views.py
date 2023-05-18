@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django_filters.views import FilterView
 
 from polls.filters import PollFilter
-from polls.forms import QuestionForm
+from polls.forms import BaseOptionFormset, QuestionForm
 from polls.models import Option, Poll, Question
 from songuploader.utils import LoginRequiredTemplateView
 
@@ -51,7 +51,7 @@ class QuestionCreateView(PermissionRequiredMixin, CreateView):
 class OptionCreateView(PermissionRequiredMixin, TemplateView):
     permission_required = "polls.can_open_polls"
     formset_class = modelformset_factory(
-        Option, fields=("name",), extra=1, can_delete=True
+        Option, fields=("name",), formset=BaseOptionFormset
     )
     template_name = "polls/option_form.html"
 
