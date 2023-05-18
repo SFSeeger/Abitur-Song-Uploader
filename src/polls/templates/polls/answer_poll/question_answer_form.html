@@ -17,17 +17,17 @@
 <script>
     const form = document.querySelector("#mainForm");
 
-        const update_checkboxes = () => {
-            const checked = document.querySelectorAll(".checkbox>input:checked").length;
-            const unchecked = document.querySelectorAll(".checkbox>input:not(:checked)");
-            if(checked >= {{question.max_answers}}){
-                unchecked.forEach((i) => i.setAttribute("disabled", "disabled"));
-            }
-            else{
-                unchecked.forEach((i) => i.removeAttribute("disabled"));
-            }
+    const update_checkboxes = () => {
+        const checked = document.querySelectorAll(".checkbox>input:checked").length;
+        const unchecked = document.querySelectorAll(".checkbox>input:not(:checked)");
+        if(checked >= {{question.max_answers}}){
+            unchecked.forEach((i) => i.setAttribute("disabled", "disabled"));
         }
-        update_checkboxes();
-        form.addEventListener("change", update_checkboxes);
+        else{
+            unchecked.forEach((i) => i.removeAttribute("disabled"));
+        }
+    }
+    update_checkboxes();
+    form.addEventListener("change", update_checkboxes);
 </script>
 {% endblock scripts %}

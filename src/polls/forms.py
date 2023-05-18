@@ -59,3 +59,9 @@ class QuestionForm(forms.ModelForm):
             return instance.question_type
         else:
             return self.cleaned_data.get("question_type", None)
+
+
+class BaseOptionFormset(forms.BaseModelFormSet):
+    def __init__(self, *args, **kwargs):
+        super(BaseOptionFormset, self).__init__(*args, **kwargs)
+        self.queryset = Option.objects.none()

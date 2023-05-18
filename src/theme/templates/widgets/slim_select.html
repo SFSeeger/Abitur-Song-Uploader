@@ -17,7 +17,7 @@
 </select>
 
 <script>
-    new SlimSelect({
+    const {{widget.name | slugify}} = new SlimSelect({
         select: '#id_{{widget.name}}',
         settings: {
             allowDeselect: true,
@@ -27,7 +27,11 @@
             {% else %}
             searchText: '<a href="{{create_url}}">{% trans "Create missing option" %}</a>',
             {% endif %}
-            placeholderText: "{% trans "Select Options" %}"
-        }
+            placeholderText: "{% trans "Select Options" %}",
+            {% if max_answers %}
+                minSelected: 1,
+                maxSelected: {{max_answers}},
+            {% endif %}
+        },
     })
 </script>
