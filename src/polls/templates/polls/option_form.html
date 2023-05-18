@@ -4,6 +4,14 @@
 {% load i18n %}
 {% block title %}{% blocktrans %}Create Options{% endblocktrans %}{% endblock title %}
 {% block content %}
+    <a href="{% url 'question-option-csv-create' view.kwargs.question_id %}" class="button is-fullwidth is-link mb-5">
+        <span class="icon-text">
+            <span class="icon">
+                <i class="fa-solid fa-file-csv"></i>
+            </span>
+            <span>{% trans "Load from CSV-File" %}</span>
+        </span>
+    </a>
     <form id="form-container" method="post">
         {% csrf_token %}
         {{formset.management_form}}
@@ -22,6 +30,7 @@
         </button>
         <button class="button is-fullsize is-primary" type="submit">{% if has_next %}{% trans "Answer Question" %}{% else %}{% trans "Finish answering" %}{% endif %}</button>
     </form>
+    {% include 'helpers/submit_spinner.html' %}
 {% endblock content %}
 
 {% block scripts %}

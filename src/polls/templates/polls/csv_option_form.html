@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Load Options from csv" %}{% endblock title %}
+{% block content %}
+    <h1 class="title">{% trans "Load Options from csv" %}</h1>
+    <h2>{% trans "Format of the csv file" %}</h2>
+<div class="highlight"><pre><code>
+name
+{% blocktrans %}value1 (any arbitrary value)
+value2
+value3
+...{% endblocktrans %}
+</code></pre></div>
+<br>
+{% crispy form %}
+{% include 'helpers/submit_spinner.html' %}
+{% endblock content %}

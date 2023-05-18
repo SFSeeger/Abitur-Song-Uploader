@@ -1,21 +1,23 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
+import pandas as pd
+from django import http
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.db import transaction
+from django.db import models, transaction
 from django.forms import BaseModelForm, modelformset_factory
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, UpdateView
-from django_filters.views import FilterView
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.edit import CreateView, FormView
 
 from polls.filters import PollFilter
 from polls.forms import BaseOptionFormset, QuestionForm
 from polls.models import Option, Poll, Question
-from songuploader.utils import LoginRequiredTemplateView
 
-from .forms import PollForm
+from .forms import CSVOptionForm, PollForm
 
 
 class PollCreateView(PermissionRequiredMixin, CreateView):
@@ -76,3 +78,27 @@ class OptionCreateView(PermissionRequiredMixin, TemplateView):
         if not "formset" in kwargs:
             context["formset"] = self.formset_class()
         return context
+
+
+class CSVOptionCreateView(PermissionRequiredMixin, FormView):
+    permission_required = "polls.can_open_polls"
+    form_class = CSVOptionForm
+    model = Question
+    template_name = "polls/csv_option_form.html"
+    object = None
+
+    def get_object(self):
+        if not self.object:
+            return get_object_or_404(self.model, pk=self.kwargs.get("pk"))
+        return self.object
+
+    def form_valid(self, form: CSVOptionForm) -> HttpResponse:
+        csv = form.files["file"]
+        df = pd.read_csv(csv, delimiter=";")
+        with transaction.atomic():
+            for idx, row in df.iterrows():
+                Option.objects.create(question=self.get_object(), name=row["name"])
+        return super().form_valid(form)
+
+    def get_success_url(self) -> str:
+        return self.get_object().get_absolute_url()

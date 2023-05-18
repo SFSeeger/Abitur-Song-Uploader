@@ -1,6 +1,11 @@
 from django.urls import include, path
 
-from .views import OptionCreateView, PollCreateView, QuestionCreateView
+from .views import (
+    CSVOptionCreateView,
+    OptionCreateView,
+    PollCreateView,
+    QuestionCreateView,
+)
 
 urlpatterns = [
     path("create/", PollCreateView.as_view(), name="poll-create"),
@@ -8,6 +13,11 @@ urlpatterns = [
         "option/create/<int:question_id>",
         OptionCreateView.as_view(),
         name="question-option-create",
+    ),
+    path(
+        "option/create/csv/<int:pk>",
+        CSVOptionCreateView.as_view(),
+        name="question-option-csv-create",
     ),
     path(
         "question/create/<int:poll_id>",
