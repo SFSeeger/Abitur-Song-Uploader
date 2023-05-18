@@ -1,8 +1,9 @@
 # Abitur Song Uploader
+![Songuploader Logo](src/theme/static/png/cap_small.png)
 
-A simple way to manage songs  
+A simple way to manage Abitur problems
 
-## Deployment on a Raspberry Pi / local PC
+## Deployment on a Raspberry Pi
 
 ### Requirements
 
@@ -51,16 +52,16 @@ You should forward the following ports on your Router:
 Delete the `ansible/vault.yml` file and create your own. It needs to look like this:
 
 ```yml
-secret_key: [random key can be made e.g. here https://miniwebtool.com/django-secret-key-generator/]
-mysql_root_password: [long and strong password]
-mysql_db: [database name e.g. songuploader]
-mysql_user: [simple username]
-mysql_password: [strong password for the user]
-email_host_user: [gmail email]
-email_host_password: [gmail password]
-default_password: [password for gunicorn user]
-admin_email: [your email]
-admin_phone: [your phonenumber]
+secret_key: <random key can be made e.g. here https://miniwebtool.com/django-secret-key-generator/>
+mysql_root_password: <long and strong password>
+mysql_db: <database name e.g. songuploader>
+mysql_user: <simple username>
+mysql_password: <strong password for the user>
+email_host_user: <gmail email>
+email_host_password: <gmail password>
+default_password: <password for gunicorn user>
+admin_email: <your email>
+admin_phone: <your phonenumber>
 ```
 
 1. adjust your `ansible/hosts` file with your domain name
@@ -73,6 +74,21 @@ cd ansible
 ansible-vault encrypt vault.yml
 ansible-playbook -i hosts -u ansible --private-key=~/id_ed25519 site.yml --become-password-file .become_pass -v
 ```
+
+### Metrics
+
+When deployed you also have access to metrics in your local network.
+Run `ifconfig` to get the local ip-address of your raspberry.
+Open the browser and type `<your_ip>:3000`.
+
+1. Under `Administration>Data sources` add Prometheus (url: _http://localhost:9090_)
+1. Under Dashboards add the Dashboards you like. My recommendations are:
+    - [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
+    - [a Django Prometheus](https://grafana.com/grafana/dashboards/9528-django-prometheus/)
+
+### Additional Info
+
+- Backups are under `/var/local/songuploader/backups` This can be changed in the `ansible/group_vars/all` file
 
 ## Create dev Environment
 
@@ -95,3 +111,8 @@ You have th following services at your disposal in your dev environment:
 | db         | abitur-song-uploader-db-1         | 3306 (mysql)               |
 | pypmyadmin | abitur-song-uploader-phpmyadmin-1 | 8090 (web)                 |
 | mailhog    | abitur-song-uploader-mailhog-1    | 8025 (web)                 |
+
+## Contributing
+
+Just add a pull request and run test, when i eventually come to add them. 
+Some instructions will follow.
