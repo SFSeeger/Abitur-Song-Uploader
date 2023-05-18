@@ -1,3 +1,4 @@
+from crispy_bulma.widgets import FileUploadInput
 from django import forms
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
@@ -76,6 +77,7 @@ class IMAGE_ANSWER_FORM(forms.ModelForm):
     class Meta:
         model = ImageAnswerValue
         fields = ["value"]
+        widgets = {"value": FileUploadInput}
 
 
 class MULTIPLE_CHOICE_ANSWER_FORM(forms.ModelForm):
@@ -166,6 +168,9 @@ class Question(models.Model):
 
     def get_form(self):
         return self.FORM_OPTIONS[self.question_type]
+
+    def get_absolute_url(self):
+        return reverse("question-detail", kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name = _("Question")
