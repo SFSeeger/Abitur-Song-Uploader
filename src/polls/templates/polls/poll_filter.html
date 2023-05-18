@@ -19,5 +19,13 @@
             <span>{{obj.start_date}}</span><br>
             <soan>{{obj.end_date}}</soan>
         </td>
+        <td>
+            <button class="button is-small is-danger is-inverted " id="modal-trigger" onclick="fill_data(this)" data-target="PollDeleteModal" data-value="{% url 'poll-delete' obj.id %}">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </td>
     </tr>
 {% endblock table_content %}
+{% block modals %}
+    {% include 'partials/delete_modal.html' with modal_name="PollDeleteModal" object_type="Umfrage" %}
+{% endblock modals %}

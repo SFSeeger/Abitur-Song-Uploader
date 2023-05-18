@@ -46,3 +46,10 @@ body {
     flex-direction: column;
 }
 
+table tr td button {
+    visibility: hidden;
+}
+
+table tr:hover td button {
+    visibility: visible;
+}

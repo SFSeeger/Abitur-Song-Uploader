@@ -16,8 +16,10 @@
                             </span>
                         </p>
                     </div>
-                    {% block actions %}
-                    {% endblock actions %}
+                    <div>
+                        {% block actions %}
+                        {% endblock actions %}
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="table-container">
@@ -64,6 +66,7 @@
         {% include 'partials/paginator.html' with page_obj=page_obj %}
     </div>
 {% endblock content %}
+{% block modals %}{% endblock modals %}
 
 {% block scripts %}
 <script>
