@@ -20,13 +20,13 @@
         <a href="{% url 'choose-song' %}" class="navbar-item">
             {% translate "Upload song" %}
         </a>
-        {% if request.user.is_staff or perms.poll.can_open_polls %}
+        {% if request.user.is_staff or perms.polls.can_open_polls %}
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     {% trans "Admin Sites" %}
                 </a>
                 <div class="navbar-dropdown">
-                {% if perms.poll.can_open_polls %}
+                {% if perms.polls.can_open_polls %}
                     <a class="navbar-item" href="{% url 'poll-filter' %}">
                         {% trans "Poll Management" %}
                     </a>
