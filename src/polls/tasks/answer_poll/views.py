@@ -7,6 +7,7 @@ from django.forms import formset_factory
 from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponse
 from django.shortcuts import redirect
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import TemplateView
@@ -24,7 +25,6 @@ class StartPollView(ConfiguredLoginViewMixin, SingleObjectMixin, TemplateView):
     object = None
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
         response, idx = self.get_response()
         if not response:
             return redirect("index")
@@ -51,6 +51,13 @@ class StartPollView(ConfiguredLoginViewMixin, SingleObjectMixin, TemplateView):
                 return (self.create_poll(), 0)
             return (response, response.answer_set.count())
         return (self.create_poll(), 0)
+
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        self.object = self.get_object()
+        if self.object.end_date < timezone.now().date():
+            messages.warning(request, _("Poll is closed"))
+            return redirect("index")
+        return super().dispatch(request, *args, **kwargs)
 
     def create_poll(self):
         response = Response(user=self.request.user, poll=self.object)
@@ -103,4 +110,7 @@ class QuestionAnswerView(ConfiguredLoginViewMixin, SingleObjectMixin, FormView):
             raise PermissionDenied()
         if self.object.answer_set.filter(question=self.question).exists():
             raise PermissionDenied()
+        if self.poll.end_date < timezone.now().date():
+            messages.warning(request, _("Poll is closed"))
+            return redirect("index")
         return super().dispatch(request, *args, **kwargs)
