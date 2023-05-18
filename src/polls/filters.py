@@ -1,5 +1,5 @@
 from django import forms
-from django.db.models import DateTimeField, Q
+from django.db.models import DateField, Q
 from django_filters import CharFilter, DateTimeFilter, FilterSet
 
 from polls.models import Poll, Question
@@ -25,10 +25,10 @@ class PollFilter(FilterSet):
         fields = ["end_date"]
 
         filter_overrides = {
-            DateTimeField: {
+            DateField: {
                 "filter_class": DateTimeFilter,
                 "extra": lambda f: {
-                    "widget": forms.DateTimeInput(attrs={"type": "datetime-local"}),
+                    "widget": forms.DateInput(attrs={"type": "date"}),
                 },
             },
         }
