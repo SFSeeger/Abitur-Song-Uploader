@@ -2,6 +2,9 @@
 {% load i18n %}
 {% block title %}{% trans "Questions for" %} {{poll}}{% endblock title %}
 {% block actions %}
+    <a href="{% url 'poll-update' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Edit Poll' %}">
+        <i class="fa-solid fa-pen"></i>
+    </a>
     <a href="{% url 'question-create' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Question' %}">
         <i class="fa-solid fa-circle-question"></i>
         <i class="fa-solid fa-plus pl-1"></i>
@@ -22,6 +25,7 @@
         <td>
             {% trans "Max Answers" %}
         </td>
+        <td>&nbsp;</td>
     </tr>
 </thead>
 {% endblock table_header %}
@@ -41,5 +45,13 @@
         <td>
             <span>{{obj.max_answers}}</span>
         </td>
+        <td>
+            <button class="button is-small is-danger is-inverted " id="modal-trigger" onclick="fill_data(this)" data-target="QuestionDeleteModal" data-value="{% url 'question-delete' obj.id %}">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </td>
     </tr>
 {% endblock table_content %}
+{% block modals %}
+    {% include 'partials/delete_modal.html' with modal_name="QuestionDeleteModal" object_type=_("Question") %}
+{% endblock modals %}

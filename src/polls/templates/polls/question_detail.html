@@ -44,7 +44,7 @@
                     <div class="columns">
                         <div class="column has-text-weight-bold">{{option}}</div>
                         <span class="card-header-icon">
-                            <button class="button is-small is-danger is-inverted js-modal-trigger" onclick="fill_data(this)" data-target="OptionDeleteModal" data-value="{{option.id}}">
+                            <button class="button is-small is-danger is-inverted " id="modal-trigger" onclick="fill_data(this)" data-target="OptionDeleteModal" data-value="{% url 'option-delete' option.id %}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </span>
@@ -55,5 +55,5 @@
             </div>
         </div>
     {% endif %}
-{% include 'partials/ajax_modal.html' with modal_name="OptionDeleteModal" object_type="Option" %}
+{% include 'partials/delete_modal.html' with modal_name="OptionDeleteModal" object_type="Option" %}
 {% endblock content %}

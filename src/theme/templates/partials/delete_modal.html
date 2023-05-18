@@ -11,13 +11,18 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button is-secondary">{% trans "Cancel" %}</button>
-      <button class="button is-danger">{% trans "Delete" %}</button>
+      <form action="" method="post" id="{{modal_name}}DeleteForm">
+        {% csrf_token %}
+        <button class="button is-danger">{% trans "Delete" %}</button>
+      </form>
     </footer>
   </div>
 </div>
 <script>
 function fill_data($target){
-  modal_data = $target.dataset.value
+  modal_data = $target.dataset.value;
+  delete_form = document.querySelector("#{{modal_name}}DeleteForm");
+  delete_form.action = modal_data;
 }
 
 </script>

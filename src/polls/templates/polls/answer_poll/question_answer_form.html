@@ -12,6 +12,7 @@
         {{form | crispy}}
         <button class="button is-primary is-fullwidth is-rounded">{% trans "Submit" %}</button>
     </form>
+    {% include 'helpers/submit_spinner.html' %}
 {% endblock content %}
 {% block scripts %}
 <script>
