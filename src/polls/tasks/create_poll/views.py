@@ -28,7 +28,7 @@ class PollCreateView(PermissionRequiredMixin, CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self) -> str:
-        return reverse("question-create", kwargs={"question_id": self.object.id})
+        return reverse("question-create", kwargs={"poll_id": self.object.id})
 
 
 class QuestionCreateView(PermissionRequiredMixin, CreateView):

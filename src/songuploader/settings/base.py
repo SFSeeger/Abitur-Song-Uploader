@@ -189,6 +189,11 @@ CRON_TASKS = {
         "schedule_type": "D",
         "run_at": "02:15",
     },
+    "notify_closing_poll": {
+        "args": "notify_closing_poll",
+        "schedule_type": "D",
+        "run_at": "02:20",
+    },
 }
 
 MESSAGE_TAGS = {

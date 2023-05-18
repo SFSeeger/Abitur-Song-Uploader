@@ -120,7 +120,7 @@ class Poll(models.Model):
     name = models.CharField(_("Name"), max_length=64)
     description = models.CharField(_("Description"), max_length=512)
     start_date = models.DateTimeField(_("Start Date"), auto_now_add=True)
-    end_date = models.DateTimeField(_("End Date"))
+    end_date = models.DateField(_("End Date"))
     can_answered_multiple = models.BooleanField(_("Can be answered multiple times"))
 
     def __str__(self) -> str:

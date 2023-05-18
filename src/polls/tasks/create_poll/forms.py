@@ -28,5 +28,5 @@ class PollForm(forms.ModelForm):
 
         widgets = {
             "description": forms.widgets.Textarea(attrs={"rows": 2}),
-            "end_date": forms.widgets.DateTimeInput(attrs={"type": "datetime-local"}),
+            "end_date": forms.widgets.DateInput(attrs={"type": "date"}),
         }
