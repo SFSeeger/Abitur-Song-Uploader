@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-18 01:29+0200\n"
+"POT-Creation-Date: 2023-05-18 19:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,29 +111,29 @@ msgstr ""
 msgid "Search"
 msgstr "Suchen"
 
-#: theme/templates/filter_generic.html:40
+#: theme/templates/filter_generic.html:42
 msgid "Reset Filter"
 msgstr "Filter zurücksetzen"
 
-#: theme/templates/filter_generic.html:47
+#: theme/templates/filter_generic.html:49
 msgid "Page Size"
 msgstr "Seitenlänge"
 
-#: theme/templates/partials/ajax_modal.html:6
+#: theme/templates/partials/delete_modal.html:6
 #, python-format
 msgid "Delete %(object_type)s"
 msgstr "%(object_type)s löschen"
 
-#: theme/templates/partials/ajax_modal.html:10
+#: theme/templates/partials/delete_modal.html:10
 #, python-format
 msgid "Do you really want to delete this %(object_type)s?"
 msgstr "Willst du wirklich diese %(object_type)s löschen?"
 
-#: theme/templates/partials/ajax_modal.html:13
+#: theme/templates/partials/delete_modal.html:13
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: theme/templates/partials/ajax_modal.html:14
+#: theme/templates/partials/delete_modal.html:16
 msgid "Delete"
 msgstr "Löschen"
 

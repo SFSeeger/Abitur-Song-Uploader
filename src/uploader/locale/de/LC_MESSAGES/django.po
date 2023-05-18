@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-18 01:29+0200\n"
+"POT-Creation-Date: 2023-05-18 19:22+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,35 +96,47 @@ msgstr "Von Youtube"
 msgid "Using File"
 msgstr "Song Datei"
 
-#: uploader/templates/uploader/test.html:15
+#: uploader/templates/uploader/index.html:15
 msgid "Song submitted"
 msgstr "Song hochgeladen"
 
-#: uploader/templates/uploader/test.html:17
+#: uploader/templates/uploader/index.html:17
 #, fuzzy
 #| msgid "Song missing"
 msgid "Song processing"
 msgstr "Song wird vorbereitet"
 
-#: uploader/templates/uploader/test.html:19
+#: uploader/templates/uploader/index.html:19
 msgid "Song missing"
 msgstr "Song fehlt"
 
-#: uploader/templates/uploader/test.html:27
-msgid "Image missing"
-msgstr "Bild fehlt"
-
-#: uploader/templates/uploader/test.html:35
-msgid "These are the Themes next week"
-msgstr "Hier sind die gewählten Mottos!"
-
-#: uploader/templates/uploader/test.html:41
+#: uploader/templates/uploader/index.html:27
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
-#: uploader/views/views.py:34
+#: uploader/templates/uploader/index.html:43
+#, python-format
+msgid "%(poll_number)s polls need your attention"
+msgstr ""
+
+#: uploader/templates/uploader/index.html:49
+#, python-format
+msgid "Answer %(poll)s"
+msgstr ""
+
+#: uploader/templates/uploader/index.html:53
+msgid "Please remind your friends to view their polls"
+msgstr ""
+
+#: uploader/views/views.py:36
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
+
+#~ msgid "Image missing"
+#~ msgstr "Bild fehlt"
+
+#~ msgid "These are the Themes next week"
+#~ msgstr "Hier sind die gewählten Mottos!"
 
 #~ msgid "uplaod your own song from disk"
 #~ msgstr "Lade deinen eigenen Song vom Laufwerk hoch"
