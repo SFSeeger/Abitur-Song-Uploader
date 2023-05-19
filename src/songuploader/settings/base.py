@@ -186,11 +186,6 @@ CRON_TASKS = {
         "schedule_type": "D",
         "run_at": "02:05",
     },
-    "remove_files": {
-        "args": "remove_unused_files",
-        "schedule_type": "D",
-        "run_at": "02:10",
-    },
     "backup_media": {
         "args": "backup_media",
         "schedule_type": "D",
