@@ -22,3 +22,4 @@
     - {role: node_exporter, become: yes, tags: ["web", "monitoring"]}
     
     - {role: django, tags: ["web", "rerun"]}
+    - {role: fail2ban, tags: ["web", "rerun"]}

@@ -1,3 +1,4 @@
+import logging
 from typing import Any
 
 from django.contrib import messages
@@ -12,10 +13,12 @@ from django.views.generic import TemplateView, View
 from django.views.generic.edit import FormView
 
 from polls.utils import get_user_polls
-from songuploader.utils import ConfiguredLoginViewMixin
+from songuploader.utils import ConfiguredLoginViewMixin, get_client_ip
 
 from ..forms import LoginForm
 from ..models import Submission
+
+log = logging.getLogger("django")
 
 
 class LoginView(FormView):
@@ -28,17 +31,23 @@ class LoginView(FormView):
             username=form.cleaned_data["username"],
             password=form.cleaned_data["password"],
         )
+        ip = get_client_ip(self.request)
+
         if user is not None:
             login(self.request, user)
+            log.info(f'"{ip} - {user} Login"')
+
             redirect_to = form.cleaned_data.get("redirect_to")
             return redirect(redirect_to if redirect_to else "/")
         else:
+            log.warning(f'"{ip} - {form.cleaned_data["username"]} Login failed"')
             messages.error(self.request, _("Wrong username or password"))
             return self.form_invalid(form)
 
 
 class LogoutView(View):
     def get(self, request, *args, **kwargs):
+        log.info(f'"{get_client_ip(self.request)} - {self.request.user} Logout"')
         logout(request)
         return redirect("login")
 

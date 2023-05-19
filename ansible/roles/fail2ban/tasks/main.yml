@@ -1,0 +1,26 @@
+---
+- name: Installing required packages
+  apt:
+    pkg:
+      - fail2ban
+      - sendmail
+    state: latest
+    update_cache: true
+
+- name: Copy Config
+  template:
+    src: "templates/jail.local.j2"
+    dest: "/etc/fail2ban/jail.local"
+
+- name: Copy Filter
+  template:
+    src: "templates/django.conf.j2"
+    dest: "/etc/fail2ban/filter.d/django.conf"
+
+- name: Enable fail2ban
+  service:
+    name: fail2ban
+    enabled: true
+    state: started
+  notify:
+    - fail2ban restart
