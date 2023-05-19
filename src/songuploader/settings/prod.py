@@ -18,3 +18,23 @@ EMAIL_USE_SSL = False
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9200, 9201)
 PROMETHEUS_METRICS_EXPORT_ADDRESS = ""
 PROMETHEUS_EXPORT_MIGRATIONS = False
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["django.server"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+        },
+    },
+    "root": {
+        "handlers": ["django.server"],
+        "level": "WARNING",
+    },
+}
