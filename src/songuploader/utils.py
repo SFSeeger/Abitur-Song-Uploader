@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files import File
+from django.http import HttpRequest
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -83,3 +84,12 @@ def slice_song(submission: Submission):
         f"ffmpeg -ss {submission.start_time} -i {out_path} -c copy -y -t {submission.end_time-submission.start_time} {submission.song.path}"
     )
     os.remove(out_path)
+
+
+def get_client_ip(request: HttpRequest) -> str:
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(",")[0]
+    else:
+        ip = request.META.get("REMOTE_ADDR")
+    return ip

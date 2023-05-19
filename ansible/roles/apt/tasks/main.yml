@@ -17,6 +17,5 @@
       - software-properties-common
       - wget
       - ffmpeg
-      - fail2ban
     state: latest
     update_cache: true

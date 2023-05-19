@@ -1,4 +1,4 @@
-- name: pull branch main
+- name: pull branch
   git:
     repo: "{{ repo }}"
     dest: "{{ repo_dir }}"
@@ -33,6 +33,15 @@
 - name: create backup dir
   file:
     path: "{{ backup_dir }}"
+    state: directory
+    mode: 760
+    owner: gunicorn
+    group: gunicorn
+    recurse: yes
+
+- name: create log dir
+  file:
+    path: "{{ log_dir }}"
     state: directory
     mode: 760
     owner: gunicorn

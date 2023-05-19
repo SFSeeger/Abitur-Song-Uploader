@@ -6,4 +6,6 @@ static_dir: "/var/www/data/static"
 media_dir: "/var/www/data/media"
 backup_dir: "/var/local/songuploader/backups"
 
+django_logdir: "/var/log/django/"
+
 python_path: "{{repo_dir}}/.venv/bin/python3"
