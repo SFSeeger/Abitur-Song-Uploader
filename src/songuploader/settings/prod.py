@@ -23,22 +23,29 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "django.server": {
-            "()": "django.utils.log.ServerFormatter",
-            "format": "[{server_time}] {message}",
-            "style": "{",
-        }
+        "app": {
+            "format": (
+                "%(asctime)s [%(levelname)-8s] " "(%(module)s.%(funcName)s) %(message)s"
+            ),
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
     },
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
-            "formatter": "django.server",
+            "formatter": "app",
         },
     },
     "loggers": {
+        "''": {
+            "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
         "django": {
             "handlers": ["console"],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
         },
     },
     "root": {
