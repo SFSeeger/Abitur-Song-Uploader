@@ -22,19 +22,27 @@ PROMETHEUS_EXPORT_MIGRATIONS = False
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "django.server": {
+            "()": "django.utils.log.ServerFormatter",
+            "format": "[{server_time}] {message}",
+            "style": "{",
+        }
+    },
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
+            "formatter": "django.server",
         },
     },
     "loggers": {
         "django": {
-            "handlers": ["django.server"],
+            "handlers": ["console"],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
         },
     },
     "root": {
-        "handlers": ["django.server"],
+        "handlers": ["console"],
         "level": "WARNING",
     },
 }
