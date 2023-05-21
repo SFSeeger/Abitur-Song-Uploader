@@ -18,6 +18,11 @@
   pip:
     name: mysqlclient
 
+- name: copy mysql config
+  template:
+    src: "templates/my.conf.j2"
+    dest: "/etc/mysql/conf.d/my.conf"
+
 - name: start up the mysql service
   shell: "service mysql start"
 - name: ensure mysql is enabled to run on startup

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load extensions %}
 {% block title %}{% trans "Question" %} {{object}} {% endblock title %}
 {% block content %}
     <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -17,9 +18,8 @@
             </span>
         </div>
         <div class="card-content">
-            <div class="mb-2">
-                <p class="has-text-gray">{% trans "Description" %}</p>
-                <p class="is-size-5">{{object.description}}</p>
+            <div class="content mb-2">
+                {{object.description | bleach}}
             </div>
             <div class="mb-2">
                 <p class="has-text-gray">{% trans "Question Type" %}</p>

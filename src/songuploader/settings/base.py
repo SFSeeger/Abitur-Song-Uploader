@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import bleach
 from django.contrib.messages import constants as message_constants
 from django.utils.translation import gettext_lazy as _
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_prometheus",
     "dbbackup",
+    "tinymce",
     "django_helpers",
     "uploader",
     "voting",
@@ -101,6 +103,10 @@ DATABASES = {
         "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
         "HOST": "localhost",
         "PORT": 3306,
+        "OPTIONS": {
+            "charset": "utf8mb4",
+            "use_unicode": True,
+        },
     }
 }
 
@@ -211,6 +217,39 @@ LANGUAGES = [
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "height": 500,
+    "menubar": False,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+    "code,help,wordcount",
+    "toolbar": "undo redo | bold italic underline strikethrough | fontsizeselect formatselect | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+    "fullscreen  preview save | insertfile image media pageembed template link anchor codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment code",
+}
+
+ALLOWED_TAGS = frozenset(
+    {"p", "img", "br", "pre", "span", "h1", "h2", "h3", "h4", "h5", "h6", "iframe"}
+    | bleach.sanitizer.ALLOWED_TAGS
+)
+ALLOWED_ATTRIBUTES = {
+    "*": ["style", "class"],
+    "img": ["src", "alt", "width", "height"],
+    "iframe": [
+        "title",
+        "src",
+        "width",
+        "height",
+        "frameborder",
+        "allowfullscreen",
+        "allow",
+    ],
+}
+ALLOWED_ATTRIBUTES = {**ALLOWED_ATTRIBUTES, **bleach.sanitizer.ALLOWED_ATTRIBUTES}
+
 PUBLIC_DOMAIN = "https://intern.rgabi.de"
 
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
