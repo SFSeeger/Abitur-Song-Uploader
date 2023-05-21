@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load extensions %}
 {% block title %}Answer {{object}}{% endblock title %}
 {% block content %}
     <h1 class="title">{% blocktrans %}Start answering {{object}}{% endblocktrans %}</h1>
-    <p class="subtitle">{{object.description}}</p>
+    <div class="content">{{object.description | bleach}}</div>
 
     <form method="post">
         {% csrf_token %}

@@ -27,4 +27,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     path("construction/", UnderConstructionView.as_view(), name="under-construction"),
+    path("tinymce/", include("tinymce.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

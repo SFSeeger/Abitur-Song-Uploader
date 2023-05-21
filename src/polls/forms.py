@@ -3,6 +3,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Button, Field, Layout
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from tinymce.widgets import TinyMCE
 
 from polls.models import Option, Poll, Question
 
@@ -38,9 +39,6 @@ class QuestionForm(forms.ModelForm):
             "max_answers",
         ]
 
-        widgets = {
-            "description": forms.widgets.Textarea(attrs={"rows": 2}),
-        }
 
     def clean_max_answers(self):
         data = self.cleaned_data.get("max_answers", 1)

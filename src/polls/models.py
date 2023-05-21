@@ -9,6 +9,7 @@ from django.forms.utils import ErrorList
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from pictures.models import PictureField
+from tinymce import models as tinymce_models
 
 from theme.utils import generate_filename
 from theme.widgets import slim_select
@@ -116,7 +117,7 @@ class MULTIPLE_CHOICE_ANSWER_FORM(forms.ModelForm):
 
 class Poll(models.Model):
     name = models.CharField(_("Name"), max_length=64)
-    description = models.CharField(_("Description"), max_length=512)
+    description = tinymce_models.HTMLField(_("Description"))
     start_date = models.DateTimeField(_("Start Date"), auto_now_add=True)
     end_date = models.DateField(_("End Date"))
     can_answered_multiple = models.BooleanField(_("Can be answered multiple times"))
@@ -151,7 +152,7 @@ class Question(models.Model):
     )
 
     name = models.CharField(_("Name"), max_length=64)
-    description = models.CharField(_("Description"), max_length=512)
+    description = tinymce_models.HTMLField(_("Description"))
     max_answers = models.PositiveSmallIntegerField(
         _("Max Answers"),
         help_text=_("Max amounts of Answers that can be given"),

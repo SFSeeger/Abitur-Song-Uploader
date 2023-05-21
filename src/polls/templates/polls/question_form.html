@@ -4,7 +4,7 @@
 
 {% block title %} {% if object %}{% blocktrans %}Update {{object}}{% endblocktrans %}{% else %}{% trans "Add Question" %}{% endif %} {% endblock title %}
 {% block content %}
-    <form method="post">
+    <form method="post" id="mainForm">
         {% crispy form %}
     </form>
     {% include 'helpers/submit_spinner.html' %}

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load extensions %}
 {% block title %}{% trans "Answer Question" %}{% endblock title %}
 {% block content %}
     <h1 class="title">{% blocktrans %}Start answering {{question}}{% endblocktrans %}</h1>
-    <p class="subtitle">{{question.description}}</p>
+    <div class="content">{{question.description | bleach}}</div>
 
     <p>{% trans "Question" %} {{view.kwargs.question_idx|add:"1"}}/{{poll.question_set.count}}</p>
     <form method="post" id="mainForm" enctype="multipart/form-data">

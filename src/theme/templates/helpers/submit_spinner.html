@@ -7,7 +7,7 @@
     </div>
 </div>
 <script>
-    const form = document.querySelector('#mainForm');
+    const form = document.querySelector('#{{form | default:"mainForm"}}');
     const spinner = document.querySelector("#spinnerModal");
 
     form.addEventListener("submit", () => {
