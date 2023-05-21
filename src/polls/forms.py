@@ -21,7 +21,7 @@ class QuestionForm(forms.ModelForm):
             "description",
             Submit(
                 "submit",
-                _("Create Question"),
+                _("Update Question") if self.initial else _("Create Question"),
                 css_class="is-primary is-fullwidth is-rounded",
             ),
         )
@@ -38,7 +38,6 @@ class QuestionForm(forms.ModelForm):
             "description",
             "max_answers",
         ]
-
 
     def clean_max_answers(self):
         data = self.cleaned_data.get("max_answers", 1)

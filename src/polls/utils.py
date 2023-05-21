@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Count, Exists, F, OuterRef, Subquery
+from django.db.models.functions import Coalesce
 from django.utils import timezone
 
 from polls.models import Poll, Question, Response
@@ -17,16 +18,17 @@ def get_user_polls(user):
         Poll.objects.filter(end_date__gt=timezone.now().date())
         .annotate(num_questions=Count("question"))
         .annotate(
-            num_answers=Exists(
+            num_answers=Coalesce(
                 Subquery(
                     Response.objects.filter(poll=OuterRef("pk"), user=user)
                     .annotate(num_answers=Count("answer"))
                     .values("num_answers")
                     .order_by("num_answers")[:1]
-                )
+                ),
+                0,
             )
         )
-        .exclude(num_questions=F("num_answers"))
+        .exclude(num_questions=F("num_answers"), can_answered_multiple=False)
     )
     return polls
 

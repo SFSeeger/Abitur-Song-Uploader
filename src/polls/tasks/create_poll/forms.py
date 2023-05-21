@@ -20,7 +20,7 @@ class PollForm(forms.ModelForm):
             "can_answered_multiple",
             Submit(
                 "submit",
-                _("Create Poll"),
+                _("Update Poll") if self.initial else _("Create Poll"),
                 css_class="is-primary is-fullwidth is-rounded",
             ),
         )

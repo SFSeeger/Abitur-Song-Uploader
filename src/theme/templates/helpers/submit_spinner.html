@@ -7,10 +7,12 @@
     </div>
 </div>
 <script>
-    const form = document.querySelector('#{{form | default:"mainForm"}}');
+    const forms = document.querySelectorAll('form');
     const spinner = document.querySelector("#spinnerModal");
 
-    form.addEventListener("submit", () => {
-        spinner.classList.add('is-active');
+    forms.forEach((form) => {
+        form.addEventListener("submit", () => {
+            spinner.classList.add('is-active');
+        })
     })
 </script>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-18 19:22+0200\n"
+"POT-Creation-Date: 2023-05-21 17:57+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,19 +114,23 @@ msgstr "Song fehlt"
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
+#: uploader/templates/uploader/index.html:39
+msgid "All Polls"
+msgstr "Alle Umfragen"
+
 #: uploader/templates/uploader/index.html:43
 #, python-format
 msgid "%(poll_number)s polls need your attention"
-msgstr ""
+msgstr "%(poll_number)s Umfragen brauchen deine Aufmerksamkeit"
 
 #: uploader/templates/uploader/index.html:49
 #, python-format
 msgid "Answer %(poll)s"
-msgstr ""
+msgstr "%(poll)s beantworten"
 
 #: uploader/templates/uploader/index.html:53
 msgid "Please remind your friends to view their polls"
-msgstr ""
+msgstr "Bitte erinnere deine Freunde ihre Umfragen einzusehen"
 
 #: uploader/views/views.py:36
 msgid "Wrong username or password"
