@@ -265,8 +265,6 @@ action_abuseipdb = abuseipdb
 # Choose default action.  To change, just override value of 'action' with the
 # interpolation to the chosen action shortcut (e.g.  action_mw, action_mwl, etc) in jail.local
 # globally (section [DEFAULT]) or per specific section
-banaction = iptables-allports
-# action = %(action_mwl)s[from={{email_host_user}}, password={{email_host_password}}, destination={{admin_url}}, sendername=Fail2Ban]
 action = %(action_)s
 
 
@@ -336,7 +334,8 @@ backend  = %(mysql_backend)s
 [django]
 
 enabled=True
-logpath = {{django_logdir}}
+port     = http,https
+logpath = {{django_logdir}}/error.log
 filter = django
 maxretry = 3
 findtime = 10m
