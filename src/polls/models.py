@@ -199,6 +199,9 @@ class Response(models.Model):
         "auth.User", verbose_name=_("User"), on_delete=models.CASCADE
     )
 
+    def __str__(self):
+        return f"{self.poll} - {self.user}"
+
 
 class Answer(models.Model):
     question = models.ForeignKey(

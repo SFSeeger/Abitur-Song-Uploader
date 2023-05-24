@@ -31,3 +31,6 @@ class Submission(models.Model):
         validators=[validators.FileExtensionValidator(["mp3", "wav", "ogg"])],
         null=True,
     )
+
+    def __str__(self):
+        return self.user
