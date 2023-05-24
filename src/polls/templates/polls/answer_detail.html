@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load pictures %}
+{% block title %}{% trans "List Answers for" %}{{object}}{% endblock title %}
+{% block content %}
+    <h1 class="title">{% trans "Inspect Answers" %}</h1>
+    <form method="get" class="mb-2">
+        <label for="id_user_id" class="label">{% trans "User" %}</label>
+        <span class="is-flex is-align-content-space-between">
+            {{slimselect | safe}}
+            <a href="." class="button is-link ml-1">{% trans "Reset" %}</a>
+            <button class="button is-primary ml-1">{% trans "Select" %}</button>
+        </span>
+    </form>
+    {% for response in responses %}
+    <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {% blocktranslate with counter=forloop.counter user=response.user %}Response #{{counter}} by {{user}}{% endblocktranslate %}
+                </p>
+                <button class="card-header-icon card-toggle" aria-label="expand / collapse">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </header>
+            <div class="card-content">
+                {% for answer in response.answer_set.all %}
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                {{answer.question}}
+                            </p>
+                            <button class="card-header-icon card-toggle" aria-label="expand / collapse">
+                                <span class="icon">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </header>
+                        <div class="card-content is-hidden">
+                            {% include answer.answer_value.get_template with answer_value=answer.answer_value only %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% empty %}
+        <p>{% trans "No User or User with answer selected" %}</p>
+    {% endfor %}
+{% endblock content %}

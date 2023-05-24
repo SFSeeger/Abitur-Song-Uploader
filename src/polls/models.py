@@ -32,12 +32,18 @@ class Option(models.Model):
 class AnswerValue(models.Model):
     answer = GenericRelation("polls.answer", object_id_field="answer_value_id")
 
+    def get_template():
+        raise NotImplementedError("Method 'get_template' needs to be subclassed")
+
     class Meta:
         abstract = True
 
 
 class CharAnswerValue(AnswerValue):
     value = models.CharField(_("Value"), max_length=512)
+
+    def get_template(self):
+        return "polls/answervalue/char.html"
 
 
 def generate_poll_filename(self, filename):
@@ -55,9 +61,15 @@ class ImageAnswerValue(AnswerValue):
         height_field="height",
     )
 
+    def get_template(self):
+        return "polls/answervalue/image.html"
+
 
 class MultipleChoiceAnswerValue(AnswerValue):
     value = models.ManyToManyField("polls.Option", verbose_name=_("Values"))
+
+    def get_template(self):
+        return "polls/answervalue/multiple.html"
 
 
 class CHAR_ANSWER_FORM(forms.ModelForm):
@@ -90,7 +102,7 @@ class MULTIPLE_CHOICE_ANSWER_FORM(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         widget = None
-        if self.choices.count() > 3:
+        if self.choices.count() > 15:
             widget = slim_select.MultipleSlimSelect(max_answers=self.max_answers)
         else:
             widget = forms.widgets.CheckboxSelectMultiple

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django_prometheus",
     "dbbackup",
     "tinymce",
+    "pictures",
     "django_helpers",
     "uploader",
     "voting",
@@ -224,8 +225,8 @@ TINYMCE_DEFAULT_CONFIG = {
     "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
     "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
     "code,help,wordcount",
-    "toolbar": "undo redo | bold italic underline strikethrough | fontsizeselect formatselect | alignleft "
-    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "toolbar": "undo redo | bold italic underline strikethrough | numlist bullist checklist | fontsizeselect formatselect |"
+    "alignleft aligncenter alignright alignjustify | outdent indent | forecolor "
     "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
     "fullscreen  preview save | insertfile image media pageembed template link anchor codesample | "
     "a11ycheck ltr rtl | showcomments addcomment code",
@@ -256,3 +257,18 @@ DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
 DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}
 
 MEDIA_BACKUP_DIR = "/var/local/songuploader/backups/media/"
+
+PICTURES = {
+    "BREAKPOINTS": {
+        "xs": 576,
+        "s": 768,
+        "m": 992,
+        "l": 1200,
+        "xl": 1400,
+    },
+    "GRID_COLUMNS": 12,
+    "CONTAINER_WIDTH": 1200,
+    "FILE_TYPES": ["WEBP"],
+    "PIXEL_DENSITIES": [1, 2],
+    "USE_PLACEHOLDERS": False,
+}

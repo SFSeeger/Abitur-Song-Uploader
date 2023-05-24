@@ -12,7 +12,9 @@ urlpatterns = [
     path("", include(answer_urls)),
     path("<int:pk>/", views.QuestionFilterView.as_view(), name="question-filter"),
     path(
-        "question/<int:pk>/", views.QuestionDetailView.as_view(), name="question-detail"
+        "question/<int:pk>/",
+        views.QuestionDetailView.as_view(),
+        name="question-detail",
     ),
     path(
         "question/edit/<int:pk>/",
@@ -28,5 +30,10 @@ urlpatterns = [
         "option/<int:pk>/delete/",
         views.OptionDeleteView.as_view(),
         name="option-delete",
+    ),
+    path(
+        "answer/<int:pk>/",
+        views.AnswerDetailView.as_view(),
+        name="answer-detail",
     ),
 ]
