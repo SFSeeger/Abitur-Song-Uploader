@@ -1,17 +1,19 @@
 from typing import Any, Dict, Optional
 
+from django import http
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic import DeleteView, DetailView, TemplateView, UpdateView
 from django_filters.views import FilterView
 
 from polls.filters import PollFilter, QuestionFilter
 from polls.forms import QuestionForm
 from polls.models import Option, Poll, Question
 from polls.tasks.create_poll.forms import PollForm
+from theme.widgets.slim_select import MultipleSlimSelect
 
 
 class PollFilterView(PermissionRequiredMixin, FilterView):
@@ -85,3 +87,26 @@ class OptionDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self) -> str:
         return reverse("question-detail", kwargs={"pk": self.get_object().question.id})
+
+
+User = get_user_model()
+slimselect = MultipleSlimSelect(
+    attrs={"id": "id_user_id"},
+    choices=((x.id, f"{x.first_name} {x.last_name}") for x in User.objects.all()),
+).render("user_id", "user_id")
+
+
+class AnswerDetailView(PermissionRequiredMixin, TemplateView):
+    permission_required = "polls.can_open_polls"
+    template_name = "polls/answer_detail.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        poll = get_object_or_404(Poll, pk=self.kwargs.get("pk"))
+        context["object"] = poll
+        responses = poll.response_set.filter(
+            user__in=self.request.GET.getlist("user_id")
+        )
+        context["responses"] = responses
+        context["slimselect"] = slimselect
+        return context

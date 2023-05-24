@@ -27,5 +27,6 @@
       "file:///home/simon/code/Abitur-Song-Uploader/ansible/main.yml",
       "file:///home/simon/code/Abitur-Song-Uploader/ansible/vars.yml"
     ]
-  }
+  },
+  "ansible.python.interpreterPath": "/home/simon/code/Abitur-Song-Uploader/.venv/bin/python3"
 }

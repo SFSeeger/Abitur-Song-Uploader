@@ -19,7 +19,6 @@ requests = "^2.31.0"
 gunicorn = "^20.1.0"
 pandas = "^1.5.3"
 tqdm = "^4.65.0"
-ansible = "^7.3.0"
 django-prometheus = "^2.2.0"
 django-extensions = "^3.2.1"
 django-cleanup = "^7.0.0"
@@ -34,6 +33,7 @@ bleach = {extras = ["css"], version = "^6.0.0"}
 pylance = "^0.3.10"
 black = "^23.1.0"
 pylint-django = "^2.5.3"
+ansible = "^7.6.0"
 
 [build-system]
 requires = ["poetry-core"]
