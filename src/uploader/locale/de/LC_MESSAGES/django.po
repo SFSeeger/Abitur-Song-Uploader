@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 17:57+0200\n"
+"POT-Creation-Date: 2023-05-25 13:08+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,10 @@ msgstr "%(poll)s beantworten"
 #: uploader/templates/uploader/index.html:53
 msgid "Please remind your friends to view their polls"
 msgstr "Bitte erinnere deine Freunde ihre Umfragen einzusehen"
+
+#: uploader/templates/uploader/login_view.html:12
+msgid "Forgot password?"
+msgstr "Passwort vergessen?"
 
 #: uploader/views/views.py:36
 msgid "Wrong username or password"

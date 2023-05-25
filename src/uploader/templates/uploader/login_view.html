@@ -9,6 +9,7 @@
 <form action="." method="post">
     {% crispy form %}
 </form>
+<a class="button is-link is-outlined is-fullwidth mt-3" href="{% url 'password-reset' %}">{% trans "Forgot password?" %}</a>
 {% endblock content %}
 
 {% block scripts %}
