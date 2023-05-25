@@ -1,5 +1,9 @@
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 
 
 def get_public_domain(request):
-    return {"public_domain": settings.PUBLIC_DOMAIN}
+    return {
+        "domain": get_current_site(request),
+        "protocol": "https" if request.is_secure() else "http",
+    }
