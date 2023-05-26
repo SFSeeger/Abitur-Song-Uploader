@@ -331,12 +331,23 @@ backend  = %(mysql_backend)s
 # Web Servers
 # 
 
-[django]
+[django_login]
 
 enabled=True
 port     = http,https
 logpath = {{django_logdir}}/error.log
-filter = django
+filter = django_login
+maxretry = 5
+findtime = 10m
+bantime = 10m
+
+
+[django_reset]
+
+enabled=True
+port     = http,https
+logpath = {{django_logdir}}/error.log
+filter = django_reset
 maxretry = 3
 findtime = 10m
 bantime = 10m
