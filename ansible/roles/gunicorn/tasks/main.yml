@@ -4,7 +4,7 @@
     state: directory
     owner: gunicorn
     group: gunicorn
-    mode: 0700
+    mode: 0760
     recurse: yes
 
 - name: create procfile

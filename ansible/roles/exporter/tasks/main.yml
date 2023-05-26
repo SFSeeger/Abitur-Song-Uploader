@@ -55,3 +55,62 @@
     state: started
   notify:
     - restart node_exporter
+
+#####################################
+#####       Nginx Exporter       ####
+#####################################
+
+- name: create nginx_exporter data directory
+  file:
+    path: "{{ nginx_exporter_db_dir }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+
+- block:
+    - name: download nginx_exporter binary to local folder
+      become: false
+      get_url:
+        url: https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v{{ nginx_exporter_version }}/nginx-prometheus-exporter_{{ nginx_exporter_version }}_linux_{{ go_arch }}.tar.gz
+        dest: "/tmp/nginx_exporter-{{ nginx_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+      register: _download_archive
+      until: _download_archive is succeeded
+      retries: 5
+      delay: 2
+      # run_once: true # <-- this cannot be set due to multi-arch support
+      delegate_to: localhost
+      check_mode: false
+    - name: unpack nginx_exporter binaries
+      become: false
+      unarchive:
+        src: "/tmp/nginx_exporter-{{ nginx_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+        dest: "/tmp"
+        creates: "/tmp/nginx-prometheus-exporter"
+      delegate_to: localhost
+      check_mode: false
+
+    - name: propagate official nginx_exporter binaries
+      copy:
+        src: "/tmp/nginx-prometheus-exporter"
+        dest: "{{ _node_exporter_binary_install_dir }}/nginx_exporter/"
+        mode: 0755
+        owner: prometheus
+        group: prometheus
+      notify:
+        - restart nginx_exporter
+  when:
+    - not prometheus_skip_install
+
+- name: copy procfile
+  template:
+    src: "templates/nginx_exporter.service.j2"
+    dest: "/etc/systemd/system/nginx_exporter.service"
+
+- name: Enable nginx_exporter
+  service:
+    name: nginx_exporter
+    enabled: true
+    state: started
+  notify:
+    - restart nginx_exporter

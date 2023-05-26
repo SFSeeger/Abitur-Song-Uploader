@@ -12,10 +12,15 @@
     src: "templates/jail.local.j2"
     dest: "/etc/fail2ban/jail.local"
 
-- name: Copy Filter
+- name: Copy Login Filter
   template:
-    src: "templates/django.conf.j2"
-    dest: "/etc/fail2ban/filter.d/django.conf"
+    src: "templates/django_login.conf.j2"
+    dest: "/etc/fail2ban/filter.d/django_login.conf"
+
+- name: Copy Reset Filter
+  template:
+    src: "templates/django_reset.conf.j2"
+    dest: "/etc/fail2ban/filter.d/django_reset.conf"
 
 - name: Enable fail2ban
   service:
