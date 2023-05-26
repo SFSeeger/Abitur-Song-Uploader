@@ -6,14 +6,12 @@ from django.urls import include, path
 from django.views.generic.base import RedirectView
 
 from songuploader.utils import UnderConstructionView
+from songuploader.views import LoggingPasswordResetView
 
 account_patterns = [
     path(
         "password-reset/",
-        auth_views.PasswordResetView.as_view(
-            template_name="users/password_reset.html",
-            html_email_template_name="users/email/password_reset_email.html",
-        ),
+        LoggingPasswordResetView.as_view(),
         name="password-reset",
     ),
     path(
