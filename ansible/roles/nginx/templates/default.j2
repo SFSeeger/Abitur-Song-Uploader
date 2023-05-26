@@ -3,6 +3,15 @@ upstream app-server {
 }
 
 server {
+    listen 8080;
+    listen [::]:8080;
+
+    location /stub_status {
+        stub_status;
+    }
+}
+
+server {
     listen [::]:443 ssl ipv6only=on;
     listen 443 ssl; # managed by Certbot
     server_name intern.rgabi.de sfseeger.ddns.net;
@@ -17,19 +26,19 @@ server {
         return 444;
     }
 
-
-    location / {
-        include proxy_params;
-        proxy_pass http://app-server;
-    }
-
-    location /static/ {
+    location /static {
         alias {{ static_dir }}/;
         autoindex on;
         autoindex_exact_size off;
         autoindex_format html;
         autoindex_localtime on;
     }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://app-server;
+    }
+
 }
 
 server {

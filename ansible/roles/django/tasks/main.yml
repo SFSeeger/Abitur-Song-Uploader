@@ -20,12 +20,13 @@
     path: "{{repo_dir}}/src/theme"
 
 - name: create static_root dir
-  file: path={{ static_dir }} state=directory mode=755
+  file: path={{ static_dir }} state=directory mode=774 recurse=yes
 
 - name: create media_root dir
   file:
     path: "{{ media_dir }}"
     state: directory
+    mode: 0760
     owner: gunicorn
     group: gunicorn
     recurse: yes
@@ -34,7 +35,7 @@
   file:
     path: "{{ backup_dir }}"
     state: directory
-    mode: 760
+    mode: 0760
     owner: gunicorn
     group: gunicorn
     recurse: yes
@@ -43,7 +44,7 @@
   file:
     path: "{{ log_dir }}"
     state: directory
-    mode: 760
+    mode: 0760
     owner: gunicorn
     group: gunicorn
     recurse: yes

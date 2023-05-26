@@ -2,3 +2,6 @@
 # handlers file for roles/exporters
 - name: restart node_exporter
   service: name=node_exporter state=restarted
+
+- name: restart nginx_exporter
+  service: name=nginx_exporter state=restarted
