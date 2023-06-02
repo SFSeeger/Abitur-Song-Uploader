@@ -56,7 +56,7 @@ class ImageAnswerValue(AnswerValue):
     value = PictureField(
         _("Image"),
         upload_to=generate_poll_filename,
-        aspect_ratios=[None, "1/1", "3/4"],
+        aspect_ratios=[None, "1/1"],
         width_field="width",
         height_field="height",
     )
