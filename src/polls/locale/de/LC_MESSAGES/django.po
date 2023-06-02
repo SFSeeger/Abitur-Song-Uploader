@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 23:55+0200\n"
+"POT-Creation-Date: 2023-06-02 18:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
 msgid "Name"
 msgstr "Name"
 
-#: polls/models.py:21 polls/models.py:189 polls/models.py:205
+#: polls/models.py:21 polls/models.py:190 polls/models.py:209
 #: polls/templates/polls/answer_poll/question_answer_form.html:10
 #: polls/templates/polls/question_detail.html:4
 #: polls/templates/polls/question_filter.html:59
@@ -85,7 +85,7 @@ msgstr "Enddatum"
 msgid "Can be answered multiple times"
 msgstr "Kann öfters beantwortet werden"
 
-#: polls/models.py:144 polls/models.py:176 polls/models.py:196
+#: polls/models.py:144 polls/models.py:177 polls/models.py:197
 msgid "Poll"
 msgstr "Umfrage"
 
@@ -136,15 +136,19 @@ msgstr "Maximale Antworten"
 msgid "Max amounts of Answers that can be given"
 msgstr "Maximale Anzahl an Antworten die geben werden kann"
 
-#: polls/models.py:190
+#: polls/models.py:174
+msgid "created at"
+msgstr "Erstellt um"
+
+#: polls/models.py:191
 msgid "Questions"
 msgstr "Fragen"
 
-#: polls/models.py:199 polls/templates/polls/answer_detail.html:8
+#: polls/models.py:200 polls/templates/polls/answer_detail.html:8
 msgid "User"
 msgstr "Nutzer"
 
-#: polls/models.py:208
+#: polls/models.py:212
 msgid "Response"
 msgstr "Antwort"
 
