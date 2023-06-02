@@ -33,10 +33,6 @@
             <div class="icon is-large">
                 <i class="fas fa-2x fa-solid fa-poll {% if poll_number > 0 %}has-text-danger{% else %}has-text-primary{% endif %}"></i>
             </div>
-            {% comment %} <p class="has-text-weight-bold mb-3"></p> {% endcomment %}
-            {% if poll_number > 5 %}
-                <a href="">{% trans "All Polls" %}</a>
-            {% endif %}
             <aside class="menu">
                 <p class="menu-label">
                     {% blocktrans %}{{poll_number}} polls need your attention{% endblocktrans %}
@@ -52,9 +48,42 @@
                     <p>{% trans "Please remind your friends to view their polls" %}</p>
                 {% endfor %}
                 </ul>
+                {% if poll_number > 5 %}
+                    <a id="modal-trigger" data-target="PollModal" class="menu-label">{% trans "All Polls" %}</a>
+                {% endif %}
             </aside>
         </div>
     </div>
     {% endwith %}
+</div>
+<div id="PollModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{% trans "List Polls" %}</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+        <aside class="menu">
+            <p class="menu-label">
+                {% blocktrans %}{{poll_number}} polls need your attention{% endblocktrans %}
+            </p>
+            <ul class="menu-list">
+            {% for poll in polls %}
+                <li>
+                    <a href="{% url 'poll-start' poll.id %}">
+                        {% blocktrans %}Answer {{poll}}{% endblocktrans %}
+                    </a>
+                </li>
+            {% empty %}
+                <p>{% trans "No Polls" %}</p>
+            {% endfor %}
+            </ul>
+        </aside>
+    </section>
+    <footer class="modal-card-foot">
+    <button class="button is-info">{% trans "Close" %}</button>
+    </footer>
+  </div>
 </div>
 {% endblock content %}

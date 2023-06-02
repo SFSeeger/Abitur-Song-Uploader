@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-25 13:16+0200\n"
+"POT-Creation-Date: 2023-06-02 18:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,14 @@ msgstr "Filter zurücksetzen"
 #: theme/templates/filter_generic.html:49
 msgid "Page Size"
 msgstr "Seitenlänge"
+
+#: theme/templates/partials/content_modal.html:6
+msgid "Information"
+msgstr "Information"
+
+#: theme/templates/partials/content_modal.html:13
+msgid "Close"
+msgstr "Schließen"
 
 #: theme/templates/partials/delete_modal.html:6
 #, python-format
@@ -273,7 +281,8 @@ msgid ""
 "Check your inbox and your spam folder and follow the instruction to reset "
 "your password"
 msgstr ""
-"Überprüfe dein Posteingang und deinen Spam Ordner und folge den Anweisungen um dein Passwort zu ändern"
+"Überprüfe dein Posteingang und deinen Spam Ordner und folge den Anweisungen "
+"um dein Passwort zu ändern"
 
 #: theme/templates/widgets/slim_select.html:4
 msgid "All"

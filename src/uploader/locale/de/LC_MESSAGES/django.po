@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-25 13:08+0200\n"
+"POT-Creation-Date: 2023-06-02 18:41+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,29 +114,47 @@ msgstr "Song fehlt"
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
-#: uploader/templates/uploader/index.html:39
-msgid "All Polls"
-msgstr "Alle Umfragen"
-
-#: uploader/templates/uploader/index.html:43
+#: uploader/templates/uploader/index.html:38
+#: uploader/templates/uploader/index.html:69
 #, python-format
 msgid "%(poll_number)s polls need your attention"
 msgstr "%(poll_number)s Umfragen brauchen deine Aufmerksamkeit"
 
-#: uploader/templates/uploader/index.html:49
+#: uploader/templates/uploader/index.html:44
+#: uploader/templates/uploader/index.html:75
 #, python-format
 msgid "Answer %(poll)s"
 msgstr "%(poll)s beantworten"
 
-#: uploader/templates/uploader/index.html:53
+#: uploader/templates/uploader/index.html:48
 msgid "Please remind your friends to view their polls"
 msgstr "Bitte erinnere deine Freunde ihre Umfragen einzusehen"
+
+#: uploader/templates/uploader/index.html:52
+msgid "All Polls"
+msgstr "Alle Umfragen"
+
+#: uploader/templates/uploader/index.html:63
+#, fuzzy
+#| msgid "All Polls"
+msgid "List Polls"
+msgstr "Alle Umfragen"
+
+#: uploader/templates/uploader/index.html:79
+#, fuzzy
+#| msgid "All Polls"
+msgid "No Polls"
+msgstr "Keine Umfragen"
+
+#: uploader/templates/uploader/index.html:85
+msgid "Close"
+msgstr "Schließen"
 
 #: uploader/templates/uploader/login_view.html:12
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
-#: uploader/views/views.py:36
+#: uploader/views/views.py:41
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 
