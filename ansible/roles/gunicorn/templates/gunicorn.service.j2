@@ -12,7 +12,8 @@ ExecStart={{ repo_dir }}/.venv/bin/gunicorn \
     --capture-output \
     --access-logfile /var/log/gunicorn/access.log \
     --error-logfile /var/log/gunicorn/error.log \
-    --workers 2 \
+    --workers 4 \
+    --timeout 120 \
     --bind unix:/run/gunicorn.sock \
     songuploader.wsgi:application
 ExecReload=/bin/kill -s HUP $MAINPID

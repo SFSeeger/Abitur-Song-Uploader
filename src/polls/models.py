@@ -171,6 +171,7 @@ class Question(models.Model):
         default=1,
         blank=True,
     )
+    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
 
     poll = models.ForeignKey(
         "polls.Poll", verbose_name=_("Poll"), on_delete=models.CASCADE
@@ -188,7 +189,7 @@ class Question(models.Model):
     class Meta:
         verbose_name = _("Question")
         verbose_name_plural = _("Questions")
-        ordering = ["position"]
+        ordering = ["position", "created_at", "name"]
 
 
 class Response(models.Model):
