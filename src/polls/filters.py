@@ -1,8 +1,17 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.db.models import DateField, Q
-from django_filters import CharFilter, DateTimeFilter, FilterSet
+from django.utils.translation import ugettext_lazy as _
+from django_filters import (
+    BooleanFilter,
+    CharFilter,
+    DateTimeFilter,
+    FilterSet,
+    ModelMultipleChoiceFilter,
+)
 
-from polls.models import Poll, Question
+from polls.models import Poll, Question, Response
+from theme.widgets.slim_select import MultipleSlimSelect
 
 
 class PollFilter(FilterSet):
@@ -54,3 +63,25 @@ class QuestionFilter(FilterSet):
         fields = [
             "question_type",
         ]
+
+
+User = get_user_model()
+
+
+# class ResponseFilter(FilterSet):
+#     show_empty_responses = BooleanFilter(
+#         choices=((False, _("No")), (True, _("Yes"))), method="show_empty_filter"
+#     )
+#     users = forms.ModelMultipleChoiceFilter(
+#         User.objects.all(), widget=MultipleSlimSelect()
+#     )
+
+#     class Meta:
+#         model = Response
+#         fields = [
+#             "user",
+#         ]
+
+#     def show_empty_filter(self, queryset, name, value):
+#         if value == "False":
+#             queryset.exclude()

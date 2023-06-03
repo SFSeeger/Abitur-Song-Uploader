@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-02 18:41+0200\n"
+"POT-Creation-Date: 2023-06-03 13:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,137 +18,145 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: polls/forms.py:24
+#: polls/forms.py:26 polls/forms.py:81
 #, fuzzy
 #| msgid "Create Question"
 msgid "Update Question"
 msgstr "Änderung übernehmen"
 
-#: polls/forms.py:24
+#: polls/forms.py:26 polls/forms.py:81
 msgid "Create Question"
 msgstr "Frage Erstellen"
 
-#: polls/forms.py:48
+#: polls/forms.py:50
 msgid "Max Answers has to be one on this question type"
 msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
 
-#: polls/models.py:19 polls/models.py:131 polls/models.py:166
+#: polls/forms.py:86
+msgid "No"
+msgstr ""
+
+#: polls/forms.py:86
+msgid "Yes"
+msgstr ""
+
+#: polls/models.py:21 polls/models.py:133 polls/models.py:168
 #: polls/templates/polls/question_filter.html:23
 msgid "Name"
 msgstr "Name"
 
-#: polls/models.py:21 polls/models.py:190 polls/models.py:209
+#: polls/models.py:23 polls/models.py:192 polls/models.py:211
 #: polls/templates/polls/answer_poll/question_answer_form.html:10
 #: polls/templates/polls/question_detail.html:4
 #: polls/templates/polls/question_filter.html:59
 msgid "Question"
 msgstr "Frage"
 
-#: polls/models.py:28
+#: polls/models.py:30
 msgid "Option"
 msgstr "Option"
 
-#: polls/models.py:29 polls/templates/polls/question_detail.html:37
+#: polls/models.py:31 polls/templates/polls/question_detail.html:37
 msgid "Options"
 msgstr "Optionen"
 
-#: polls/models.py:43
+#: polls/models.py:45
 msgid "Value"
 msgstr "Wert"
 
-#: polls/models.py:57
+#: polls/models.py:59
 msgid "Image"
 msgstr "Bild"
 
-#: polls/models.py:69
+#: polls/models.py:71
 msgid "Values"
 msgstr "Werte"
 
-#: polls/models.py:119
+#: polls/models.py:121
 #, python-format
 msgid "Only %(max_answers)s options possible"
 msgstr "Nur %(max_answers)s Optionen möglich"
 
-#: polls/models.py:132 polls/models.py:167
+#: polls/models.py:134 polls/models.py:169
 msgid "Description"
 msgstr "Beschreibung"
 
-#: polls/models.py:133
+#: polls/models.py:135
 msgid "Start Date"
 msgstr "Anfangsdatum"
 
-#: polls/models.py:134
+#: polls/models.py:136
 msgid "End Date"
 msgstr "Enddatum"
 
-#: polls/models.py:135
+#: polls/models.py:137
 msgid "Can be answered multiple times"
 msgstr "Kann öfters beantwortet werden"
 
-#: polls/models.py:144 polls/models.py:177 polls/models.py:197
+#: polls/models.py:146 polls/models.py:179 polls/models.py:199
 msgid "Poll"
 msgstr "Umfrage"
 
-#: polls/models.py:145 polls/templates/polls/poll_filter.html:4
+#: polls/models.py:147 polls/templates/polls/poll_filter.html:4
 #: polls/templates/polls/question_detail.html:8
 msgid "Polls"
 msgstr "Umfragen"
 
-#: polls/models.py:147
+#: polls/models.py:149
 msgid "Can open Polls"
 msgstr "Kann Umfragen öffnen"
 
-#: polls/models.py:148
+#: polls/models.py:150
 msgid "Can close Polls"
 msgstr "Kann Umfragen schließen"
 
-#: polls/models.py:155
+#: polls/models.py:157
 msgid "Text Type"
 msgstr "Texttyp"
 
-#: polls/models.py:156
+#: polls/models.py:158
 msgid "Image Type"
 msgstr "Bildtyp"
 
-#: polls/models.py:157
+#: polls/models.py:159
 msgid "Multiple Choice Type"
 msgstr "Mehrfachauswahltyp"
 
-#: polls/models.py:161 polls/templates/polls/question_detail.html:25
+#: polls/models.py:163 polls/templates/polls/question_detail.html:25
 #: polls/templates/polls/question_filter.html:26
 msgid "Question Type"
 msgstr "Fragentyp"
 
-#: polls/models.py:163 polls/templates/polls/question_filter.html:20
+#: polls/models.py:165 polls/templates/polls/question_filter.html:20
 msgid "Position"
 msgstr "Position"
 
-#: polls/models.py:163
+#: polls/models.py:165
 msgid "Order in which questions are displayed"
 msgstr "Reihefolge in welchem die Fragen angezeigt werden"
 
-#: polls/models.py:169 polls/templates/polls/question_detail.html:29
+#: polls/models.py:171 polls/templates/polls/question_detail.html:29
 #: polls/templates/polls/question_filter.html:29
 msgid "Max Answers"
 msgstr "Maximale Antworten"
 
-#: polls/models.py:170
+#: polls/models.py:172
 msgid "Max amounts of Answers that can be given"
 msgstr "Maximale Anzahl an Antworten die geben werden kann"
 
-#: polls/models.py:174
+#: polls/models.py:176
 msgid "created at"
 msgstr "Erstellt um"
 
-#: polls/models.py:191
+#: polls/models.py:193
 msgid "Questions"
 msgstr "Fragen"
 
-#: polls/models.py:200 polls/templates/polls/answer_detail.html:8
+#: polls/models.py:202 polls/templates/polls/answer_detail.html:8
 msgid "User"
 msgstr "Nutzer"
 
-#: polls/models.py:212
+#: polls/models.py:214
 msgid "Response"
 msgstr "Antwort"
 
@@ -171,7 +179,7 @@ msgid "Create Poll"
 msgstr "Umfrage erstellen"
 
 #: polls/tasks/create_poll/forms.py:47
-#: polls/templates/polls/answer_poll/question_answer_form.html:14
+#: polls/templates/polls/answer_poll/question_answer_form.html:17
 msgid "Submit"
 msgstr "Absenden"
 
@@ -225,6 +233,12 @@ msgstr "Frage beantworten"
 #, python-format
 msgid "Start answering %(question)s"
 msgstr "Beantworte %(question)s"
+
+#: polls/templates/polls/answer_poll/question_answer_form.html:12
+#, fuzzy, python-format
+#| msgid "%(question.max_answers)s can be given"
+msgid "<strong>%(max)s</strong> options can be selected"
+msgstr "<strong>%(max)s</strong> Optionen können ausgewählt werden"
 
 #: polls/templates/polls/answer_poll/start_poll.html:6
 #, python-format
