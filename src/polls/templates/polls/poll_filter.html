@@ -3,10 +3,12 @@
 {% load extensions %}
 {% block title %}{% trans "Polls" %}{% endblock title %}
 {% block actions %}
-    <a href="{% url 'poll-create' %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Poll' %}">
-        <i class="fa-solid fa-square-poll-vertical"></i>
-        <i class="fa-solid fa-plus pl-1"></i>
-    </a>
+    <div class="card-header-icon">
+        <a href="{% url 'poll-create' %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Poll' %}">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+            <i class="fa-solid fa-plus pl-1"></i>
+        </a>
+    </div>
 {% endblock actions %}
 {% block table_content %}
     <tr>

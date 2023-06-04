@@ -2,16 +2,18 @@
 {% load i18n %}
 {% block title %}{% trans "Questions for" %} {{poll}}{% endblock title %}
 {% block actions %}
-    <a href="{% url 'answer-detail' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Show Answers' %}">
-        <i class="fa-solid fa-flag-checkered"></i>
-    </a>
-    <a href="{% url 'poll-update' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Edit Poll' %}">
-        <i class="fa-solid fa-pen"></i>
-    </a>
-    <a href="{% url 'question-create' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Question' %}">
-        <i class="fa-solid fa-circle-question"></i>
-        <i class="fa-solid fa-plus pl-1"></i>
-    </a>
+    <div class="card-header-icon">
+        <a href="{% url 'answer-detail' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Show Answers' %}">
+            <i class="fa-solid fa-flag-checkered"></i>
+        </a>
+        <a href="{% url 'poll-update' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Edit Poll' %}">
+            <i class="fa-solid fa-pen"></i>
+        </a>
+        <a href="{% url 'question-create' poll.id %}" class="button is-link has-tooltip-arrow" data-tooltip="{% translate 'Add Question' %}">
+            <i class="fa-solid fa-circle-question"></i>
+            <i class="fa-solid fa-plus pl-1"></i>
+        </a>
+    </div>
 {% endblock actions %}
 {% block table_header %}
 <thead>
