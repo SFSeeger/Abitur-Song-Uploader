@@ -30,7 +30,9 @@ class Option(models.Model):
 
 
 class AnswerValue(models.Model):
-    answer = GenericRelation("polls.answer", object_id_field="answer_value_id")
+    answer = GenericRelation(
+        "polls.answer", object_id_field="answer_value_id", related_query_name="answer"
+    )
 
     def get_template():
         raise NotImplementedError("Method 'get_template' needs to be subclassed")

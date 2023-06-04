@@ -34,6 +34,31 @@
     {% if object.question_type == 2 %}
         <div class="card mb-5">
             <div class="card-header">
+                <h1 class="card-header-title title mb-0">{% trans "Responses" %}</h1>
+            </div>
+            <div class="card-content">
+                <canvas id="myChart"></canvas>
+
+                <div class="box mt-5">
+                    <div class="has-text-centered m-2">
+                        <h3 class="title is-4 m-0">{% trans "Current Winners" %}</h3>
+                        <p class="heading">{% trans "Amount of votes" %}</p>
+                    </div>
+                    <div class="level">
+                        {% for value in data|slice:question.max_answers %}
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading">{{value.name|truncatechars:"14"}}</p>
+                                <p class="title">{{value.count}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-5">
+            <div class="card-header">
                 <h1 class="card-header-title title mb-0">{% trans "Options" %}</h1>
                 <span class="card-header-icon">
                     <a href="{% url 'question-option-create' object.id %}"><i class="fa-solid fa-add"></i></a>
@@ -57,3 +82,36 @@
     {% endif %}
 {% include 'partials/delete_modal.html' with modal_name="OptionDeleteModal" object_type="Option" %}
 {% endblock content %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script charset="utf-8">
+  const ctx = document.getElementById('myChart');
+  const data = JSON.parse("{{data|slice:"15"|safe}}".replaceAll("'", "\""));
+  const names = data.map(item => item.name);
+  const counts = data.map(item => item.count);
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: names,
+      datasets: [{
+        label: '{% trans " # of Votes" %}',
+        data: counts,
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          lables: {
+            font: {
+              family: "BlinkMacSystemFont,-apple-system,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',Helvetica,Arial,sans-serif"
+            }
+          }
+        }
+      }
+    },
+  });
+</script>
+{% endblock scripts %}
