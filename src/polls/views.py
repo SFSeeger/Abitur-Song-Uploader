@@ -10,7 +10,7 @@ from django.views.generic import DeleteView, DetailView, TemplateView, UpdateVie
 from django_filters.views import FilterView
 
 from polls.filters import PollFilter, QuestionFilter
-from polls.forms import QuestionForm, ResponseFilterForm
+from polls.forms import QuestionForm
 from polls.models import Option, Poll, Question
 from polls.tasks.create_poll.forms import PollForm
 from theme.widgets.slim_select import MultipleSlimSelect
