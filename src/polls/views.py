@@ -1,11 +1,11 @@
+import time
 from typing import Any, Dict, Optional
 
-from django import http
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import HttpRequest, HttpResponse
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.views.generic import DeleteView, DetailView, TemplateView, UpdateView
 from django_filters.views import FilterView
 
@@ -61,6 +61,16 @@ class QuestionDetailView(PermissionRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
+        question = self.get_object()
+        if question.question_type == 2:
+            context["data"] = list(
+                Option.objects.filter(question=question)
+                .annotate(count=Count("multiplechoiceanswervalue"))
+                .filter(count__gt=0)
+                .order_by("-count")
+                .values("name", "count")
+            )
+            # context["data"] = {item["name"]: item["count"] for item in values}
         return context
 
 

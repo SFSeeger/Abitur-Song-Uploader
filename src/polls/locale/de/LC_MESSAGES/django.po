@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 13:32+0200\n"
+"POT-Creation-Date: 2023-06-04 19:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: polls/forms.py:26 polls/forms.py:81
+#: polls/forms.py:24
 #, fuzzy
 #| msgid "Create Question"
 msgid "Update Question"
 msgstr "Änderung übernehmen"
 
-#: polls/forms.py:26 polls/forms.py:81
+#: polls/forms.py:24
 msgid "Create Question"
 msgstr "Frage Erstellen"
 
-#: polls/forms.py:50
+#: polls/forms.py:48
 msgid "Max Answers has to be one on this question type"
 msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
 
-#: polls/forms.py:86
-msgid "No"
-msgstr ""
-
-#: polls/forms.py:86
-msgid "Yes"
-msgstr ""
-
-#: polls/models.py:21 polls/models.py:133 polls/models.py:168
-#: polls/templates/polls/question_filter.html:23
+#: polls/models.py:19 polls/models.py:133 polls/models.py:168
+#: polls/templates/polls/question_filter.html:25
 msgid "Name"
 msgstr "Name"
 
-#: polls/models.py:23 polls/models.py:192 polls/models.py:211
+#: polls/models.py:21 polls/models.py:192 polls/models.py:211
 #: polls/templates/polls/answer_poll/question_answer_form.html:10
 #: polls/templates/polls/question_detail.html:4
-#: polls/templates/polls/question_filter.html:59
+#: polls/templates/polls/question_filter.html:61
 msgid "Question"
 msgstr "Frage"
 
-#: polls/models.py:30
+#: polls/models.py:28
 msgid "Option"
 msgstr "Option"
 
-#: polls/models.py:31 polls/templates/polls/question_detail.html:37
+#: polls/models.py:29 polls/templates/polls/question_detail.html:62
 msgid "Options"
 msgstr "Optionen"
 
@@ -123,11 +115,11 @@ msgid "Multiple Choice Type"
 msgstr "Mehrfachauswahltyp"
 
 #: polls/models.py:163 polls/templates/polls/question_detail.html:25
-#: polls/templates/polls/question_filter.html:26
+#: polls/templates/polls/question_filter.html:28
 msgid "Question Type"
 msgstr "Fragentyp"
 
-#: polls/models.py:165 polls/templates/polls/question_filter.html:20
+#: polls/models.py:165 polls/templates/polls/question_filter.html:22
 msgid "Position"
 msgstr "Position"
 
@@ -136,7 +128,7 @@ msgid "Order in which questions are displayed"
 msgstr "Reihefolge in welchem die Fragen angezeigt werden"
 
 #: polls/models.py:171 polls/templates/polls/question_detail.html:29
-#: polls/templates/polls/question_filter.html:29
+#: polls/templates/polls/question_filter.html:31
 msgid "Max Answers"
 msgstr "Maximale Antworten"
 
@@ -197,21 +189,21 @@ msgstr "Antworten auflisten für"
 msgid "Inspect Answers"
 msgstr "Antworten ansehen"
 
-#: polls/templates/polls/answer_detail.html:11
+#: polls/templates/polls/answer_detail.html:13
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: polls/templates/polls/answer_detail.html:12
+#: polls/templates/polls/answer_detail.html:14
 msgid "Select"
 msgstr "Auswählen"
 
-#: polls/templates/polls/answer_detail.html:19
+#: polls/templates/polls/answer_detail.html:21
 #, fuzzy, python-format
 #| msgid "Response %(forloop.counter)s"
 msgid "Response #%(counter)s by %(user)s"
 msgstr "Antwort #%(counter)s von %(user)s"
 
-#: polls/templates/polls/answer_detail.html:48
+#: polls/templates/polls/answer_detail.html:50
 msgid "No User or User with answer selected"
 msgstr "Kein Nutzer oder Nutzer mit Antwort ausgewählt"
 
@@ -286,7 +278,7 @@ msgstr "Füge einen neuen Wert hinzu"
 msgid "Finish answering"
 msgstr "Beantworten abschließen"
 
-#: polls/templates/polls/poll_filter.html:6
+#: polls/templates/polls/poll_filter.html:7
 #: polls/templates/polls/poll_form.html:5
 msgid "Add Poll"
 msgstr "Änderung übernehmen"
@@ -295,27 +287,47 @@ msgstr "Änderung übernehmen"
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: polls/templates/polls/question_detail.html:53
+#: polls/templates/polls/question_detail.html:37
+#, fuzzy
+#| msgid "Response"
+msgid "Responses"
+msgstr "Antwort"
+
+#: polls/templates/polls/question_detail.html:44
+msgid "Current Winners"
+msgstr "Aktuelle Gewinner"
+
+#: polls/templates/polls/question_detail.html:45
+#, fuzzy
+#| msgid " # of Votes"
+msgid "Amount of votes"
+msgstr "Anzahl an Stimmen"
+
+#: polls/templates/polls/question_detail.html:78
 msgid "No options yet..."
 msgstr "Noch keine Optionen..."
+
+#: polls/templates/polls/question_detail.html:99
+msgid " # of Votes"
+msgstr " # an Stimmen"
 
 #: polls/templates/polls/question_filter.html:3
 msgid "Questions for"
 msgstr "Fragen für"
 
-#: polls/templates/polls/question_filter.html:5
+#: polls/templates/polls/question_filter.html:6
 #, fuzzy
 #| msgid "Max Answers"
 msgid "Show Answers"
 msgstr "Maximale Antworten"
 
-#: polls/templates/polls/question_filter.html:8
+#: polls/templates/polls/question_filter.html:9
 #, fuzzy
 #| msgid "Add Poll"
 msgid "Edit Poll"
 msgstr "Umfrage bearbeiten"
 
-#: polls/templates/polls/question_filter.html:11
+#: polls/templates/polls/question_filter.html:12
 #: polls/templates/polls/question_form.html:5
 msgid "Add Question"
 msgstr "Frage hinzufügen"

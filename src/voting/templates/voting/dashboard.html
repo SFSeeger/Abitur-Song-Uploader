@@ -37,7 +37,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script charset="utf-8">
   const ctx = document.getElementById('myChart');
-  const data = JSON.parse("{{data|safe}}".replaceAll("'", "\""));
+  const data = JSON.parse("{{data}}".replaceAll("'", "\""));
 
   new Chart(ctx, {
     type: 'pie',
