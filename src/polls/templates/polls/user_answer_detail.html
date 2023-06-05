@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load pictures %}
-{% block title %}{% trans "List Answers for" %}{{object}}{% endblock title %}
+{% block title %}{% trans "My Responses" %}{% endblock title %}
 {% block content %}
+    <h1 class="title">{% trans "My Responses" %}</h1>
     {% for response in responses %}
     <div class="card">
             <header class="card-header">
