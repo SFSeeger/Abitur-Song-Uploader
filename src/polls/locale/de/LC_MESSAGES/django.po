@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 01:59+0200\n"
+"POT-Creation-Date: 2023-06-05 02:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,7 +149,7 @@ msgid "User"
 msgstr "Nutzer"
 
 #: polls/models.py:214 polls/templates/polls/answer_detail.html:60
-#: polls/templates/polls/user_answer_detail.html:49
+#: polls/templates/polls/user_answer_detail.html:50
 msgid "Response"
 msgstr "Antwort"
 
@@ -182,7 +182,6 @@ msgid "File"
 msgstr "Datei"
 
 #: polls/templates/polls/answer_detail.html:4
-#: polls/templates/polls/user_answer_detail.html:4
 msgid "List Answers for"
 msgstr "Antworten auflisten für"
 
@@ -207,34 +206,34 @@ msgid "Response #%(counter)s by %(user)s"
 msgstr "Antwort #%(counter)s von %(user)s"
 
 #: polls/templates/polls/answer_detail.html:49
-#: polls/templates/polls/user_answer_detail.html:38
+#: polls/templates/polls/user_answer_detail.html:39
 #, fuzzy
 #| msgid "Add Poll"
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: polls/templates/polls/answer_detail.html:50
-#: polls/templates/polls/user_answer_detail.html:39
+#: polls/templates/polls/user_answer_detail.html:40
 msgid "Delete"
 msgstr "Löschen"
 
 #: polls/templates/polls/answer_detail.html:57
-#: polls/templates/polls/user_answer_detail.html:46
+#: polls/templates/polls/user_answer_detail.html:47
 msgid "No User or User with answer selected"
 msgstr "Kein Nutzer oder Nutzer mit Antwort ausgewählt"
 
 #: polls/templates/polls/answer_detail.html:61
-#: polls/templates/polls/user_answer_detail.html:50
+#: polls/templates/polls/user_answer_detail.html:51
 #, fuzzy
 #| msgid "Max Answers"
 msgid "Answer"
-msgstr "Maximale Antworten"
+msgstr "Antwort"
 
 #: polls/templates/polls/answer_form.html:5
-#: polls/templates/polls/answer_poll/question_answer_form.html:5
-#: polls/templates/polls/option_form.html:31
-msgid "Answer Question"
-msgstr "Frage beantworten"
+#, fuzzy
+#| msgid "Max Answers"
+msgid "Edit Answer"
+msgstr "Antwort bearbeiten"
 
 #: polls/templates/polls/answer_form.html:7
 #, fuzzy, python-format
@@ -257,6 +256,11 @@ msgstr "Vielen dank für ihre Antwort"
 #: polls/templates/polls/answer_poll/poll_done.html:6
 msgid "Return to main page"
 msgstr "Zurück zur Hauptseite kehren"
+
+#: polls/templates/polls/answer_poll/question_answer_form.html:5
+#: polls/templates/polls/option_form.html:31
+msgid "Answer Question"
+msgstr "Frage beantworten"
 
 #: polls/templates/polls/answer_poll/question_answer_form.html:7
 #, python-format
@@ -312,7 +316,7 @@ msgstr "Beantworten abschließen"
 #: polls/templates/polls/poll_filter.html:7
 #: polls/templates/polls/poll_form.html:5
 msgid "Add Poll"
-msgstr "Änderung übernehmen"
+msgstr "Umfrage hinzufügen"
 
 #: polls/templates/polls/poll_form.html:5
 msgid "Update"
@@ -350,7 +354,7 @@ msgstr "Fragen für"
 #, fuzzy
 #| msgid "Max Answers"
 msgid "Show Answers"
-msgstr "Maximale Antworten"
+msgstr "Antworten anzeigen"
 
 #: polls/templates/polls/question_filter.html:9
 #, fuzzy
@@ -368,8 +372,20 @@ msgstr "Frage hinzufügen"
 msgid "Update %(object)s"
 msgstr "%(object)s aktualisieren"
 
-#: polls/templates/polls/user_answer_detail.html:10
+#: polls/templates/polls/user_answer_detail.html:4
+#: polls/templates/polls/user_answer_detail.html:6
+#, fuzzy
+#| msgid "Response"
+msgid "My Responses"
+msgstr "Meine Antworten"
+
+#: polls/templates/polls/user_answer_detail.html:11
 #, fuzzy, python-format
 #| msgid "Response %(forloop.counter)s"
 msgid "Response #%(counter)s for Poll %(poll)s"
 msgstr "Antwort #%(counter)s für Umfrage %(poll)s"
+
+#, fuzzy
+#~| msgid "Add Question"
+#~ msgid "Edit Question"
+#~ msgstr "Frage bearbeiten"
