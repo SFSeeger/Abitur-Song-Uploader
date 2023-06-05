@@ -3,22 +3,11 @@
 {% load pictures %}
 {% block title %}{% trans "List Answers for" %}{{object}}{% endblock title %}
 {% block content %}
-    <h1 class="title">{% trans "Inspect Answers" %}</h1>
-    <form method="get" class="mb-2">
-        <label for="id_user_id" class="label">{% trans "User" %}</label>
-        <div class="columns">
-            <div class="column is-half">
-                {{slimselect | safe}}
-            </div>
-            <div class="column"><a href="." class="button is-link is-fullwidth">{% trans "Reset" %}</a></div>
-            <div class="column"><button class="button is-primary is-fullwidth">{% trans "Select" %}</button></div>
-        </div>
-    </form>
     {% for response in responses %}
     <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    {% blocktranslate with counter=forloop.counter user=response.user %}Response #{{counter}} by {{user}}{% endblocktranslate %}
+                    {% blocktranslate with counter=forloop.counter poll=response.poll %}Response #{{counter}} for Poll {{poll}}{% endblocktranslate %}
                 </p>
                 <button class="card-header-icon card-toggle" aria-label="expand / collapse">
                     <span class="icon">

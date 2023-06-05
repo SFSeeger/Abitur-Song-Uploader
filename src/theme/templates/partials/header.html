@@ -20,6 +20,9 @@
         <a href="{% url 'choose-song' %}" class="navbar-item">
             {% translate "Upload song" %}
         </a>
+        <a href="{% url 'user-response-detail' %}" class="navbar-item">
+            {% translate "My Poll Responses" %}
+        </a>
         {% if request.user.is_staff or perms.polls.can_open_polls %}
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">

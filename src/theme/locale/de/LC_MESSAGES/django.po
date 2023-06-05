@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-04 19:03+0200\n"
+"POT-Creation-Date: 2023-06-05 01:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,23 +178,27 @@ msgstr "Start"
 msgid "Upload song"
 msgstr "Song hochladen"
 
-#: theme/templates/partials/header.html:26
+#: theme/templates/partials/header.html:24
+msgid "My Poll Responses"
+msgstr "Meine Umfragen Antworten"
+
+#: theme/templates/partials/header.html:29
 msgid "Admin Sites"
 msgstr "Admin Seiten"
 
-#: theme/templates/partials/header.html:31
+#: theme/templates/partials/header.html:34
 msgid "Poll Management"
 msgstr "Umfragen management"
 
-#: theme/templates/partials/header.html:36
+#: theme/templates/partials/header.html:39
 msgid "Django Admin"
 msgstr "Django Admin"
 
-#: theme/templates/partials/header.html:68
+#: theme/templates/partials/header.html:71
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: theme/templates/partials/header.html:70
+#: theme/templates/partials/header.html:73
 msgid "Login"
 msgstr "Einloggen"
 
