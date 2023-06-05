@@ -36,4 +36,24 @@ urlpatterns = [
         views.AnswerDetailView.as_view(),
         name="answer-detail",
     ),
+    path(
+        "response/<int:pk>/delete",
+        views.ResponseDeleteView.as_view(),
+        name="response-delete",
+    ),
+    path(
+        "answer/user/",
+        views.UserResponseView.as_view(),
+        name="user-response-detail",
+    ),
+    path(
+        "answer/<int:pk>/delete",
+        views.AnswerDeleteView.as_view(),
+        name="answer-delete",
+    ),
+    path(
+        "answer/<int:pk>/edit",
+        views.AnswerEditView.as_view(),
+        name="answer-edit",
+    ),
 ]
