@@ -176,12 +176,7 @@ class AnswerEditView(SingleObjectMixin, FormView):
         answer = self.get_object()
         answer.answer_value = answer_value
         answer.save()
-        if (
-            self.request.user.has_perm("polls.can_open_polls")
-            or self.request.user.is_superuser
-        ):
-            return redirect("answer-detail", kwargs={"pk": answer.response.poll.id})
-        return redirect("user-response-detail")
+        return http.HttpResponseRedirect(self.get_success_url())
 
     def get_initial(self) -> Dict[str, Any]:
         value = self.get_object().answer_value.value
@@ -197,6 +192,16 @@ class AnswerEditView(SingleObjectMixin, FormView):
         if form_class is None:
             form_class = self.get_form_class()
         return form_class(**self.get_form_kwargs(), question=self.question)
+
+    def get_success_url(self) -> str:
+        if (
+            self.request.user.has_perm("polls.can_open_polls")
+            or self.request.user.is_superuser
+        ):
+            return reverse(
+                "answer-detail", kwargs={"pk": self.get_object().response.poll.id}
+            )
+        return reverse("user-response-detail")
 
     def dispatch(
         self, request: http.HttpRequest, *args: Any, **kwargs: Any
