@@ -21,7 +21,7 @@
 <script>
 function fill_data($target){
   modal_data = $target.dataset.value;
-  delete_form = document.querySelector("#{{modal_name}}DeleteForm");
+  delete_form = document.querySelector("#"+$target.dataset.target+"DeleteForm");
   delete_form.action = modal_data;
 }
 

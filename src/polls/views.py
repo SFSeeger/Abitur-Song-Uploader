@@ -147,7 +147,12 @@ class ResponseDeleteView(DeleteView):
     model = Response
 
     def get_success_url(self) -> str:
-        return reverse("answer-detail", kwargs={"pk": self.get_object().poll})
+        if (
+            self.request.user.has_perm("polls.can_open_polls")
+            or self.request.user.is_superuser
+        ):
+            return reverse("answer-detail", kwargs={"pk": self.get_object().poll.id})
+        return reverse("user-response-detail")
 
     def dispatch(
         self, request: http.HttpRequest, *args: Any, **kwargs: Any
