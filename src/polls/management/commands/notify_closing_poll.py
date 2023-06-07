@@ -94,7 +94,9 @@ class Command(BaseCommand):
                     smtplib.SMTPRecipientsRefused,
                 ) as e:
                     failure_users.append(user.get_username())
+                    break
             else:
                 failure += 1
+                failure_users.append(user.get_username())
         connection.close()
         return f"{users.count()-failure}/{users.count()} Emails successfully send! Missing: {failure_users}"
