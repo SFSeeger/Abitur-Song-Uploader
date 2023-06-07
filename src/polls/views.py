@@ -112,10 +112,6 @@ class OptionDeleteView(PermissionRequiredMixin, DeleteView):
 
 
 User = get_user_model()
-slimselect = MultipleSlimSelect(
-    attrs={"id": "id_user_id"},
-    choices=((x.id, f"{x.first_name} {x.last_name}") for x in User.objects.all()),
-).render("user_id", "user_id")
 
 
 class AnswerDetailView(PermissionRequiredMixin, TemplateView):
@@ -130,7 +126,12 @@ class AnswerDetailView(PermissionRequiredMixin, TemplateView):
             user__in=self.request.GET.getlist("user_id")
         )
         context["responses"] = responses
-        context["slimselect"] = slimselect
+        context["slimselect"] = MultipleSlimSelect(
+            attrs={"id": "id_user_id"},
+            choices=User.objects.all()
+            .order_by("last_name", "first_name")
+            .values_list("id", "username"),
+        ).render("user_id", "user_id")
         return context
 
 
