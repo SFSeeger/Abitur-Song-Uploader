@@ -15,7 +15,7 @@ def get_question(obj: Poll, curr_idx: int) -> Question | None:
 
 def get_user_polls(user):
     polls = (
-        Poll.objects.filter(end_date__gt=timezone.now().date())
+        Poll.objects.filter(end_date__gte=timezone.now().date())
         .annotate(num_questions=Count("question"))
         .annotate(
             num_answers=Coalesce(
