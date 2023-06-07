@@ -1,13 +1,19 @@
 {% extends 'email/notification_base.html' %}
-{% block title %}Poll expiring in {{timediff}} days!{% endblock title %}
+{% load i18n %}
+{% block title %}{% blocktrans%}{{poll_count}} Poll expiring in {{timediff}} days!{% endblocktrans %}{% endblock title %}
 {% block catch %}
-    Hi {{first_name}}, <br />
-    we need you to fill out a poll.
+{% blocktrans %}Hi {{first_name}}, <br />we need you to fill out some polls.{% endblocktrans %}
 {% endblock catch %}
 {% block description %}
-    This is just a friendly reminder that the poll <i>{{poll}}</i> will be closing in {{timediff}} days.<br />
-    If you haven't had the chance to answer yet, please do so as soon as possible to make sure your voice is heard.<br/>
-    To cast your vote, simply log in to your account and visit the polling page. If you have any trouble accessing the page or experience any other issues, please let us know as soon as possible so we can assist you.
-    <br><br>
-    You can start answering here: <a href="{{public_domain}}{% url "poll-start" poll.id %}">{{public_domain}}{% url "poll-start" poll.id %}</a>
+{% blocktrans %}This is just a friendly reminder that the following {{poll_count}} polls will be closing in {{timediff}} days.<br />
+If you haven't had the chance to answer yet, please do so as soon as possible to make sure your voice is heard.<br />
+To cast your vote, simply log in to your account and visit the polling page. If you have any trouble accessing the page or experience any other issues, please let us know as soon as possible so we can assist you.<br />
+<strong>Keep in mind that polls which can be answered multiple times are still listed.</strong>
+{% endblocktrans %}
+<br><br>
+<ul>
+    {% for poll in polls %}
+        <li><a href="{{protocol}}://{{domain}}{% url 'poll-start' poll.id %}">{{poll.name}}</a></li>
+    {% endfor %}
+</ul>
 {% endblock description %}

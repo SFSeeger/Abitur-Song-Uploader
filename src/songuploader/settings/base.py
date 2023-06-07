@@ -173,6 +173,7 @@ Q_CLUSTER = {
     "queue_limit": 50,
     "bulk": 10,
     "orm": "default",
+    "max_attempts": 3,
 }
 
 CRON_TASKS = {
@@ -192,9 +193,10 @@ CRON_TASKS = {
         "run_at": "02:15",
     },
     "notify_closing_poll": {
-        "args": "notify_closing_poll",
+        "args": ["notify_closing_poll", "--no-input"],
         "schedule_type": "D",
         "run_at": "02:20",
+        "q_options": {"max_attempts": 2, "timeout": 500},
     },
 }
 
@@ -247,7 +249,7 @@ ALLOWED_ATTRIBUTES = {
 }
 ALLOWED_ATTRIBUTES = {**ALLOWED_ATTRIBUTES, **bleach.sanitizer.ALLOWED_ATTRIBUTES}
 
-PUBLIC_DOMAIN = "https://intern.rgabi.de"
+BASE_URL = "intern.rgabi.de"
 
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
 DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}

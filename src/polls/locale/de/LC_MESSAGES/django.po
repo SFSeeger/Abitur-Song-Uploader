@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 02:19+0200\n"
+"POT-Creation-Date: 2023-06-07 01:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,11 @@ msgstr "Frage Erstellen"
 #: polls/forms.py:48
 msgid "Max Answers has to be one on this question type"
 msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
+
+#: polls/management/commands/notify_closing_poll.py:48
+#, python-format
+msgid "Reminder: %(poll_count)s Poll closing in %(timediff)s days"
+msgstr "Erinnerung: %(poll_count)s Umfrage schließen in %(timediff)s Tagen"
 
 #: polls/models.py:19 polls/models.py:133 polls/models.py:168
 #: polls/templates/polls/question_filter.html:25
@@ -296,6 +301,63 @@ msgstr ""
 "wert2\n"
 "wert3\n"
 "..."
+
+#: polls/templates/polls/email/html/poll_reminder.html:3
+#, python-format
+msgid "%(poll_count)s Poll expiring in %(timediff)s days!"
+msgstr ""
+
+#: polls/templates/polls/email/html/poll_reminder.html:5
+#, python-format
+msgid "Hi %(first_name)s, <br />we need you to fill out some polls."
+msgstr ""
+
+#: polls/templates/polls/email/html/poll_reminder.html:8
+#, python-format
+msgid ""
+"This is just a friendly reminder that the following %(poll_count)s polls "
+"will be closing in %(timediff)s days.<br />\n"
+"If you haven't had the chance to answer yet, please do so as soon as "
+"possible to make sure your voice is heard.<br />\n"
+"To cast your vote, simply log in to your account and visit the polling page. "
+"If you have any trouble accessing the page or experience any other issues, "
+"please let us know as soon as possible so we can assist you.<br />\n"
+"<strong>Keep in mind that polls which can be answered multiple times are "
+"still listed.</strong>\n"
+msgstr ""
+"Dies ist eine freundliche Erinnerung, dass die folgenden %(poll_count)s Umfragen in "
+"in %(timediff)s Tagen schließen.<br />\n"
+"Versuche diese so schnell wie möglich zu beantworten um sicher zu gehen, dass deine Stimme gehört wird.\n"
+"Um abzustimmen, logge dich einfach in deinen account ein und besuche die Umfragen Seite. "
+"Wenn du Probleme hast die Seite zu besuchen oder ähnliches, "
+"lasse es uns so früh wie möglich wissen, damit wir helfen können.<br />\n"
+"\n"
+"<strong>Beachte, dass Umfragen, die mehrfach beantwortet werden können, trotzen aufgelistet werden</strong>\n"
+
+#: polls/templates/polls/email/text/poll_reminder.txt:3
+#, python-format
+msgid ""
+"Hi %(first_name)s,\n"
+"This is just a friendly reminder that the following %(poll_count)s polls "
+"will be closing in %(timediff)s days.\n"
+"If you haven't had the chance to answer yet, please do so as soon as "
+"possible to make sure your voice is heard.\n"
+"To cast your vote, simply log in to your account and visit the polling page. "
+"If you have any trouble accessing the page or experience any other issues, "
+"please let us know as soon as possible so we can assist you.\n"
+"\n"
+"Keep in mind that polls which can be answered multiple times are still "
+"listed.\n"
+msgstr ""
+"Hi %(first_name)s,\n"
+"Dies ist eine freundliche Erinnerung, dass die folgenden %(poll_count)s Umfragen in "
+"in %(timediff)s Tagen schließen.\n"
+"Versuche diese so schnell wie möglich zu beantworten um sicher zu gehen, dass deine Stimme gehört wird.\n"
+"Um abzustimmen, logge dich einfach in deinen account ein und besuche die Umfragen Seite. "
+"Wenn du Probleme hast die Seite zu besuchen oder ähnliches, "
+"lasse es uns so früh wie möglich wissen, damit wir helfen können.\n"
+"\n"
+"Beachte, dass Umfragen, die mehrfach beantwortet werden können, trotzen aufgelistet werden\n"
 
 #: polls/templates/polls/option_form.html:5
 msgid "Create Options"

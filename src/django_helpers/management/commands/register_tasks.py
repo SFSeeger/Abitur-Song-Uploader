@@ -28,10 +28,13 @@ class Command(BaseCommand):
 
     def create_schedule(self, key, value):
         dtime = datetime.strptime(value["run_at"], "%H:%M")
+        if type(value["args"]) == str:
+            value["args"] = [value["args"]]
         schedule(
             value.get("func", "django.core.management.call_command"),
-            value["args"],
+            *value["args"],
             name=value.get("name", key),
+            q_options=value.get("q_options", {}),
             schedule_type=value["schedule_type"],
             next_run=datetime.now().replace(hour=dtime.hour, minute=dtime.minute),
             repeats=-1,
