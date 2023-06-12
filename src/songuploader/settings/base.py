@@ -270,3 +270,9 @@ PICTURES = {
     "PIXEL_DENSITIES": [1, 2],
     "USE_PLACEHOLDERS": False,
 }
+
+NOTEBOOK_ARGUMENTS = [
+    '--ip=0.0.0.0',
+    '--port=8888',
+    '--no-browser',
+]
