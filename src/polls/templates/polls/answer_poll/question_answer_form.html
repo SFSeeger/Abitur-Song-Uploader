@@ -7,7 +7,7 @@
     <h1 class="title">{% blocktrans %}Start answering {{question}}{% endblocktrans %}</h1>
     <div class="content">{{question.description | bleach}}</div>
 
-    <p>{% trans "Question" %} {{view.kwargs.question_idx|add:"1"}}/{{poll.question_set.count}}</p>
+    <p>{% trans "Question" %} {{question_idx|add:"1"}}/{{poll.question_set.count}}</p>
     {% if question.question_type == 2 %}
         <p>{% blocktrans with max=question.max_answers %}<strong>{{max}}</strong> options can be selected{% endblocktrans %}</p>
     {% endif %}

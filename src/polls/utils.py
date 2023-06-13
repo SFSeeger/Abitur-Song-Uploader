@@ -1,16 +1,28 @@
+from typing import Tuple
+
 from django.contrib.auth import get_user_model
 from django.db.models import Count, Exists, F, OuterRef, Subquery
 from django.db.models.functions import Coalesce
+from django.http import HttpRequest
 from django.utils import timezone
 
 from polls.models import Poll, Question, Response
 
 
-def get_question(obj: Poll, curr_idx: int) -> Question | None:
-    try:
-        return obj.question_set.all()[curr_idx]
-    except IndexError:
-        return None
+def get_question(request: HttpRequest, obj: Poll) -> Tuple[int, Question | None]:
+    rs = (
+        Response.objects.annotate(a=Count("answer"))
+        .filter(user=request.user, poll=obj)
+        .order_by("a")
+        .first()
+    )
+    if rs:
+        answered_questions = rs.answer_set.all().values_list("question")
+        return (
+            answered_questions.count(),
+            obj.question_set.exclude(id__in=answered_questions).first(),
+        )
+    return (0, obj.question_set.first())
 
 
 def get_user_polls(user):

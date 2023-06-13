@@ -78,7 +78,7 @@ class Command(BaseCommand):
                 "text/html",
             )
             if idx % 25 == 0:
-                time.sleep(3)
+                time.sleep(0.5)
             for i in range(15):
                 try:
                     message.send()
@@ -87,7 +87,6 @@ class Command(BaseCommand):
                     smtplib.SMTPServerDisconnected,
                     smtplib.SMTPConnectError,
                 ) as e:
-                    connection = mail.get_connection()
                     connection.open()
                 except (
                     smtplib.SMTPSenderRefused,
