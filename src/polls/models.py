@@ -201,6 +201,7 @@ class Response(models.Model):
     user = models.ForeignKey(
         "auth.User", verbose_name=_("User"), on_delete=models.CASCADE
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.poll} - {self.user}"

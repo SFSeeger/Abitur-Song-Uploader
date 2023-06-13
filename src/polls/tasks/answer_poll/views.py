@@ -29,7 +29,7 @@ class StartPollView(ConfiguredLoginViewMixin, SingleObjectMixin, TemplateView):
         if not response:
             return redirect("index")
 
-        return redirect("question-answer", pk=response.id, question_idx=idx)
+        return redirect("question-answer", pk=response.id)
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -70,7 +70,7 @@ class QuestionAnswerView(ConfiguredLoginViewMixin, SingleObjectMixin, FormView):
     template_name = "polls/answer_poll/question_answer_form.html"
 
     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-        if not get_question(self.poll, self.kwargs.get("question_idx")):
+        if not self.question:
             return redirect("poll-done")
         return super().get(request, *args, **kwargs)
 
@@ -79,16 +79,13 @@ class QuestionAnswerView(ConfiguredLoginViewMixin, SingleObjectMixin, FormView):
         Answer.objects.create(
             question=self.question, response=self.object, answer_value=answer_value
         )
-        return redirect(
-            "question-answer",
-            pk=self.object.id,
-            question_idx=self.kwargs.get("question_idx") + 1,
-        )
+        return redirect("question-answer", pk=self.object.id)
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(FormView, self).get_context_data(**kwargs)
         context["poll"] = self.poll
         context["question"] = self.question
+        context["question_idx"] = self.question_idx
         return context
 
     def get_form_class(self) -> type:
@@ -105,7 +102,7 @@ class QuestionAnswerView(ConfiguredLoginViewMixin, SingleObjectMixin, FormView):
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         self.object = self.get_object()
         self.poll = self.object.poll
-        self.question = get_question(self.poll, self.kwargs.get("question_idx"))
+        self.question_idx, self.question = get_question(request, self.poll)
         if not self.object.user == request.user:
             raise PermissionDenied()
         if self.object.answer_set.filter(question=self.question).exists():
