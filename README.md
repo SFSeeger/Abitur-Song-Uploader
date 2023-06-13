@@ -8,3 +8,4 @@ then simply run
 docker compose up
 ``` 
 to start server.
+ 

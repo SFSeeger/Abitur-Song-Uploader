@@ -79,6 +79,7 @@ class Command(BaseCommand):
             )
             if idx % 25 == 0:
                 time.sleep(0.5)
+
             for i in range(15):
                 try:
                     message.send()
