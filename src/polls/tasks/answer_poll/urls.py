@@ -7,7 +7,7 @@ from .views import QuestionAnswerView, StartPollView
 urlpatterns = [
     path("start/<int:pk>/", StartPollView.as_view(), name="poll-start"),
     path(
-        "question/<int:pk>/",
+        "question/answer/<int:pk>/",
         QuestionAnswerView.as_view(),
         name="question-answer",
     ),
