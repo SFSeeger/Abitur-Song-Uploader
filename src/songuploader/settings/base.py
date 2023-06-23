@@ -168,7 +168,7 @@ CRISPY_TEMPLATE_PACK = "bulma"
 Q_CLUSTER = {
     "name": "songuploader",
     "workers": 4,
-    "timeout": 120,
+    "timeout": 14_400,
     "retry": 120,
     "queue_limit": 50,
     "bulk": 10,
