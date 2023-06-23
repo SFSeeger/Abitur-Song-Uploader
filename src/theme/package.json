@@ -6,7 +6,7 @@
     "bulma-tooltip": "npm:@creativebulma/bulma-tooltip@^1.2.0",
     "fontawsome": "npm:@fortawesome/fontawesome-free@^6.3.0",
     "install": "^0.13.0",
-    "npm": "^9.6.2",
+    "npm": "^9.7.2",
     "slim-select": "^2.5.0"
   }
 }
