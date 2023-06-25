@@ -169,7 +169,7 @@ Q_CLUSTER = {
     "name": "songuploader",
     "workers": 4,
     "timeout": 14_400,
-    "retry": 120,
+    "retry": 14_430,
     "queue_limit": 50,
     "bulk": 10,
     "orm": "default",
@@ -272,7 +272,7 @@ PICTURES = {
 }
 
 NOTEBOOK_ARGUMENTS = [
-    '--ip=0.0.0.0',
-    '--port=8888',
-    '--no-browser',
+    "--ip=0.0.0.0",
+    "--port=8888",
+    "--no-browser",
 ]

@@ -1438,9 +1438,9 @@ develop = false
 
 [package.source]
 type = "git"
-url = "https://github.com/Suitox93/pytube.git"
-reference = "patch-1"
-resolved_reference = "25ea481c30254c58e5d8de8dc5f4f56c54ed5a56"
+url = "https://github.com/oncename/pytube.git"
+reference = "HEAD"
+resolved_reference = "cd58ca6783e62d4beec0ed26293098d2e3c7fc41"
 
 [[package]]
 name = "pytz"
@@ -1823,4 +1823,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "0b3793f647129700412bb2e646c864a58ba4232b4d44de9200d3aa853a6fb984"
+content-hash = "4b6ae675f6f42a6cb383bd01ab4cb188fc2d66c3591fe8a54cfb7fb0b0f8a1d0"

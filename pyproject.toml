@@ -25,7 +25,7 @@ django-cleanup = "^7.0.0"
 django-dbbackup = "^4.0.2"
 django-filter = "^23.2"
 django-pictures = "^1.0.2"
-pytube = {git = "https://github.com/Suitox93/pytube.git", rev = "patch-1"}
+pytube = {git = "https://github.com/oncename/pytube.git"}
 django-tinymce = "^3.6.1"
 bleach = {extras = ["css"], version = "^6.0.0"}
 
