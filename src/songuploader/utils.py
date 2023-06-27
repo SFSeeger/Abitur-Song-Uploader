@@ -3,7 +3,6 @@ import shutil
 from datetime import datetime
 from typing import Optional
 
-import youtube_dl
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +14,7 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, View
+from yt_dlp import YoutubeDL
 
 from songuploader.settings import MEDIA_ROOT
 from uploader.models import Submission
@@ -63,10 +63,10 @@ def download_song(submission: Submission):
     mp4_out_path = os.path.join(settings.MEDIA_ROOT, "tmp", f"{submission.user.id}.mp4")
     mp3_out_path = os.path.join(settings.MEDIA_ROOT, "tmp", f"{submission.user.id}.mp3")
     ydl_opts = {
-        "output": mp4_out_path,
+        "outtmpl": mp4_out_path,
         "format": "bestaudio/best",
     }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with YoutubeDL(ydl_opts) as ydl:
         ydl.download([submission.song_url])
     os.system(f"ffmpeg -i {mp4_out_path} -vn {mp3_out_path}")
     open_file = open(mp3_out_path, "rb")
