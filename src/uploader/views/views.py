@@ -8,14 +8,23 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, View
 from django.views.generic.edit import FormView
+from django.shortcuts import render
+from django.core.files.storage import default_storage
 
 from polls.utils import get_user_polls
 from songuploader.utils import ConfiguredLoginViewMixin, get_client_ip
 
-from ..forms import LoginForm
+from django.contrib.auth import get_user_model
+import shutil
+import os
+from songuploader.settings import MEDIA_ROOT, MEDIA_URL
+
+from ..forms import LoginForm, PlaylistDownloadForm
 from ..models import Submission
 
 log = logging.getLogger("django")
+
+User = get_user_model()
 
 
 class LoginView(FormView):
@@ -57,3 +66,22 @@ class IndexView(ConfiguredLoginViewMixin, TemplateView):
         context["has_song"] = Submission.objects.filter(user=self.request.user).first()
         context["polls"] = get_user_polls(self.request.user)
         return context
+
+class DownloadPlaylistView(FormView):
+    template_name = "uploader/playlist.html"
+    form_class = PlaylistDownloadForm
+
+    def form_valid(self, form):
+        if not os.path.exists(os.path.join(MEDIA_ROOT, "playlist")):
+            os.mkdir(os.path.join(MEDIA_ROOT, "playlist"))
+        default_song = form.files['song']
+        users = User.objects.order_by('last_name', 'first_name')
+        for i, user in enumerate(users):
+            user_submission = Submission.objects.filter(user=user)
+            if not user_submission:
+                default_storage.save(os.path.join("playlist", f"{i}.mp3"), default_song)
+            else:
+                song_path = user_submission.first().song.path
+                shutil.copy2(song_path, os.path.join(os.path.join(MEDIA_ROOT, "playlist"), f"{i}.mp3"))
+        shutil.make_archive(os.path.join(MEDIA_ROOT, "playlist"), "zip", os.path.join(MEDIA_ROOT, "playlist"))
+        return redirect(MEDIA_URL+"playlist.zip")

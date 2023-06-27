@@ -127,3 +127,6 @@ class SubmissionUploadForm(SubmissionBaseForm):
     class Meta:
         model = Submission
         fields = ["song", "start_time", "end_time"]
+
+class PlaylistDownloadForm(forms.Form):
+    song = FileField(required=True)
