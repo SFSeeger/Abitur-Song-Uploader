@@ -8,6 +8,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Hidden, Row
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 
 from .models import Submission
@@ -134,20 +135,30 @@ class PlaylistDownloadForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            UploadField("song", css_class="input"),
+            Row(
+                Div(
+                    PrependedText(
+                        "song_url", "fa-brands fa-youtube", css_class="input"
+                    ),
+                    css_class="column",
+                ),
+                Div(UploadField("song", css_class="input"), css_class="mr-2 column"),
+            ),
             Row(
                 Div("start_time", css_class="column"),
                 Div("end_time", css_class="column"),
             ),
         )
         self.helper.add_input(
-            Submit("submit", _("Submit"), css_class="is-primary is-fullwidth")
+            Submit("submit", _("Download"), css_class="is-primary is-fullwidth")
         )
 
     song_url = forms.URLField(label=_("Song URL"), required=False)
     start_time = forms.IntegerField(label=_("Start Time (in sec.)"), min_value=0)
     end_time = forms.IntegerField(label=_("End Time"), min_value=0)
-    song = FileField(label=_("Song"))
+    song = FileField(
+        label=_("Or Song"), required=False, validators=[FileExtensionValidator(["mp3"])]
+    )
 
     def clean_end_time(self):
         end_time = self.cleaned_data["end_time"]

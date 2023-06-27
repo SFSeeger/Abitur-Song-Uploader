@@ -1,8 +1,10 @@
 {% extends 'base_with_box.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block title %}Upload Song{% endblock title %}
 {% block content %}
+<a href="." class="button is-danger is-fullwidth mb-3">{% trans "Reset Form" %}</a>
 <form method="post" enctype="multipart/form-data" id="mainForm">
     {% crispy form %}
 </form>
@@ -10,6 +12,9 @@
 {% endblock content %}
 {% block scripts %}
 <script>
+    song_url = document.querySelector("#id_song_url");
+    song = document.querySelector("#id_song")
+
     start_time = document.querySelector("#id_start_time");
     end_time = document.querySelector("#id_end_time");
 
@@ -22,6 +27,23 @@
             start_time.value = a;
         }
         end_time.value=parseInt(start_time.value)+30;
+    })
+
+    song_url.addEventListener("change", () => {
+        if(song_url.value){
+            song.disabled=true;
+        }
+        else {
+            song.disabled=false;
+        }
+    })
+    song.addEventListener("change", () => {
+        if(song.value){
+            song_url.disabled=true;
+        }
+        else {
+            song_url.disabled=false;
+        }
     })
 
 </script>
