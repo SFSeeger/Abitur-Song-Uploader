@@ -103,12 +103,10 @@ def slice_song(submission: Submission):
 
 
 def slice_song_path(filepath: str, start_time: str, end_time: str) -> str:
-    print(filepath, start_time, end_time)
     filename, extension = os.path.splitext(os.path.basename(filepath))
     input_path = os.path.join(
         settings.MEDIA_ROOT, "tmp", filename + f"_full{extension}"
     )
-    print(filepath, input_path)
     os.system(
         f"ffmpeg -ss {start_time} -i {input_path} -c copy -y -t {end_time-start_time} {filepath}"
     )

@@ -152,6 +152,7 @@ class PlaylistDownloadForm(forms.Form):
         self.helper.add_input(
             Submit("submit", _("Download"), css_class="is-primary is-fullwidth")
         )
+        self.helper.form_class = "spinnerIgnore"
 
     song_url = forms.URLField(label=_("Song URL"), required=False)
     start_time = forms.IntegerField(label=_("Start Time (in sec.)"), min_value=0)

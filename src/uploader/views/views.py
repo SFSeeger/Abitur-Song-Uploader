@@ -118,7 +118,8 @@ class DownloadPlaylistView(FormView):
             os.path.join(MEDIA_ROOT, "tmp", "playlist"),
         )
         shutil.rmtree(os.path.join(MEDIA_ROOT, "tmp", "playlist"))
-        yield f'data: {json.dumps({"state": 3, "substep": 0, "filepath": MEDIA_URL + "playlist.zip"})}\n\n'
+        print("Done")
+        return f'data: {json.dumps({"state": 3, "substep": 0, "filepath": MEDIA_URL + "playlist.zip"})}\n\n'
 
     def form_valid(self, form):
         return StreamingHttpResponse(

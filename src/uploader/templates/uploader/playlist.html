@@ -1,16 +1,18 @@
 {% extends 'base_with_box.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}Upload Song{% endblock title %}
 {% block content %}
 <a href="." class="button is-danger is-fullwidth mb-3">{% trans "Reset Form" %}</a>
-<form method="post" enctype="multipart/form-data" id="mainForm">
+<form method="post" class="spinnerIgnore" enctype="multipart/form-data" id="mainForm">
     {% crispy form %}
 </form>
 {% include 'helpers/submit_spinner.html' %}
 {% endblock content %}
 {% block scripts %}
+<script src="{% static '@microsoft/fetch-event-source/lib/cjs/index.js' %}"></script>
 <script>
     song_url = document.querySelector("#id_song_url");
     song = document.querySelector("#id_song")

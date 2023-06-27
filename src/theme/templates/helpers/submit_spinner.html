@@ -7,7 +7,7 @@
     </div>
 </div>
 <script>
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll('form:not(.spinnerIgnore)');
     const spinner = document.querySelector("#spinnerModal");
 
     forms.forEach((form) => {
