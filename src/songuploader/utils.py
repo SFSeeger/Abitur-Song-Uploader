@@ -14,7 +14,7 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, View
-from pytube import YouTube
+from yt_dlp import YoutubeDL
 
 from songuploader.settings import MEDIA_ROOT
 from uploader.models import Submission
@@ -62,10 +62,12 @@ class LoginRequiredTemplateView(LoginRequiredMixin, TemplateView):
 def download_song(submission: Submission):
     mp4_out_path = os.path.join(settings.MEDIA_ROOT, "tmp", f"{submission.user.id}.mp4")
     mp3_out_path = os.path.join(settings.MEDIA_ROOT, "tmp", f"{submission.user.id}.mp3")
-    YouTube(url=submission.song_url).streams.filter(only_audio=True).first().download(
-        output_path=os.path.dirname(mp4_out_path),
-        filename=os.path.basename(mp4_out_path),
-    )
+    ydl_opts = {
+        "outtmpl": mp4_out_path,
+        "format": "bestaudio/best",
+    }
+    with YoutubeDL(ydl_opts) as ydl:
+        ydl.download([submission.song_url])
     os.system(f"ffmpeg -i {mp4_out_path} -vn {mp3_out_path}")
     open_file = open(mp3_out_path, "rb")
     song_file: File = File(open_file)
