@@ -68,7 +68,7 @@ def download_song(submission: Submission):
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([submission.song_url])
-    os.system(f"ffmpeg -i {mp4_out_path} -yvn {mp3_out_path}")
+    os.system(f"ffmpeg -i {mp4_out_path} -y -vn {mp3_out_path}")
     open_file = open(mp3_out_path, "rb")
     song_file: File = File(open_file)
     submission.song = song_file

@@ -142,7 +142,7 @@ class PlaylistDownloadForm(forms.Form):
                     ),
                     css_class="column",
                 ),
-                Div(UploadField("song", css_class="input"), css_class="mr-2 column"),
+                # Div(UploadField("song", css_class="input"), css_class="mr-2 column"),
             ),
             Row(
                 Div("start_time", css_class="column"),
@@ -157,9 +157,9 @@ class PlaylistDownloadForm(forms.Form):
     song_url = forms.URLField(label=_("Song URL"), required=False)
     start_time = forms.IntegerField(label=_("Start Time (in sec.)"), min_value=0)
     end_time = forms.IntegerField(label=_("End Time"), min_value=0)
-    song = FileField(
-        label=_("Or Song"), required=False, validators=[FileExtensionValidator(["mp3"])]
-    )
+    # song = FileField(
+    #    label=_("Or Song"), required=False, validators=[FileExtensionValidator(["mp3"])]
+    # )
 
     def clean_end_time(self):
         end_time = self.cleaned_data["end_time"]
@@ -178,6 +178,7 @@ class PlaylistDownloadForm(forms.Form):
 
     def clean_song_url(self):
         data = self.cleaned_data["song_url"]
+        return data  # ToDo: remove
 
         if not (match := re.match(yt_url, data)):
             raise ValidationError(
@@ -193,9 +194,9 @@ class PlaylistDownloadForm(forms.Form):
 
         return data
 
-    def clean_song(self):
-        data = self.cleaned_data["song"]
-        song_url = self.cleaned_data["song_url"]
-        if data and song_url:
-            raise ValidationError(_("Cannot choose song and song URL"))
-        return data
+    # def clean_song(self):
+    #     data = self.cleaned_data["song"]
+    #     song_url = self.cleaned_data["song_url"]
+    #     if data and song_url:
+    #         raise ValidationError(_("Cannot choose song and song URL"))
+    #     return data

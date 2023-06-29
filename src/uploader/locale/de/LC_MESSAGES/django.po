@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-02 18:41+0200\n"
+"POT-Creation-Date: 2023-06-29 18:26+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: uploader/forms.py:44 uploader/forms.py:85 uploader/forms.py:122
+#: uploader/forms.py:45 uploader/forms.py:86 uploader/forms.py:123
 msgid "Submit"
 msgstr "Absenden"
 
-#: uploader/forms.py:48
+#: uploader/forms.py:49
 msgid "Username"
 msgstr "Benutzername"
 
-#: uploader/forms.py:50
+#: uploader/forms.py:51
 msgid "Password"
 msgstr "Passwort"
 
-#: uploader/forms.py:62
+#: uploader/forms.py:63 uploader/forms.py:169
 msgid "Start Time cannot be larger than End Time"
 msgstr "Anfangs Zeit kann nicht größer als Endzeit sein"
 
-#: uploader/forms.py:66
+#: uploader/forms.py:67 uploader/forms.py:173
 #, python-format
 msgid "Duration of %(duration)d larger than 30 seconds"
 msgstr "Laufzeit von %(duration)d länger als 30 sekunden"
 
-#: uploader/forms.py:97
+#: uploader/forms.py:98 uploader/forms.py:185
 #, python-format
 msgid "Not a valid YouTube url: %(value)s"
 msgstr "Keine valide YouTube url: %(value)s"
 
-#: uploader/forms.py:103
+#: uploader/forms.py:104 uploader/forms.py:191
 msgid "Could not find YouTube video"
 msgstr "Konnte YouTube video nicht finden"
 
-#: uploader/models.py:16
+#: uploader/forms.py:153
+msgid "Download"
+msgstr ""
+
+#: uploader/forms.py:157 uploader/models.py:16
 msgid "Song URL"
 msgstr "Song URL"
 
-#: uploader/models.py:18
+#: uploader/forms.py:158 uploader/models.py:18
 msgid "Start Time (in sec.)"
 msgstr "Anfangs Zeit (in sek.)"
 
-#: uploader/models.py:23
+#: uploader/forms.py:159 uploader/models.py:23
 msgid "End Time"
 msgstr "Endzeit"
 
@@ -101,6 +105,7 @@ msgid "Song submitted"
 msgstr "Song hochgeladen"
 
 #: uploader/templates/uploader/index.html:17
+#: uploader/templates/uploader/playlist.html:29
 #, fuzzy
 #| msgid "Song missing"
 msgid "Song processing"
@@ -154,7 +159,31 @@ msgstr "Schließen"
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
-#: uploader/views/views.py:41
+#: uploader/templates/uploader/playlist.html:18
+msgid "Starting"
+msgstr "Beginnt"
+
+#: uploader/templates/uploader/playlist.html:40
+msgid "Compiling Songs"
+msgstr "Songs werden gesammelt"
+
+#: uploader/templates/uploader/playlist.html:51
+msgid "Creating Archive"
+msgstr "Archive wird erstellt"
+
+#: uploader/templates/uploader/playlist.html:62
+msgid "Done"
+msgstr "Fertig"
+
+#: uploader/templates/uploader/playlist.html:67
+msgid "Reset Form"
+msgstr "Formular zurücksetzen"
+
+#: uploader/templates/uploader/playlist.html:164
+msgid "Download Archive"
+msgstr "Archive herunterladen"
+
+#: uploader/views/views.py:55
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 

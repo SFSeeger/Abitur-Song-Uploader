@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import shutil
+import time
 from typing import Any
 
 from django.contrib import messages
@@ -76,7 +77,22 @@ class DownloadPlaylistView(FormView):
     template_name = "uploader/playlist.html"
     form_class = PlaylistDownloadForm
 
+    def DELETE_ME(self, form):
+        yield f'{json.dumps({"state":1})}\n'
+        time.sleep(1)
+        yield f'{json.dumps({"state": 2})}\n'
+        time.sleep(0.5)
+        yield f'{json.dumps({"substep": 0, "max": 138})}\n'
+        for i in range(138):
+            time.sleep(0.01)
+            if i % 5 == 0:
+                yield f'{json.dumps({"substep": i})}\n'
+        yield f'{json.dumps({"state": 3, "substep": 138})}\n'
+        time.sleep(2)
+        yield f'{json.dumps({"state": 4, "filepath": MEDIA_URL + "playlist.zip"})}\n'
+
     def process_upload(self, form):
+        yield f'{json.dumps({"state":1})}\n'
         if not os.path.exists(os.path.join(MEDIA_ROOT, "tmp", "playlist")):
             os.mkdir(os.path.join(MEDIA_ROOT, "tmp", "playlist"))
         if not (song := form.files.get("song")):
@@ -90,12 +106,13 @@ class DownloadPlaylistView(FormView):
                 "rb",
             )
             song = File(file)
-            yield f'data: {json.dumps({"state": 1})}\n\n'
+        yield f'{json.dumps({"state": 2})}\n'
         print(song)
         users = User.objects.order_by("last_name", "first_name").prefetch_related(
             "submission_set"
         )
-        yield f'data: {json.dumps({"substep": 0, "max": users.count()})}\n\n'
+        usercount = users.count()
+        yield f'{json.dumps({"substep": 0, "max": usercount})}\n'
         for i, user in enumerate(users):
             if not user.submission_set.first():
                 default_storage.save(
@@ -109,9 +126,7 @@ class DownloadPlaylistView(FormView):
                         os.path.join(MEDIA_ROOT, "tmp", "playlist"), f"{i}_{user}.mp3"
                     ),
                 )
-            if i % 5 == 0:
-                yield f'data: {json.dumps({"substep": i})}\n\n'
-        yield f'data: {json.dumps({"state": 2, "substep": users.count()})}\n\n'
+        yield f'{json.dumps({"state": 3, "substep": usercount})}\n'
         shutil.make_archive(
             os.path.join(MEDIA_ROOT, "playlist"),
             "zip",
@@ -119,7 +134,8 @@ class DownloadPlaylistView(FormView):
         )
         shutil.rmtree(os.path.join(MEDIA_ROOT, "tmp", "playlist"))
         print("Done")
-        return f'data: {json.dumps({"state": 3, "substep": 0, "filepath": MEDIA_URL + "playlist.zip"})}\n\n'
+        yield f'{json.dumps({"state": 4, "filepath": MEDIA_URL + "playlist.zip"})}\n'
+        return
 
     def form_valid(self, form):
         return StreamingHttpResponse(
