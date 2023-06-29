@@ -77,20 +77,6 @@ class DownloadPlaylistView(FormView):
     template_name = "uploader/playlist.html"
     form_class = PlaylistDownloadForm
 
-    def DELETE_ME(self, form):
-        yield f'{json.dumps({"state":1})}\n'
-        time.sleep(1)
-        yield f'{json.dumps({"state": 2})}\n'
-        time.sleep(0.5)
-        yield f'{json.dumps({"substep": 0, "max": 138})}\n'
-        for i in range(138):
-            time.sleep(0.01)
-            if i % 5 == 0:
-                yield f'{json.dumps({"substep": i})}\n'
-        yield f'{json.dumps({"state": 3, "substep": 138})}\n'
-        time.sleep(2)
-        yield f'{json.dumps({"state": 4, "filepath": MEDIA_URL + "playlist.zip"})}\n'
-
     def process_upload(self, form):
         yield f'{json.dumps({"state":1})}\n'
         if not os.path.exists(os.path.join(MEDIA_ROOT, "tmp", "playlist")):
@@ -107,9 +93,10 @@ class DownloadPlaylistView(FormView):
             )
             song = File(file)
         yield f'{json.dumps({"state": 2})}\n'
-        print(song)
-        users = User.objects.order_by("last_name", "first_name").prefetch_related(
-            "submission_set"
+        users = (
+            User.objects.order_by("last_name", "first_name")
+            .exclude(id__in=form.cleaned_data["user_excluder"])
+            .prefetch_related("submission_set")
         )
         usercount = users.count()
         yield f'{json.dumps({"substep": 0, "max": usercount})}\n'

@@ -7,11 +7,16 @@ from crispy_forms.bootstrap import PrependedText
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Hidden, Row
 from django import forms
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 
+from theme.widgets.slim_select import MultipleSlimSelect
+
 from .models import Submission
+
+User = get_user_model()
 
 pattern = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"'
 yt_url = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
@@ -135,6 +140,7 @@ class PlaylistDownloadForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            "user_excluder",
             Row(
                 Div(
                     PrependedText(
@@ -153,6 +159,12 @@ class PlaylistDownloadForm(forms.Form):
             Submit("submit", _("Download"), css_class="is-primary is-fullwidth")
         )
         self.helper.form_class = "spinnerIgnore"
+
+    user_excluder = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        label=_("Users to exclude"),
+        widget=MultipleSlimSelect(),
+    )
 
     song_url = forms.URLField(label=_("Song URL"), required=False)
     start_time = forms.IntegerField(label=_("Start Time (in sec.)"), min_value=0)
@@ -178,7 +190,6 @@ class PlaylistDownloadForm(forms.Form):
 
     def clean_song_url(self):
         data = self.cleaned_data["song_url"]
-        return data  # ToDo: remove
 
         if not (match := re.match(yt_url, data)):
             raise ValidationError(

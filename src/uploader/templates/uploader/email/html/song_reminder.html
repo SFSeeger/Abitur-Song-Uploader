@@ -1,0 +1,23 @@
+{% extends 'email/notification_base.html' %}
+{% load i18n %}
+{% block title %}Don't Forget to Submit Your Song for the Graduation Ceremony!{% endblock title %}
+{% block catch %}
+Hi {{user.first_name}}, <br />please submit a song as soon as possible
+{% endblock catch %}
+{% block description %}
+As you may remember, one of the highlights of the Abitur Verleihung is the inclusion of a personalized song for each graduate. This song provides a special moment to reflect on your educational journey and creates a unique atmosphere for your individual recognition. It's an opportunity for you to share a meaningful track that resonates with your experiences and encapsulates this significant milestone in your life.
+<br><br>
+We want to remind you that the deadline for song submissions is fast approaching. Please take a moment to choose a song that holds a special place in your heart and represents your journey throughout your years at [Name of School]. Whether it's a song that reminds you of your first day in school or a track that became your anthem during the challenging times, this is your chance to make a lasting impression with your music choice.
+
+Submitting your song is very easy:
+<ol>
+    <li>Visit <a href="{{protocol}}://{{domain}}">{{protocol}}://{{domain}}</a></li>
+    <li>Log in to your account with the credentials you were provided or reset your password to receive both username and password</li>
+    <li>Navigate to "Submit Song" in the nav bar</li>
+    <li>Choose how you want to upload your song</li>
+    <li>Submit your Song as well as start and end time</li>
+</ol>
+<strong>Remember, your song selection should be school-appropriate and respectful.</strong> <br><br>
+Regards,<br>
+your {{domain}} team
+{% endblock description %}

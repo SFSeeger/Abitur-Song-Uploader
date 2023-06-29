@@ -39,7 +39,7 @@ song_urlpatterns = [
         name="update-from-file",
     ),
     path("upload/", SubmissionCreateView.as_view(), name="upload"),
-    path("playlist/", DownloadPlaylistView.as_view())
+    path("playlist/", DownloadPlaylistView.as_view(), name="download-playlist")
 ]
 
 

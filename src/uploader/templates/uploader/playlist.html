@@ -6,63 +6,65 @@
 
 {% block title %}Upload Song{% endblock title %}
 {% block content %}
-<ul class="steps has-content-centered">
-    <li class="steps-segment is-active">
-      <span class="steps-marker ">
-          <span class="icon">
-            <i class="fa-solid fa-play"></i>
-            <i class="fa-solid fa-play is-hidden"></i>
-          </span>
-      </span>
-      <div class="steps-content">
-        <p class="is-size-4">{% trans "Starting" %}</p>
-      </div>
-    </li>
-    <li class="steps-segment">
-      <span class="steps-marker ">
-          <span class="icon">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-            <i class="fa-solid fa-arrows-rotate is-hidden"></i>
-          </span>
-      </span>
-      <div class="steps-content">
-        <p class="is-size-4">{% trans "Song processing" %}</p>
-      </div>
-    </li>
-    <li class="steps-segment">
-      <span class="steps-marker ">
-          <span class="icon">
-            <i class="fa-solid fa-list"></i>
-            <i class="fa-solid fa-arrows-rotate is-hidden"></i>
-          </span>
-      </span>
-      <div class="steps-content">
-        <p class="is-size-4">{% trans "Compiling Songs" %}</p>
-      </div>
-    </li>
-    <li class="steps-segment">
-      <span class="steps-marker ">
-          <span class="icon">
-            <i class="fa-solid fa-file-zipper"></i>
-            <i class="fa-solid fa-arrows-rotate is-hidden"></i>
-          </span>
-      </span>
-      <div class="steps-content">
-        <p class="is-size-4">{% trans "Creating Archive" %}</p>
-      </div>
-    </li>
-    <li class="steps-segment">
-      <span class="steps-marker ">
-        <span class="icon">
-            <i class="fa fa-check"></i>
-            <i class="fa fa-check is-hidden"></i>
+<div class="is-hidden" id="bulmastepsWrapper">
+  <ul class="steps has-content-centered">
+      <li class="steps-segment is-active">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-play"></i>
+              <i class="fa-solid fa-play is-hidden"></i>
+            </span>
         </span>
-      </span>
-      <div class="steps-content">
-        <p class="is-size-4">{% trans "Done" %}</p>
-      </div>
-    </li>
-</ul>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Starting" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-cloud-arrow-down"></i>
+              <i class="fa-solid fa-arrows-rotate is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Song processing" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-list"></i>
+              <i class="fa-solid fa-arrows-rotate is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Compiling Songs" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-file-zipper"></i>
+              <i class="fa-solid fa-arrows-rotate is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Creating Archive" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+          <span class="icon">
+              <i class="fa fa-check"></i>
+              <i class="fa fa-check is-hidden"></i>
+          </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Done" %}</p>
+        </div>
+      </li>
+  </ul>
+</div>
 <form method="post" class="spinnerIgnore" enctype="multipart/form-data" id="mainForm">
   <a href="." class="button is-danger is-fullwidth mb-3">{% trans "Reset Form" %}</a>
   {% crispy form %}
@@ -89,26 +91,10 @@
         }
         end_time.value=parseInt(start_time.value)+30;
     })
-    {% comment %}
-    song_url.addEventListener("change", () => {
-        if(song_url.value){
-            song.disabled=true;
-        }
-        else {
-            song.disabled=false;
-        }
-    })
-    song.addEventListener("change", () => {
-        if(song.value){
-            song_url.disabled=true;
-        }
-        else {
-            song_url.disabled=false;
-        }
-    }) {% endcomment %}
 
     const form = document.getElementById("mainForm")
     const bulmasteps = document.querySelectorAll(".steps-segment")
+    const bulmastepsWrapper = document.querySelector("#bulmastepsWrapper")
     form.addEventListener("submit", async (submitEvent) => {
         submitEvent.preventDefault();
         var formData = new FormData(form)
@@ -122,7 +108,10 @@
           var text = response.body.replace("<html>", "")
           text = text.replace("</html>", "")
           document.querySelector("html").innerHTML = text
-        } else form.remove();
+        } else {
+          bulmastepsWrapper.classList.remove("is-hidden")
+          form.remove()
+        };
         // To recieve data as a string we use TextDecoderStream class in pipethrough
         const reader = response.body.pipeThrough(new TextDecoderStream()).getReader()
 
@@ -159,7 +148,7 @@
             
             var filepath = data.filepath
             if(filepath){
-              box_content.innerHTML += `<a href=${filepath} class="button is-primary is-fullwidth">{% trans "Download Archive" %}</a>`
+              box_content.innerHTML += `<button onclick="window.open('${filepath}'); window.location.href = '{% url 'index' %}'" class="button is-primary is-fullwidth"><i class="fa-solid fa-file-zipper"></i>  {% trans "Download Archive" %}</button>`
             }
         }
     })
