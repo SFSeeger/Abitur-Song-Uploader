@@ -1,0 +1,157 @@
+{% extends 'base_with_box.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Upload Song{% endblock title %}
+{% block content %}
+<div class="is-hidden" id="bulmastepsWrapper">
+  <ul class="steps has-content-centered">
+      <li class="steps-segment is-active">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-play"></i>
+              <i class="fa-solid fa-play is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Starting" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-cloud-arrow-down"></i>
+              <i class="fa-solid fa-arrows-rotate is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Song processing" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-list"></i>
+              <i class="fa-solid fa-arrows-rotate is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Compiling Songs" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+            <span class="icon">
+              <i class="fa-solid fa-file-zipper"></i>
+              <i class="fa-solid fa-arrows-rotate is-hidden"></i>
+            </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Creating Archive" %}</p>
+        </div>
+      </li>
+      <li class="steps-segment">
+        <span class="steps-marker ">
+          <span class="icon">
+              <i class="fa fa-check"></i>
+              <i class="fa fa-check is-hidden"></i>
+          </span>
+        </span>
+        <div class="steps-content">
+          <p class="is-size-4">{% trans "Done" %}</p>
+        </div>
+      </li>
+  </ul>
+</div>
+<form method="post" class="spinnerIgnore" enctype="multipart/form-data" id="mainForm">
+  <a href="." class="button is-danger is-fullwidth mb-3">{% trans "Reset Form" %}</a>
+  {% crispy form %}
+</form>
+{% include 'helpers/submit_spinner.html' %}
+{% endblock content %}
+{% block scripts %}
+<script>
+    song_url = document.querySelector("#id_song_url");
+    {% comment %} song = document.querySelector("#id_song") {% endcomment %}
+
+    start_time = document.querySelector("#id_start_time");
+    end_time = document.querySelector("#id_end_time");
+
+    const box_content = document.getElementById("box-content")
+
+    start_time.addEventListener("change", () => {
+        data = start_time.value.match(/^(\d+):(\d+)$/g);
+        a = 0;
+        if (data){
+            a = parseInt(data[0]) * 60;
+            a = a+parseInt(data[1])
+            start_time.value = a;
+        }
+        end_time.value=parseInt(start_time.value)+30;
+    })
+
+    const form = document.getElementById("mainForm")
+    const bulmasteps = document.querySelectorAll(".steps-segment")
+    const bulmastepsWrapper = document.querySelector("#bulmastepsWrapper")
+    form.addEventListener("submit", async (submitEvent) => {
+        submitEvent.preventDefault();
+        var formData = new FormData(form)
+
+        response = await fetch(".", {
+            method: "POST",
+            credentials: "same-origin",
+            body: formData
+        })
+        if(response.headers.get("content-type") !== "text/event-stream"){
+          var text = response.body.replace("<html>", "")
+          text = text.replace("</html>", "")
+          document.querySelector("html").innerHTML = text
+        } else {
+          bulmastepsWrapper.classList.remove("is-hidden")
+          form.remove()
+        };
+        // To recieve data as a string we use TextDecoderStream class in pipethrough
+        const reader = response.body.pipeThrough(new TextDecoderStream()).getReader()
+
+
+        while (true) {
+            const {value, done} = await reader.read();
+            if(done) break;
+            console.log(value)
+            data = JSON.parse(value)
+            var state = parseInt(data.state)
+            if(state) {
+                bulmasteps[state].classList.toggle("is-active")
+                var curr_icon = bulmasteps[state].childNodes[1].childNodes[1]
+                if(state < 4){
+                  curr_icon.classList.toggle("fa-pulse")
+                }
+                var curr_children = curr_icon.childNodes
+                for (let i = 0; i < curr_children.length; i++){
+                  try {curr_children[i].classList.toggle("is-hidden")
+                } catch {}
+              }
+                bulmasteps[state-1].classList.toggle("is-active")
+                var curr_icon = bulmasteps[state-1].childNodes[1].childNodes[1]
+                if(state > 1){
+                  curr_icon.classList.toggle("fa-pulse")
+                }
+                var curr_children = curr_icon.childNodes
+                for (let i = 0; i < curr_children.length; i++){
+                  try {curr_children[i].classList.toggle("is-hidden")
+                } catch {}
+              }
+            }
+            var substep = data.substep
+            
+            var filepath = data.filepath
+            if(filepath){
+              box_content.innerHTML += `<button onclick="window.open('${filepath}'); window.location.href = '{% url 'index' %}'" class="button is-primary is-fullwidth"><i class="fa-solid fa-file-zipper"></i>  {% trans "Download Archive" %}</button>`
+            }
+        }
+    })
+
+</script>
+{% endblock scripts %}

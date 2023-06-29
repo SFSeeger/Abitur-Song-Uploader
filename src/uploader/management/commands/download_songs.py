@@ -10,6 +10,11 @@ class Command(BaseCommand):
     help = "To manually redownload/slice songs for users"
 
     def handle(self, *args, **options):
-        for submission in Submission.objects.filter(song=None):
+        submissions = Submission.objects.filter(song="")
+        for idx, submission in enumerate(submissions):
+            self.stdout.write(
+                f"Processing submission {idx}{submissions.count()}: {submission}\n"
+            )
             if submission.song_url:
-                async_chain([(download_song, [submission]), (slice_song, [submission])])
+                download_song(submission)
+                slice_song(submission)

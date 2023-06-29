@@ -6,7 +6,7 @@ from songuploader.utils import LoginRequiredTemplateView, slice_song
 from .forms import SubmissionUploadForm
 from .views.file_views import FileDownload
 from .views.submission_views import SubmissionCreateView, SubmissionUpdateView
-from .views.views import IndexView, LoginView, LogoutView
+from .views.views import IndexView, LoginView, LogoutView, DownloadPlaylistView
 
 song_urlpatterns = [
     path(
@@ -39,6 +39,7 @@ song_urlpatterns = [
         name="update-from-file",
     ),
     path("upload/", SubmissionCreateView.as_view(), name="upload"),
+    path("playlist/", DownloadPlaylistView.as_view(), name="download-playlist")
 ]
 
 

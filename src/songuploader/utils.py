@@ -68,13 +68,27 @@ def download_song(submission: Submission):
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([submission.song_url])
-    os.system(f"ffmpeg -i {mp4_out_path} -vn {mp3_out_path}")
+    os.system(f"ffmpeg -i {mp4_out_path} -y -vn {mp3_out_path}")
     open_file = open(mp3_out_path, "rb")
     song_file: File = File(open_file)
     submission.song = song_file
     submission.save()
     os.remove(mp4_out_path)
     os.remove(mp3_out_path)
+
+
+def download_song_url(song_url: str, filename: str) -> str:
+    mp4_out_path = os.path.join(settings.MEDIA_ROOT, "tmp", f"{filename}.mp4")
+    mp3_out_path = os.path.join(settings.MEDIA_ROOT, "tmp", f"{filename}.mp3")
+    ydl_opts = {
+        "outtmpl": mp4_out_path,
+        "format": "bestaudio/best",
+    }
+    with YoutubeDL(ydl_opts) as ydl:
+        ydl.download([song_url])
+    os.system(f"ffmpeg -i {mp4_out_path} -y -vn {mp3_out_path}")
+    os.remove(mp4_out_path)
+    return mp3_out_path
 
 
 def slice_song(submission: Submission):
@@ -86,6 +100,17 @@ def slice_song(submission: Submission):
         f"ffmpeg -ss {submission.start_time} -i {out_path} -c copy -y -t {submission.end_time-submission.start_time} {submission.song.path}"
     )
     os.remove(out_path)
+
+
+def slice_song_path(filepath: str, start_time: str, end_time: str) -> str:
+    filename, extension = os.path.splitext(os.path.basename(filepath))
+    input_path = os.path.join(
+        settings.MEDIA_ROOT, "tmp", filename + f"_full{extension}"
+    )
+    os.system(
+        f"ffmpeg -ss {start_time} -i {input_path} -c copy -y -t {end_time-start_time} {filepath}"
+    )
+    return filepath
 
 
 def get_client_ip(request: HttpRequest) -> str:

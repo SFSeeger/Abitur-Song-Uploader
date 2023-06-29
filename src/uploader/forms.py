@@ -7,10 +7,16 @@ from crispy_forms.bootstrap import PrependedText
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Hidden, Row
 from django import forms
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 
+from theme.widgets.slim_select import MultipleSlimSelect
+
 from .models import Submission
+
+User = get_user_model()
 
 pattern = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"'
 yt_url = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
@@ -127,3 +133,81 @@ class SubmissionUploadForm(SubmissionBaseForm):
     class Meta:
         model = Submission
         fields = ["song", "start_time", "end_time"]
+
+
+class PlaylistDownloadForm(forms.Form):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            "user_excluder",
+            Row(
+                Div(
+                    PrependedText(
+                        "song_url", "fa-brands fa-youtube", css_class="input"
+                    ),
+                    css_class="column",
+                ),
+                # Div(UploadField("song", css_class="input"), css_class="mr-2 column"),
+            ),
+            Row(
+                Div("start_time", css_class="column"),
+                Div("end_time", css_class="column"),
+            ),
+        )
+        self.helper.add_input(
+            Submit("submit", _("Download"), css_class="is-primary is-fullwidth")
+        )
+        self.helper.form_class = "spinnerIgnore"
+
+    user_excluder = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        label=_("Users to exclude"),
+        widget=MultipleSlimSelect(),
+    )
+
+    song_url = forms.URLField(label=_("Song URL"), required=False)
+    start_time = forms.IntegerField(label=_("Start Time (in sec.)"), min_value=0)
+    end_time = forms.IntegerField(label=_("End Time"), min_value=0)
+    # song = FileField(
+    #    label=_("Or Song"), required=False, validators=[FileExtensionValidator(["mp3"])]
+    # )
+
+    def clean_end_time(self):
+        end_time = self.cleaned_data["end_time"]
+        start_time = self.cleaned_data["start_time"]
+        if start_time > end_time:
+            raise ValidationError(
+                _("Start Time cannot be larger than End Time"), code="invalid"
+            )
+        elif (duration := (end_time - start_time)) > 30:
+            raise ValidationError(
+                _("Duration of %(duration)d larger than 30 seconds"),
+                code="invalid",
+                params={"duration": duration},
+            )
+        return end_time
+
+    def clean_song_url(self):
+        data = self.cleaned_data["song_url"]
+
+        if not (match := re.match(yt_url, data)):
+            raise ValidationError(
+                _("Not a valid YouTube url: %(value)s"),
+                code="invalid",
+                params={"value": data},
+            )
+        elif not try_site(match[6]):
+            raise ValidationError(
+                _("Could not find YouTube video"),
+                code="invalid",
+            )
+
+        return data
+
+    # def clean_song(self):
+    #     data = self.cleaned_data["song"]
+    #     song_url = self.cleaned_data["song_url"]
+    #     if data and song_url:
+    #         raise ValidationError(_("Cannot choose song and song URL"))
+    #     return data

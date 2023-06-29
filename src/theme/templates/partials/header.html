@@ -35,6 +35,9 @@
                     </a>
                 {% endif %}
                 {% if request.user.is_staff %}
+                <a class="navbar-item" href="{% url 'download-playlist' %}">
+                    {% trans "Download playlist" %}
+                </a>
                 <a class="navbar-item" href="{% url 'admin:index' %}">
                     {% trans "Django Admin" %}
                 </a>

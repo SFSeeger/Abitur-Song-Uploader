@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-07 01:13+0200\n"
+"POT-Creation-Date: 2023-06-29 18:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "Frage Erstellen"
 msgid "Max Answers has to be one on this question type"
 msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
 
-#: polls/management/commands/notify_closing_poll.py:48
+#: polls/management/commands/notify_closing_poll.py:66
 #, python-format
 msgid "Reminder: %(poll_count)s Poll closing in %(timediff)s days"
 msgstr "Erinnerung: %(poll_count)s Umfrage schließen in %(timediff)s Tagen"
@@ -42,7 +42,7 @@ msgstr "Erinnerung: %(poll_count)s Umfrage schließen in %(timediff)s Tagen"
 msgid "Name"
 msgstr "Name"
 
-#: polls/models.py:21 polls/models.py:192 polls/models.py:211
+#: polls/models.py:21 polls/models.py:192 polls/models.py:212
 #: polls/templates/polls/answer_poll/question_answer_form.html:10
 #: polls/templates/polls/question_detail.html:4
 #: polls/templates/polls/question_filter.html:61
@@ -153,7 +153,7 @@ msgstr "Fragen"
 msgid "User"
 msgstr "Nutzer"
 
-#: polls/models.py:214 polls/templates/polls/answer_detail.html:60
+#: polls/models.py:215 polls/templates/polls/answer_detail.html:60
 #: polls/templates/polls/user_answer_detail.html:50
 msgid "Response"
 msgstr "Antwort"
@@ -162,7 +162,7 @@ msgstr "Antwort"
 msgid "You have already answered this poll"
 msgstr "Du hast diese Umfrage bereits beantwortet"
 
-#: polls/tasks/answer_poll/views.py:58 polls/tasks/answer_poll/views.py:114
+#: polls/tasks/answer_poll/views.py:58 polls/tasks/answer_poll/views.py:111
 msgid "Poll is closed"
 msgstr "Umfrage ist geschlossen"
 
@@ -325,14 +325,16 @@ msgid ""
 "<strong>Keep in mind that polls which can be answered multiple times are "
 "still listed.</strong>\n"
 msgstr ""
-"Dies ist eine freundliche Erinnerung, dass die folgenden %(poll_count)s Umfragen in "
-"in %(timediff)s Tagen schließen.<br />\n"
-"Versuche diese so schnell wie möglich zu beantworten um sicher zu gehen, dass deine Stimme gehört wird.\n"
-"Um abzustimmen, logge dich einfach in deinen account ein und besuche die Umfragen Seite. "
-"Wenn du Probleme hast die Seite zu besuchen oder ähnliches, "
+"Dies ist eine freundliche Erinnerung, dass die folgenden %(poll_count)s "
+"Umfragen in in %(timediff)s Tagen schließen.<br />\n"
+"Versuche diese so schnell wie möglich zu beantworten um sicher zu gehen, "
+"dass deine Stimme gehört wird.\n"
+"Um abzustimmen, logge dich einfach in deinen account ein und besuche die "
+"Umfragen Seite. Wenn du Probleme hast die Seite zu besuchen oder ähnliches, "
 "lasse es uns so früh wie möglich wissen, damit wir helfen können.<br />\n"
 "\n"
-"<strong>Beachte, dass Umfragen, die mehrfach beantwortet werden können, trotzen aufgelistet werden</strong>\n"
+"<strong>Beachte, dass Umfragen, die mehrfach beantwortet werden können, "
+"trotzen aufgelistet werden</strong>\n"
 
 #: polls/templates/polls/email/text/poll_reminder.txt:3
 #, python-format
@@ -350,14 +352,16 @@ msgid ""
 "listed.\n"
 msgstr ""
 "Hi %(first_name)s,\n"
-"Dies ist eine freundliche Erinnerung, dass die folgenden %(poll_count)s Umfragen in "
-"in %(timediff)s Tagen schließen.\n"
-"Versuche diese so schnell wie möglich zu beantworten um sicher zu gehen, dass deine Stimme gehört wird.\n"
-"Um abzustimmen, logge dich einfach in deinen account ein und besuche die Umfragen Seite. "
-"Wenn du Probleme hast die Seite zu besuchen oder ähnliches, "
+"Dies ist eine freundliche Erinnerung, dass die folgenden %(poll_count)s "
+"Umfragen in in %(timediff)s Tagen schließen.\n"
+"Versuche diese so schnell wie möglich zu beantworten um sicher zu gehen, "
+"dass deine Stimme gehört wird.\n"
+"Um abzustimmen, logge dich einfach in deinen account ein und besuche die "
+"Umfragen Seite. Wenn du Probleme hast die Seite zu besuchen oder ähnliches, "
 "lasse es uns so früh wie möglich wissen, damit wir helfen können.\n"
 "\n"
-"Beachte, dass Umfragen, die mehrfach beantwortet werden können, trotzen aufgelistet werden\n"
+"Beachte, dass Umfragen, die mehrfach beantwortet werden können, trotzen "
+"aufgelistet werden\n"
 
 #: polls/templates/polls/option_form.html:5
 msgid "Create Options"
