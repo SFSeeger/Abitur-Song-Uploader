@@ -105,9 +105,9 @@
             body: formData
         })
         if(response.headers.get("content-type") !== "text/event-stream"){
-          var text = response.body.replace("<html>", "")
-          text = text.replace("</html>", "")
-          document.querySelector("html").innerHTML = text
+          var text = await response.text()
+          document.getElementsByTagName("html")[0].innerHTML = text
+          return
         } else {
           bulmastepsWrapper.classList.remove("is-hidden")
           form.remove()

@@ -107,6 +107,7 @@ def slice_song_path(filepath: str, start_time: str, end_time: str) -> str:
     input_path = os.path.join(
         settings.MEDIA_ROOT, "tmp", filename + f"_full{extension}"
     )
+    shutil.copy2(filepath, input_path)
     os.system(
         f"ffmpeg -ss {start_time} -i {input_path} -c copy -y -t {end_time-start_time} {filepath}"
     )

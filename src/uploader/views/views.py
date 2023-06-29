@@ -81,17 +81,16 @@ class DownloadPlaylistView(FormView):
         yield f'{json.dumps({"state":1})}\n'
         if not os.path.exists(os.path.join(MEDIA_ROOT, "tmp", "playlist")):
             os.mkdir(os.path.join(MEDIA_ROOT, "tmp", "playlist"))
-        if not (song := form.files.get("song")):
-            filepath = download_song_url(form.cleaned_data["song_url"], "default")
-            file = open(
-                slice_song_path(
-                    filepath,
-                    form.cleaned_data["start_time"],
-                    form.cleaned_data["end_time"],
-                ),
-                "rb",
-            )
-            song = File(file)
+        filepath = download_song_url(form.cleaned_data["song_url"], "default")
+        file = open(
+            slice_song_path(
+                filepath,
+                form.cleaned_data["start_time"],
+                form.cleaned_data["end_time"],
+            ),
+            "rb",
+        )
+        song = File(file)
         yield f'{json.dumps({"state": 2})}\n'
         users = (
             User.objects.order_by("last_name", "first_name")
@@ -126,5 +125,7 @@ class DownloadPlaylistView(FormView):
 
     def form_valid(self, form):
         return StreamingHttpResponse(
-            self.process_upload(form), content_type="text/event-stream"
+            self.process_upload(form),
+            content_type="text/event-stream",
+            headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
         )
