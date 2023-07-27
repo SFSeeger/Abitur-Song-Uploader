@@ -9,3 +9,5 @@ backup_dir: "/var/local/songuploader/backups"
 django_logdir: "/var/log/django/"
 
 python_path: "{{repo_dir}}/.venv/bin/python3"
+website_url: sfseeger.de
+cert_path: /etc/letsencrypt/live/intern.rgabi.de

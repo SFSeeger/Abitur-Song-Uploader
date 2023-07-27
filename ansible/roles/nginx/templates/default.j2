@@ -14,17 +14,17 @@ server {
 server {
     listen [::]:443 ssl ipv6only=on;
     listen 443 ssl; # managed by Certbot
-    server_name intern.rgabi.de sfseeger.ddns.net;
+    server_name {{website_url}};
 
-    ssl_certificate /etc/letsencrypt/live/intern.rgabi.de/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/intern.rgabi.de/privkey.pem; # managed by Certbot
+    ssl_certificate {{cert_path}}/fullchain.pem; # managed by Certbot
+    ssl_certificate_key {{cert_path}}/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
     client_max_body_size 10M;
 
     ## Deny illegal Host headers
-    if ($host !~* ^(intern.rgabi.de|sfseeger.ddns.net)$ ) {
+    if ($host !~* ^({{ website_url }})$ ) {
         return 444;
     }
 
@@ -50,23 +50,12 @@ server {
 }
 
 server {
-    if ($host = intern.rgabi.de) {
+    if ($host = {{website_url}}) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80;
     listen [::]:80;
-    server_name intern.rgabi.de;
-    return 404; # managed by Certbot
-}
-
-server {
-    if ($host = sfseeger.ddns.net) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-    listen 80;
-    listen [::]:80;
-    server_name sfseeger.ddns.net;
+    server_name {{website_url}};
     return 404; # managed by Certbot
 }
