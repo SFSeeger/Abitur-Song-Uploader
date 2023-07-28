@@ -249,7 +249,7 @@ ALLOWED_ATTRIBUTES = {
 }
 ALLOWED_ATTRIBUTES = {**ALLOWED_ATTRIBUTES, **bleach.sanitizer.ALLOWED_ATTRIBUTES}
 
-BASE_URL = "intern.rgabi.de"
+BASE_URL = os.environ.get("WEBSITE_URL")
 
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
 DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}

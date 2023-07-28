@@ -1,6 +1,6 @@
 from .base import *
 
-ALLOWED_HOSTS = ["sfseeger.ddns.net", "intern.rgabi.de"]
+ALLOWED_HOSTS = [os.environ.get("WEBSITE_URL")]
 ADMINS = [("Simon", "simon.f.seeger@gmx.de")]
 
 STATIC_ROOT = "/var/www/data/static"
