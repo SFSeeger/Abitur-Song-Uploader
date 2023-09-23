@@ -1,7 +1,7 @@
 from .base import *
 
 ALLOWED_HOSTS = [os.environ.get("WEBSITE_URL")]
-ADMINS = [("Simon", "simon.f.seeger@gmx.de")]
+ADMINS = [("ADMIN", ADMIN_EMAIL)]
 
 STATIC_ROOT = "/var/www/data/static"
 STATIC_URL = "/static/"

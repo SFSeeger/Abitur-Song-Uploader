@@ -85,6 +85,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
                 "songuploader.context_processors.get_public_domain",
+                "songuploader.context_processors.get_settings",
             ],
         },
     },
@@ -276,3 +277,5 @@ NOTEBOOK_ARGUMENTS = [
     "--port=8888",
     "--no-browser",
 ]
+
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL")

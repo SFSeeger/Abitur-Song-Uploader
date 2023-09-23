@@ -7,3 +7,7 @@ def get_public_domain(request):
         "domain": get_current_site(request),
         "protocol": "https" if request.is_secure() or not request else "http",
     }
+
+
+def get_settings(request):
+    return {"ADMIN_EMAIL": settings.ADMIN_EMAIL}
