@@ -1,5 +1,5 @@
 [web]
-sfseeger.de ansible_port=2222
+192.168.178.90 ansible_port=22
 
 [mysql]
-sfseeger.de ansible_port=2222
+192.168.178.90 ansible_port=22

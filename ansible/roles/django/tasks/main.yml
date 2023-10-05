@@ -6,6 +6,37 @@
     force: yes
     version: "{{ branch_name | default('main', true) }}"
 
+- block:
+    - name: download python 
+      get_url:
+        url: https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tgz
+        dest: /usr/src/Python-3.11.6.tgz
+      register: _download_archive
+      until: _download_archive is succeeded
+      retries: 5
+      delay: 2
+
+    - name: unpack python binaries
+      unarchive:
+        src: "/usr/src/Python-3.11.6.tgz"
+        remote_src: yes
+        dest: "/usr/src"
+        creates: "/usr/src/Python-3.11.6"
+
+    - name: configure python
+      shell:
+        cmd: ./configure --enable-optimizations
+        chdir: /usr/src/Python-3.11.6/
+      become: true
+    
+    - name: compile python
+      shell:
+        cmd: make install
+        chdir: /usr/src/Python-3.11.6/
+      become: true
+  when:
+    - not python_skip_install
+
 - name: install virtualenv
   pip:
     name: virtualenv
@@ -14,6 +45,7 @@
   pip:
     requirements: "{{ repo_dir }}/requirements.txt"
     virtualenv: "{{repo_dir}}/.venv"
+    virtualenv_python: "python3.11"
 
 - name: Install npm packages
   npm:
