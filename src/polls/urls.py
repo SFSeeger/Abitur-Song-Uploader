@@ -33,7 +33,7 @@ urlpatterns = [
     ),
     path(
         "answer/<int:pk>/",
-        views.AnswerDetailView.as_view(),
+        views.AnswerFilterView.as_view(),
         name="answer-detail",
     ),
     path(
