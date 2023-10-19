@@ -2,16 +2,12 @@ from crispy_bulma.widgets import FileUploadInput
 from django import forms
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
-from django.core.files.base import File
 from django.db import models
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from pictures.models import PictureField
 from tinymce import models as tinymce_models
 
-from theme.utils import generate_filename
 from theme.widgets import slim_select
 
 
@@ -30,9 +26,7 @@ class Option(models.Model):
 
 
 class AnswerValue(models.Model):
-    answer = GenericRelation(
-        "polls.answer", object_id_field="answer_value_id", related_query_name="answer"
-    )
+    answers = GenericRelation("polls.answer")
 
     def get_template():
         raise NotImplementedError("Method 'get_template' needs to be subclassed")
@@ -206,6 +200,9 @@ class Response(models.Model):
     def __str__(self):
         return f"{self.poll} - {self.user}"
 
+    class Meta:
+        ordering = ["created_at"]
+
 
 class Answer(models.Model):
     question = models.ForeignKey(
@@ -218,3 +215,8 @@ class Answer(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     answer_value_id = models.PositiveIntegerField()
     answer_value = GenericForeignKey("content_type", "answer_value_id")
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["content_type", "answer_value_id"]),
+        ]

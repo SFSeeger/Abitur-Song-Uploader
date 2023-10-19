@@ -1,62 +1,87 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load i18n %}
 {% load pictures %}
-{% block title %}{% trans "List Answers for" %}{{object}}{% endblock title %}
+{% block title %}{% trans "List Answers for" %} {{poll}}{% endblock title %}
 {% block content %}
     <h1 class="title">{% trans "Inspect Answers" %}</h1>
-    <form method="get" class="mb-2">
-        <label for="id_user_id" class="label">{% trans "User" %}</label>
-        <div class="columns">
-            <div class="column is-half">
-                {{slimselect | safe}}
-            </div>
-            <div class="column"><a href="." class="button is-link is-fullwidth">{% trans "Reset" %}</a></div>
-            <div class="column"><button class="button is-primary is-fullwidth">{% trans "Select" %}</button></div>
-        </div>
-    </form>
-    {% for response in responses %}
-    <div class="card">
-            <header class="card-header">
-                <p class="card-header-title">
-                    {% blocktranslate with counter=forloop.counter user=response.user %}Response #{{counter}} by {{user}}{% endblocktranslate %}
-                </p>
-                <button class="card-header-icon card-toggle" aria-label="expand / collapse">
-                    <span class="icon">
-                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                </button>
-                <button class=" card-header-iconbutton is-small is-danger is-inverted " id="modal-trigger" onclick="fill_data(this)" data-target="ResponseDeleteModal" data-value="{% url 'response-delete' response.id %}">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </header>
-            <div class="card-content">
-                {% for answer in response.answer_set.all %}
-                    <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">
-                                {{answer.question}}
-                            </p>
-                            <button class="card-header-icon card-toggle" aria-label="expand / collapse">
-                                <span class="icon">
-                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                            </button>
-                        </header>
-                        <div class="card-content is-hidden">
-                            {% include answer.answer_value.get_template with answer_value=answer.answer_value only %}
-                        </div>
-                        <footer class="card-footer is-hidden">
-                            <a href="{% url 'answer-edit' answer.id %}" class="card-footer-item">{% trans "Edit" %}</a>
-                            <button class="card-footer-item button is-ghost" id="modal-trigger" onclick="fill_data(this)" data-target="AnswerDeleteModal" data-value="{% url 'answer-delete' answer.id %}">{% trans "Delete" %}</button>
-                        </footer>
+    <button class="button is-link is-fullwidth mb-2" id="formToggleButton">
+        <span class="icon-text">
+            <span class="icon"><i class="fa-solid fa-filter"></i></span>
+            <span>{% trans "Collapse / Expand Filter" %}</span>
+        </span>
+    </button>
+    <form method="get" class="mb-2" id="filterForm">
+            {{filter.form | crispy}}
+            <div class="field">
+                <label for="id_page_size">{% trans "Page Size" %}</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select name="page_size" id="id_page_size">
+                            <option value="25" {% if request.GET.page_size == "25" %}selected{% endif %}>25</option>
+                            <option value="50" {% if request.GET.page_size == "50" %}selected{% endif %}>50</option>
+                            <option value="100" {% if request.GET.page_size == "100" %}selected{% endif %}>100</option>
+                        </select>
                     </div>
-                {% endfor %}
+                </div>
             </div>
+            <button class="button is-primary is-fullwidth mb-2">{% trans "Select" %}</button>
+            <a href="." class="button is-danger is-fullwidth mb-2">{% trans "Reset" %}</a>
+        {% comment %} </div> {% endcomment %}
+    </form>
+    {% for response in page_obj %}
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                {% blocktranslate with counter=forloop.counter user=response.user %}Response #{{counter}} by {{user}}{% endblocktranslate %}
+            </p>
+            <button class="card-header-icon card-toggle" aria-label="expand / collapse">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+            <button class=" card-header-iconbutton is-small is-danger is-inverted " id="modal-trigger" onclick="fill_data(this)" data-target="ResponseDeleteModal" data-value="{% url 'response-delete' response.id %}">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </header>
+        <div class="card-content">
+            {% for answer in response.answer_set.all %}
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            {{answer.question}}
+                        </p>
+                        <button class="card-header-icon card-toggle" aria-label="expand / collapse">
+                            <span class="icon">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </header>
+                    <div class="card-content is-hidden">
+                        {% include answer.answer_value.get_template with answer_value=answer.answer_value only %}
+                    </div>
+                    <footer class="card-footer is-hidden">
+                        <a href="{% url 'answer-edit' answer.id %}" class="card-footer-item">{% trans "Edit" %}</a>
+                        <button class="card-footer-item button is-ghost" id="modal-trigger" onclick="fill_data(this)" data-target="AnswerDeleteModal" data-value="{% url 'answer-delete' answer.id %}">{% trans "Delete" %}</button>
+                    </footer>
+                </div>
+            {% endfor %}
         </div>
+    </div>
         {% empty %}
         <p>{% trans "No User or User with answer selected" %}</p>
     {% endfor %}
+    <div id="paginator" class="mt-5">
+        {% include 'partials/paginator.html' with page_obj=page_obj %}
+    </div>
 
 {% include 'partials/delete_modal.html' with modal_name="ResponseDeleteModal" object_type=_("Response") %}
 {% include 'partials/delete_modal.html' with modal_name="AnswerDeleteModal" object_type=_("Answer") %}
 {% endblock content %}
+{% block scripts %}
+<script>
+    const filterForm = document.getElementById("filterForm")
+    document.getElementById("formToggleButton").addEventListener("click", () => filterForm.classList.toggle("is-hidden"))
+    
+</script>
+{% endblock scripts %}

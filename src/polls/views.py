@@ -21,7 +21,7 @@ from django.views.generic import (
 from django.views.generic.detail import SingleObjectMixin
 from django_filters.views import FilterView
 
-from polls.filters import PollFilter, QuestionFilter
+from polls.filters import PollFilter, QuestionFilter, ResponseFilter
 from polls.forms import QuestionForm
 from polls.models import CHAR_ANSWER_FORM, Answer, Option, Poll, Question, Response
 from polls.tasks.create_poll.forms import PollForm
@@ -111,27 +111,22 @@ class OptionDeleteView(PermissionRequiredMixin, DeleteView):
         return reverse("question-detail", kwargs={"pk": self.get_object().question.id})
 
 
-User = get_user_model()
-
-
-class AnswerDetailView(PermissionRequiredMixin, TemplateView):
+class AnswerFilterView(PermissionRequiredMixin, FilterView):
     permission_required = "polls.can_open_polls"
     template_name = "polls/answer_detail.html"
+    filterset_class = ResponseFilter
 
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+    def get_paginate_by(self, queryset) -> Optional[int]:
+        return self.request.GET.get("page_size", 25)
+
+    def get_filterset_kwargs(self, filterset_class):
+        kwargs = super().get_filterset_kwargs(filterset_class)
+        kwargs["poll"] = self.poll = get_object_or_404(Poll, pk=self.kwargs.get("pk"))
+        return kwargs
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        poll = get_object_or_404(Poll, pk=self.kwargs.get("pk"))
-        context["object"] = poll
-        responses = poll.response_set.filter(
-            user__in=self.request.GET.getlist("user_id")
-        )
-        context["responses"] = responses
-        context["slimselect"] = MultipleSlimSelect(
-            attrs={"id": "id_user_id"},
-            choices=User.objects.all()
-            .order_by("last_name", "first_name")
-            .values_list("id", "username"),
-        ).render("user_id", "user_id")
+        context["poll"] = self.poll
         return context
 
 
