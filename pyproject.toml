@@ -27,7 +27,7 @@ django-filter = "^23.2"
 django-pictures = "^1.0.2"
 django-tinymce = "^3.6.1"
 bleach = {extras = ["css"], version = "^6.0.0"}
-yt-dlp = {url = "https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz"}
+yt-dlp = "^2024.7.16"
 
 [tool.poetry.group.dev.dependencies]
 pylance = "^0.3.10"

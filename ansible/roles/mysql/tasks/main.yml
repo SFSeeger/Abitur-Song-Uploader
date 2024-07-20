@@ -6,7 +6,7 @@
 - name: install mysql
   apt:
     pkg:
-      - mysql-server
+      - mariadb-server
       - default-libmysqlclient-dev
       - build-essential
       - python3-pip
