@@ -21,7 +21,7 @@
     state: directory
     owner: prometheus
     group: prometheus
-    mode: 0755
+    mode: "775"
 
 - block:
     - name: download prometheus binary to local folder
@@ -51,7 +51,7 @@
       copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}"
         dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
-        mode: 0755
+        mode: "775"
         owner: prometheus
         group: prometheus
       with_items:

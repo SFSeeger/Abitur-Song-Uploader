@@ -124,8 +124,11 @@ class DownloadPlaylistView(FormView):
         return
 
     def form_valid(self, form):
-        return StreamingHttpResponse(
+        response = StreamingHttpResponse(
             self.process_upload(form),
             content_type="text/event-stream",
             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
         )
+        response["Cache-Control"] = "no-cache"
+        response["X-Accel-Buffering"] = "no"
+        return response

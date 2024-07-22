@@ -22,7 +22,7 @@ class Submission(models.Model):
     end_time = models.IntegerField(
         _("End Time"),
         validators=[validators.MinValueValidator(1)],
-        default=1,
+        default=30,
     )
 
     song = models.FileField(

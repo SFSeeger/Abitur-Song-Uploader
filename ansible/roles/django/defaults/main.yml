@@ -1,2 +1,3 @@
 ---
 python_skip_install: true
+remove_repo: true

@@ -1,3 +1,10 @@
+- name: remove old repo
+  file:
+    path: "{{ repo_dir }}"
+    state: absent
+  when:
+    - remove_repo
+
 - name: pull branch
   git:
     repo: "{{ repo }}"
@@ -7,7 +14,7 @@
     version: "{{ branch_name | default('main', true) }}"
 
 - block:
-    - name: download python 
+    - name: download python
       get_url:
         url: https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tgz
         dest: /usr/src/Python-3.11.6.tgz
@@ -28,7 +35,7 @@
         cmd: ./configure --enable-optimizations
         chdir: /usr/src/Python-3.11.6/
       become: true
-    
+
     - name: compile python
       shell:
         cmd: make install
@@ -58,7 +65,7 @@
   file:
     path: "{{ media_dir }}"
     state: directory
-    mode: 0760
+    mode: "770"
     owner: gunicorn
     group: gunicorn
     recurse: yes
@@ -67,7 +74,7 @@
   file:
     path: "{{ backup_dir }}"
     state: directory
-    mode: 0760
+    mode: "770"
     owner: gunicorn
     group: gunicorn
     recurse: yes
@@ -76,7 +83,7 @@
   file:
     path: "{{ log_dir }}"
     state: directory
-    mode: 0760
+    mode: "770"
     owner: gunicorn
     group: gunicorn
     recurse: yes
@@ -96,6 +103,9 @@
   template:
     src: "templates/.env.j2"
     dest: "{{ django_dir }}/.env"
+    mode: "770"
+    owner: gunicorn
+    group: gunicorn
 
 - name: django collectstatic
   shell: "{{python_path}} manage.py collectstatic --noinput chdir={{ django_dir }}"
