@@ -116,13 +116,14 @@ class ResponseFilter(FilterSet):
     def get_filter(self, question: Question):
         name = question.name
         if question.question_type == 0:
-            return CharFilter(field_name=name, method=self.filter_text)
+            return CharFilter(field_name=name, method=self.filter_text, label=name)
         if question.question_type == 2:
             return ModelMultipleChoiceFilter(
                 method=self.filter_many_to_many,
                 field_name=name,
                 queryset=question.option_set.all(),
                 widget=MultipleSlimSelect,
+                label=name,
             )
 
     def __init__(self, *args, **kwargs):
@@ -132,9 +133,9 @@ class ResponseFilter(FilterSet):
         for question in questions:
             if question.question_type == 1:
                 continue
-            self.filters[
-                re.sub("[^0-9a-zA-Z_]+", "_", question.name.lower())
-            ] = self.get_filter(question)
+            self.filters[re.sub("[^0-9a-zA-Z_]+", "_", question.name.lower())] = (
+                self.get_filter(question)
+            )
 
     class Meta:
         model = Response
