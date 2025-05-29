@@ -1,12 +1,7 @@
 from pathlib import Path
-from typing import Any
 
 from django.conf import settings
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import FileResponse, Http404, HttpResponseNotFound
-from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.http import FileResponse, Http404
 from django.views.generic import View
 
 from songuploader.utils import ConfiguredLoginViewMixin

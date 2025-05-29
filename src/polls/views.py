@@ -143,6 +143,8 @@ class ResponseDeleteView(DeleteView):
     model = Response
 
     def get_success_url(self) -> str:
+        if self.request.POST.get("next"):
+            return self.request.POST.get("next")
         if (
             self.request.user.has_perm("polls.can_open_polls")
             or self.request.user.is_superuser
@@ -221,6 +223,8 @@ class AnswerDeleteView(DeleteView):
     model = Answer
 
     def get_success_url(self) -> str:
+        if self.request.POST.get("next"):
+            return self.request.POST.get("next")
         if (
             self.request.user.has_perm("polls.can_open_polls")
             or self.request.user.is_superuser

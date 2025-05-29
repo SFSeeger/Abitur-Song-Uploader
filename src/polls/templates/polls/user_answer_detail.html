@@ -5,17 +5,21 @@
 {% block content %}
     <h1 class="title">{% trans "My Responses" %}</h1>
     {% for response in responses %}
-    <div class="card">
+        <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    {% blocktranslate with counter=forloop.counter poll=response.poll %}Response #{{counter}} for Poll {{poll}}{% endblocktranslate %}
+                    {% blocktranslate with counter=forloop.counter poll=response.poll %}Response #{{ counter }} for Poll
+                        {{ poll }}{% endblocktranslate %}
                 </p>
                 <button class="card-header-icon card-toggle" aria-label="expand / collapse">
                     <span class="icon">
                         <i class="fas fa-angle-down" aria-hidden="true"></i>
                     </span>
                 </button>
-                <button class=" card-header-iconbutton is-small is-danger is-inverted " id="modal-trigger" onclick="fill_data(this)" data-target="ResponseDeleteModal" data-value="{% url 'response-delete' response.id %}">
+                <button class=" card-header-iconbutton is-small is-danger is-inverted " id="modal-trigger"
+                        onclick="fill_data(this)" data-target="ResponseDeleteModal"
+                        data-value="{% url 'response-delete' response.id %}"
+                        data-form-extra-data-next="{% url 'user-response-detail' %}">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </header>
@@ -24,7 +28,7 @@
                     <div class="card">
                         <header class="card-header">
                             <p class="card-header-title">
-                                {{answer.question}}
+                                {{ answer.question }}
                             </p>
                             <button class="card-header-icon card-toggle" aria-label="expand / collapse">
                                 <span class="icon">
@@ -37,7 +41,10 @@
                         </div>
                         <footer class="card-footer is-hidden">
                             <a href="{% url 'answer-edit' answer.id %}" class="card-footer-item">{% trans "Edit" %}</a>
-                            <button class="card-footer-item button is-ghost" id="modal-trigger" onclick="fill_data(this)" data-target="AnswerDeleteModal" data-value="{% url 'answer-delete' answer.id %}">{% trans "Delete" %}</button>
+                            <button class="card-footer-item button is-ghost" id="modal-trigger"
+                                    onclick="fill_data(this)" data-target="AnswerDeleteModal"
+                                    data-value="{% url 'answer-delete' answer.id %}"
+                                    data-form-extra-data-next="{% url 'user-response-detail' %}">{% trans "Delete" %}</button>
                         </footer>
                     </div>
                 {% endfor %}
@@ -47,6 +54,6 @@
         <p>{% trans "No User or User with answer selected" %}</p>
     {% endfor %}
 
-{% include 'partials/delete_modal.html' with modal_name="ResponseDeleteModal" object_type=_("Response") %}
-{% include 'partials/delete_modal.html' with modal_name="AnswerDeleteModal" object_type=_("Answer") %}
+    {% include 'partials/delete_modal.html' with modal_name="ResponseDeleteModal" object_type=_("Response") %}
+    {% include 'partials/delete_modal.html' with modal_name="AnswerDeleteModal" object_type=_("Answer") %}
 {% endblock content %}
