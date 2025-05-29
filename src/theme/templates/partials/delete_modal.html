@@ -1,28 +1,46 @@
 {% load i18n %}
-<div id="{{modal_name}}" class="modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">{% blocktrans %}Delete {{object_type}}{% endblocktrans %}</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-        {% blocktrans %}Do you really want to delete this {{object_type}}?{% endblocktrans %}
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-secondary">{% trans "Cancel" %}</button>
-      <form action="" method="post" id="{{modal_name}}DeleteForm">
-        {% csrf_token %}
-        <button class="button is-danger">{% trans "Delete" %}</button>
-      </form>
-    </footer>
-  </div>
+<div id="{{ modal_name }}" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">{% blocktrans %}Delete {{ object_type }}{% endblocktrans %}</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            {% blocktrans %}Do you really want to delete this {{ object_type }}?{% endblocktrans %}
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-secondary">{% trans "Cancel" %}</button>
+            <form action="" method="post" id="{{ modal_name }}DeleteForm">
+                {% csrf_token %}
+                <button class="button is-danger">{% trans "Delete" %}</button>
+            </form>
+        </footer>
+    </div>
 </div>
 <script>
-function fill_data($target){
-  modal_data = $target.dataset.value;
-  delete_form = document.querySelector("#"+$target.dataset.target+"DeleteForm");
-  delete_form.action = modal_data;
-}
+    function fill_data($target) {
+        modal_data = $target.dataset.value;
+        delete_form = document.querySelector("#" + $target.dataset.target + "DeleteForm");
+        delete_form.action = modal_data;
+
+        Array.from(delete_form.children).forEach(el => {
+            if (el.classList.contains("modalExtraData")) el.remove();
+        })
+
+        for (const key in $target.dataset) {
+            if (key.startsWith("formExtraData")) {
+                const value = $target.dataset[key];
+                const name = key.replace("formExtraData", "");
+                const inp = document.createElement("input");
+                inp.setAttribute("name", name.toLowerCase());
+                inp.setAttribute("value", value);
+                inp.setAttribute("type", "hidden");
+                inp.type = "hidden";
+                inp.classList.add("modalExtraData")
+                delete_form.appendChild(inp);
+            }
+        }
+    }
 
 </script>

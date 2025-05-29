@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from pictures.models import PictureField
@@ -28,7 +30,7 @@ class Option(models.Model):
 class AnswerValue(models.Model):
     answers = GenericRelation("polls.answer")
 
-    def get_template():
+    def get_template(self):
         raise NotImplementedError("Method 'get_template' needs to be subclassed")
 
     class Meta:
@@ -213,10 +215,16 @@ class Answer(models.Model):
     )
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    answer_value_id = models.PositiveIntegerField()
-    answer_value = GenericForeignKey("content_type", "answer_value_id")
+    object_id = models.PositiveIntegerField()
+    answer_value = GenericForeignKey("content_type", "object_id")
 
     class Meta:
         indexes = [
-            models.Index(fields=["content_type", "answer_value_id"]),
+            models.Index(fields=["content_type", "object_id"]),
         ]
+
+@receiver(post_delete, sender=Answer)
+def delete_answer_value(sender, instance, **kwargs):
+    print(instance, "deleted")
+    if instance.answer_value:
+        instance.answer_value.delete()

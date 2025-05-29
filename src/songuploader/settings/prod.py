@@ -8,7 +8,7 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = "/var/www/data/media"
 
 EMAIL_HOST = "smtp.gmail.com"
-DEFAULT_FROM_EMAIL = f"RG Abi 2023 <{os.environ.get('EMAIL_HOST_USER')}>"
+DEFAULT_FROM_EMAIL = f"{os.environ.get('EMAIL_SENDER', 'Abitur Song Uploader')} <{os.environ.get('EMAIL_HOST_USER')}>"
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
