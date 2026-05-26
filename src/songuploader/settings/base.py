@@ -24,12 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-1234567890")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+BASE_URL = os.environ.get("WEBSITE_URL")
+
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").strip().split(",")
+if BASE_URL is not None:
+    ALLOWED_HOSTS.append(BASE_URL)
+ALLOWED_HOSTS = ALLOWED_HOSTS if ALLOWED_HOSTS else []
 
 
 # Application definition
@@ -100,9 +105,9 @@ WSGI_APPLICATION = "songuploader.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django_prometheus.db.backends.mysql",
-        "NAME": os.environ.get("MYSQL_DB"),
-        "USER": os.environ.get("MYSQL_USER"),
-        "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
+        "NAME": os.environ.get("MYSQL_DB", "songuploader"),
+        "USER": os.environ.get("MYSQL_USER", "songuploader"),
+        "PASSWORD": os.environ.get("MYSQL_PASSWORD", "insecure-password"),
         "HOST": os.environ.get("MYSQL_HOST", "localhost"),
         "PORT": 3306,
         "OPTIONS": {
@@ -140,7 +145,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "Europe/Berlin"
+TIME_ZONE = os.environ.get("TZ", "Europe/Berlin")
 
 USE_I18N = True
 
@@ -250,12 +255,11 @@ ALLOWED_ATTRIBUTES = {
 }
 ALLOWED_ATTRIBUTES = {**ALLOWED_ATTRIBUTES, **bleach.sanitizer.ALLOWED_ATTRIBUTES}
 
-BASE_URL = os.environ.get("WEBSITE_URL")
 
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
 DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}
 
-MEDIA_BACKUP_DIR = "/var/local/songuploader/backups/media/"
+MEDIA_BACKUP_DIR = os.environ.get("MEDIA_BACKUP_DIR", "/var/local/songuploader/backups/media/")
 
 PICTURES = {
     "BREAKPOINTS": {

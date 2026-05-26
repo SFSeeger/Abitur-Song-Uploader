@@ -23,7 +23,7 @@ msgid "Resource not found"
 msgstr "Ressource nicht gefunden"
 
 #: theme/templates/404.html:7
-#, fuzzy, python-format
+#, python-format
 #| msgid ""
 #| "\n"
 #| "    <span class=\"has-text-warning title\">Resource not found</span> "
@@ -56,7 +56,7 @@ msgid "Internal Server Error"
 msgstr "Interner Server Fehler"
 
 #: theme/templates/500.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "    <p class=\"title has-text-danger has-text-centered\">A Fatal Server "
