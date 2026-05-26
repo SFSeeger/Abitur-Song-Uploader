@@ -1,0 +1,41 @@
+# This is an example docker compose file. It would be best to create a .env file and put the environment variables in there instead of hardcoding them in this file.
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      SECRET_KEY: "supersecretkey"
+      MYSQL_DB: songuploader
+      MYSQL_USER: songuploader
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
+      TZ: "Europe/Berlin"
+      ADMIN_EMAIL: "your-email@example.com"
+      WEBSITE_URL: "http://localhost:8000"
+      ALLOWED_HOSTS: "localhost,localhost:8000"
+
+    depends_on:
+      - db
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: songuploader
+      MYSQL_USER: songuploader
+      MYSQL_PASSWORD: password
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

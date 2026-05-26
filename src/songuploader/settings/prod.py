@@ -1,13 +1,15 @@
+import logging
+import os
+
 from .base import *
 
-ALLOWED_HOSTS = [os.environ.get("WEBSITE_URL")]
 ADMINS = [("ADMIN", ADMIN_EMAIL)]
 
-STATIC_ROOT = "/var/www/data/static"
-STATIC_URL = "/static/"
-MEDIA_ROOT = "/var/www/data/media"
+STATIC_ROOT = os.environ.get("STATIC_ROOT", "/var/www/data/static")
+STATIC_URL = os.environ.get("STATIC_URL", "/static/")
+MEDIA_ROOT = os.environ.get("MEDIA_ROOT", "/var/www/data/media")
 
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
 DEFAULT_FROM_EMAIL = f"{os.environ.get('EMAIL_SENDER', 'Abitur Song Uploader')} <{os.environ.get('EMAIL_HOST_USER')}>"
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
@@ -34,11 +36,16 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "/var/log/django/error.log",
+            "filename": os.environ.get("DJANGO_LOG_FILE", "/var/log/django/error.log"),
             "formatter": "app",
         },
     },
     "loggers": {
+        "root": {
+            "handlers": ["file"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
         "django": {
             "handlers": ["file"],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
