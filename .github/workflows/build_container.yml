@@ -29,6 +29,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Set image name
         id: image
         run: |
@@ -38,7 +39,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v7
         with:
-          context: .
-          file: deploy/Dockerfile
+          file: ./deploy/Dockerfile
           push: true
-          tags: ${{ steps.image.outputs.image }}:latest, ${{ steps.image.outputs.image }}:${{ steps.meta.outputs.tag }}
+          tags: |
+            ${{ steps.image.outputs.image }}:latest
+            ${{ steps.image.outputs.image }}:${{ steps.meta.outputs.tag }}
