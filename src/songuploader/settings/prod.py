@@ -13,9 +13,9 @@ EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
 DEFAULT_FROM_EMAIL = f"{os.environ.get('EMAIL_SENDER', 'Abitur Song Uploader')} <{os.environ.get('EMAIL_HOST_USER')}>"
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_PORT = os.environ.get("EMAIL_PORT", 587)
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_USE_SSL = os.environ.get("EMAIL_USE_SSL", "False").lower() == "true"
 
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9200, 9204)
 PROMETHEUS_METRICS_EXPORT_ADDRESS = ""

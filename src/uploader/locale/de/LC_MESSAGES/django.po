@@ -83,8 +83,6 @@ msgstr "Lade den song von Youtube (empfohlen)"
 
 #: uploader/templates/uploader/choose_song.html:11
 #: uploader/templates/uploader/choose_upload_type.html:15
-#, fuzzy
-#| msgid "uplaod your own song from disk"
 msgid "upload your own song from disk"
 msgstr "Lade deinen eigenen Song vom Laufwerk hoch"
 
@@ -110,8 +108,6 @@ msgstr "Song hochgeladen"
 
 #: uploader/templates/uploader/index.html:17
 #: uploader/templates/uploader/playlist.html:30
-#, fuzzy
-#| msgid "Song missing"
 msgid "Song processing"
 msgstr "Song wird vorbereitet"
 
@@ -144,14 +140,10 @@ msgid "All Polls"
 msgstr "Alle Umfragen"
 
 #: uploader/templates/uploader/index.html:63
-#, fuzzy
-#| msgid "All Polls"
 msgid "List Polls"
 msgstr "Alle Umfragen"
 
 #: uploader/templates/uploader/index.html:79
-#, fuzzy
-#| msgid "All Polls"
 msgid "No Polls"
 msgstr "Keine Umfragen"
 
@@ -190,12 +182,3 @@ msgstr "Archive herunterladen"
 #: uploader/views/views.py:55
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
-
-#~ msgid "Image missing"
-#~ msgstr "Bild fehlt"
-
-#~ msgid "These are the Themes next week"
-#~ msgstr "Hier sind die gewählten Mottos!"
-
-#~ msgid "uplaod your own song from disk"
-#~ msgstr "Lade deinen eigenen Song vom Laufwerk hoch"

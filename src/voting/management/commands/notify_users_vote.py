@@ -22,7 +22,8 @@ class Command(BaseCommand):
             return "Command aborted!"
         mails = []
         context = {
-            "public_domain": settings.PUBLIC_DOMAIN,
+            "domain": settings.BASE_URL,
+            "protocol": "https",
         }
         for user in tqdm(users, total=user_count):
             context["first_name"] = user.first_name

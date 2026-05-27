@@ -31,10 +31,9 @@ msgid "Vote Dashboard"
 msgstr "Mottowoche Übersicht"
 
 #: voting/templates/voting/dashboard.html:7
-#, fuzzy
 #| msgid "Vote Dashboard"
 msgid "Dashboard"
-msgstr "Mottowoche Übersicht"
+msgstr "Übersicht"
 
 #: voting/templates/voting/dashboard.html:10
 msgid "Votes out of"

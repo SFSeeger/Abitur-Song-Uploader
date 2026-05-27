@@ -241,18 +241,15 @@ msgid "Submit"
 msgstr "Absenden"
 
 #: theme/templates/users/password_reset_complete.html:4
-#, fuzzy
-#| msgid "Reset Filter"
 msgid "Reset Complete"
-msgstr "Filter zurücksetzen"
+msgstr "Zurücksetzen abgeschlossen"
 
 #: theme/templates/users/password_reset_complete.html:6
 msgid "Password reset complete!"
 msgstr "Passwort erfolgreich zurückgesetzt"
 
 #: theme/templates/users/password_reset_complete.html:8
-#, fuzzy, python-format
-#| msgid "You can return to the login"
+#, python-format
 msgid "You can return to the login <a href=\"%(login)s\">here</a>"
 msgstr "Du kannst <a href=\"%(login)s\">hier</a> zum Login zurückkehren"
 
@@ -288,6 +285,3 @@ msgstr "Fehlende option erstellen"
 #: theme/templates/widgets/slim_select.html:30
 msgid "Select Options"
 msgstr "Option auswählen"
-
-#~ msgid "Theme Vote"
-#~ msgstr "Abstimmung Mottowoche"

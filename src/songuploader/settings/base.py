@@ -30,12 +30,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-1234567890")
 DEBUG = False
 
 BASE_URL = os.environ.get("WEBSITE_URL")
+URL_PROTOCOL = "https" if os.environ.get("URL_SECURE", "true").strip().lower() == "true" else "http"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").strip().split(",")
 if BASE_URL is not None:
     ALLOWED_HOSTS.append(BASE_URL)
-ALLOWED_HOSTS = ALLOWED_HOSTS if ALLOWED_HOSTS else []
-
+ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS if h] if ALLOWED_HOSTS else []
 
 # Application definition
 
@@ -98,7 +98,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "songuploader.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -116,7 +115,6 @@ DATABASES = {
         },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -139,7 +137,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Email Config
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -150,7 +147,6 @@ TIME_ZONE = os.environ.get("TZ", "Europe/Berlin")
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -206,7 +202,6 @@ CRON_TASKS = {
     },
 }
 
-
 MESSAGE_TAGS = {
     message_constants.DEBUG: "is-success is-light",
     message_constants.INFO: "is-info",
@@ -220,20 +215,20 @@ LANGUAGES = [
     ("en", _("English")),
 ]
 
-MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "/media/"
+MEDIA_ROOT = os.environ.get("MEDIA_ROOT", "/var/www/data/media")
+MEDIA_URL = os.environ.get("MEDIA_URL", "/media/")
 TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
     "height": 500,
     "menubar": False,
     "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
-    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
-    "code,help,wordcount",
+               "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+               "code,help,wordcount",
     "toolbar": "undo redo | bold italic underline strikethrough | numlist bullist checklist | fontsizeselect formatselect |"
-    "alignleft aligncenter alignright alignjustify | outdent indent | forecolor "
-    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
-    "fullscreen  preview save | insertfile image media pageembed template link anchor codesample | "
-    "a11ycheck ltr rtl | showcomments addcomment code",
+               "alignleft aligncenter alignright alignjustify | outdent indent | forecolor "
+               "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+               "fullscreen  preview save | insertfile image media pageembed template link anchor codesample | "
+               "a11ycheck ltr rtl | showcomments addcomment code",
 }
 
 ALLOWED_TAGS = frozenset(
@@ -255,9 +250,8 @@ ALLOWED_ATTRIBUTES = {
 }
 ALLOWED_ATTRIBUTES = {**ALLOWED_ATTRIBUTES, **bleach.sanitizer.ALLOWED_ATTRIBUTES}
 
-
 DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
-DBBACKUP_STORAGE_OPTIONS = {"location": "/var/local/songuploader/backups/db/"}
+DBBACKUP_STORAGE_OPTIONS = {"location": os.environ.get("DB_BACKUP_DIR", "/var/local/songuploader/backups/db/")}
 
 MEDIA_BACKUP_DIR = os.environ.get("MEDIA_BACKUP_DIR", "/var/local/songuploader/backups/media/")
 

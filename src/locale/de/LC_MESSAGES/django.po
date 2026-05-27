@@ -37,15 +37,3 @@ msgstr "Ausloggen"
 #: theme/templates/partials/header.html:56
 msgid "Login"
 msgstr "Einloggen"
-
-#~ msgid "Submit"
-#~ msgstr "Absenden"
-
-#~ msgid "Only 5 options possible"
-#~ msgstr "Nur 5 Antworten möglich"
-
-#~ msgid "Please choose 5 themes"
-#~ msgstr "Bitte 5 auswälen"
-
-#~ msgid "Choose Song"
-#~ msgstr "Song wählen"

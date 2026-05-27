@@ -21,7 +21,7 @@ class Command(BaseCommand):
             "--timediff",
             type=int,
             default=5,
-            help="Amount of days the notification will take place",
+            help="Amount of days until the poll closes to send the reminder (default: 5)",
         )
 
         parser.add_argument(

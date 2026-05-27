@@ -46,7 +46,7 @@ class Command(BaseCommand):
                     **row,
                 )
                 user.save()
-            elif user.first().last_login == None:
+            elif user.first().last_login is None:
                 user = user.first()
                 user.email = email
                 user.set_password(password)
@@ -57,7 +57,8 @@ class Command(BaseCommand):
                 "first_name": first_name,
                 "username": username,
                 "password": password,
-                "public_domain": settings.PUBLIC_DOMAIN,
+                "domain": settings.BASE_URL,
+                "protocol": "https",
             }
             async_task(
                 "django.core.mail.send_mail",

@@ -2,8 +2,7 @@ from datetime import datetime
 from typing import Any
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
-from django.utils import timezone
+from django.core.management.base import BaseCommand
 from django_q.models import Schedule
 from django_q.tasks import schedule
 
@@ -16,14 +15,14 @@ class Command(BaseCommand):
         group = parser.add_mutually_exclusive_group()
 
         group.add_argument(
-            "-a", action="store_true", help="applies action to all tasks"
+            "-a", action="store_true", help="(Un)Registers all tasks"
         )
         group.add_argument(
             "-t",
             type=str,
             nargs="+",
             action="append",
-            help="applies action to specified task",
+            help="Selects certain tasks to register",
         )
 
     def create_schedule(self, key, value):
@@ -40,7 +39,7 @@ class Command(BaseCommand):
             repeats=-1,
         )
 
-    def handle(self, **options: Any) -> None:
+    def handle(self, **options: Any) -> str | None:
         if options["option"] == "register":
             if options.get("a"):
                 Schedule.objects.all().delete()
@@ -57,3 +56,4 @@ class Command(BaseCommand):
             elif tasks := options.get("t"):
                 Schedule.objects.filter(name__in=tasks).delete()
             return "Tasks removed"
+        return None

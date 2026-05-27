@@ -9,6 +9,8 @@ FROM python:3.13-bullseye
 ENV DJANGO_LOG_FILE=/app/log/django/django.log
 ENV STATIC_ROOT=/app/static
 ENV MEDIA_ROOT=/app/media
+ENV DB_BACKUP_DIR=/app/backup/db
+ENV MEDIA_BACKUP_DIR=/app/backup/media
 ENV ENVIRONMENT=production
 EXPOSE 8000
 
@@ -29,10 +31,11 @@ RUN pip install -r requirements.txt --no-cache-dir
 USER gunicorn
 
 # Create neccesary folders
-RUN mkdir -p /app/log/gunicorn
-RUN mkdir -p /app/log/django
+RUN mkdir -p ${DB_BACKUP_DIR} ${MEDIA_BACKUP_DIR}
+RUN mkdir -p ${DJANGO_LOG_FILE%/*} /app/log/gunicorn
+RUN mkdir -p ${STATIC_ROOT} ${MEDIA_ROOT}
 
-COPY --chown=gunicorn:gunicorn deploy/entrypoint.sh ./
+COPY --chown=gunicorn:gunicorn deploy/entrypoint.sh deploy/entrypoint-djangoq.sh ./
 
 
 COPY --chown=gunicorn:gunicorn src/ ./
