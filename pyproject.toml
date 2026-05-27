@@ -28,6 +28,7 @@ bleach = {extras = ["css"], version = "^6.3.0"}
 yt-dlp = "^2026.3.17"
 pandas = "^3.0.3"
 django-q2 = "^1.10.0"
+django-compressor = "^4.6.0"
 
 [tool.poetry.group.dev.dependencies]
 pylance = "^6.0.1"

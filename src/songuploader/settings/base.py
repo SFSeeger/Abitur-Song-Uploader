@@ -37,6 +37,10 @@ if BASE_URL is not None:
     ALLOWED_HOSTS.append(BASE_URL)
 ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS if h] if ALLOWED_HOSTS else []
 
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS", None)
+if CSRF_TRUSTED_ORIGINS is not None:
+    CSRF_TRUSTED_ORIGINS = [h.strip() for h in CSRF_TRUSTED_ORIGINS.split(",") if h] if CSRF_TRUSTED_ORIGINS else []
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -60,6 +64,7 @@ INSTALLED_APPS = [
     "polls",
     "theme",
     "django_cleanup.apps.CleanupConfig",
+    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -154,6 +159,15 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
 STATICFILES_DIRS = [BASE_DIR / "theme/node_modules", BASE_DIR / "theme/static"]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

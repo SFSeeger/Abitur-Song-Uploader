@@ -1,5 +1,7 @@
 from .base import *
 
+COMPRESS_ENABLED = False
+
 ALLOWED_HOSTS = ["*"]
 DEBUG = True
 DATABASES = {

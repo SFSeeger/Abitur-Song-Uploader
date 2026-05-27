@@ -41,6 +41,7 @@ COPY --chown=gunicorn:gunicorn deploy/entrypoint.sh deploy/entrypoint-djangoq.sh
 COPY --chown=gunicorn:gunicorn src/ ./
 COPY --from=node_dependencies --chown=gunicorn:gunicorn /app/src/theme/node_modules ./theme/node_modules
 RUN python3 manage.py collectstatic --noinput --force
+RUN python3 manage.py compress --force -v 2
 RUN python3 manage.py compilemessages
 
 CMD ["./entrypoint.sh"]

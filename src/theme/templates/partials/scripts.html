@@ -1,7 +1,9 @@
-{% load static %}
+{% load static compress %}
+{% compress js %}
 <script src="{% static 'fontawsome/js/all.js' %}"></script>
 <script src="{% static 'js/bulma_cust.js' %}"></script>
 <script src="{% static 'bulma-toast/dist/bulma-toast.min.js' %}"></script>
+{% endcompress %}
 <script>
     window.FontAwesomeConfig = { autoReplaceSvg: false }
 </script>
