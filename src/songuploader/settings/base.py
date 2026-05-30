@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS if h] if ALLOWED_HOSTS else []
 
 csrf_origins_env = os.environ.get("CSRF_TRUSTED_ORIGINS", None)
 if csrf_origins_env is not None:
-    CSRF_TRUSTED_ORIGINS = [h.strip() for h in csrv_origins_env.split(",") if h] if csrf_origins_env else []
+    CSRF_TRUSTED_ORIGINS = [h.strip() for h in csrf_origins_env.split(",") if h] if csrf_origins_env else []
 
 # Application definition
 

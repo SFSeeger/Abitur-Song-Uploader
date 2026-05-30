@@ -1,11 +1,11 @@
-FROM node:lts AS node_dependencies
+FROM node:lts-trixie-slim AS node_dependencies
 
 COPY src/theme /app/src/theme
 WORKDIR /app/src/theme
 RUN npm ci
 
 
-FROM python:3.13-bullseye
+FROM python:3.13-trixie
 ENV DJANGO_LOG_FILE=/app/log/django/django.log
 ENV STATIC_ROOT=/app/static
 ENV MEDIA_ROOT=/app/media
