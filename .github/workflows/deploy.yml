@@ -1,4 +1,4 @@
-name: build-container.yml
+name: deploy.yml
 on:
   push:
     tags:
@@ -41,6 +41,7 @@ jobs:
         with:
           file: ./deploy/Dockerfile
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ steps.image.outputs.image }}:latest
             ${{ steps.image.outputs.image }}:${{ steps.meta.outputs.tag }}
