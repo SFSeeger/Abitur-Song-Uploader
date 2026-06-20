@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 20:43+0200\n"
+"POT-Creation-Date: 2026-06-20 12:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,273 +18,273 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: polls/forms.py:24
+#: src/polls/forms.py
 msgid "Update Question"
 msgstr "Änderung übernehmen"
 
-#: polls/forms.py:24
+#: src/polls/forms.py
 msgid "Create Question"
 msgstr "Frage Erstellen"
 
-#: polls/forms.py:48
+#: src/polls/forms.py
 msgid "Max Answers has to be one on this question type"
 msgstr "Für diesen Fragetyp kann Maximale Antworten nur eins sein"
 
-#: polls/management/commands/notify_closing_poll.py:66
+#: src/polls/management/commands/notify_closing_poll.py
 #, python-format
 msgid "Reminder: %(poll_count)s Poll closing in %(timediff)s days"
 msgstr "Erinnerung: %(poll_count)s Umfrage schließen in %(timediff)s Tagen"
 
-#: polls/models.py:15 polls/models.py:127 polls/models.py:162
-#: polls/templates/polls/question_filter.html:25
+#: src/polls/models.py src/polls/templates/polls/question_filter.html
 msgid "Name"
 msgstr "Name"
 
-#: polls/models.py:17 polls/models.py:186 polls/models.py:206
-#: polls/templates/polls/answer_poll/question_answer_form.html:10
-#: polls/templates/polls/question_detail.html:4
-#: polls/templates/polls/question_filter.html:61
+#: src/polls/models.py
+#: src/polls/templates/polls/answer_poll/question_answer_form.html
+#: src/polls/templates/polls/question_detail.html
+#: src/polls/templates/polls/question_filter.html
 msgid "Question"
 msgstr "Frage"
 
-#: polls/models.py:24
+#: src/polls/models.py
 msgid "Option"
 msgstr "Option"
 
-#: polls/models.py:25 polls/templates/polls/question_detail.html:62
+#: src/polls/models.py src/polls/templates/polls/question_detail.html
 msgid "Options"
 msgstr "Optionen"
 
-#: polls/models.py:39
+#: src/polls/models.py
 msgid "Value"
 msgstr "Wert"
 
-#: polls/models.py:53
+#: src/polls/models.py
 msgid "Image"
 msgstr "Bild"
 
-#: polls/models.py:65
+#: src/polls/models.py
 msgid "Values"
 msgstr "Werte"
 
-#: polls/models.py:115
+#: src/polls/models.py
 #, python-format
 msgid "Only %(max_answers)s options possible"
 msgstr "Nur %(max_answers)s Optionen möglich"
 
-#: polls/models.py:128 polls/models.py:163
+#: src/polls/models.py
 msgid "Description"
 msgstr "Beschreibung"
 
-#: polls/models.py:129
+#: src/polls/models.py
 msgid "Start Date"
 msgstr "Anfangsdatum"
 
-#: polls/models.py:130
+#: src/polls/models.py
 msgid "End Date"
 msgstr "Enddatum"
 
-#: polls/models.py:131
+#: src/polls/models.py
 msgid "Can be answered multiple times"
 msgstr "Kann öfters beantwortet werden"
 
-#: polls/models.py:140 polls/models.py:173 polls/models.py:193
+#: src/polls/models.py
 msgid "Poll"
 msgstr "Umfrage"
 
-#: polls/models.py:141 polls/templates/polls/poll_filter.html:4
-#: polls/templates/polls/question_detail.html:8
+#: src/polls/models.py src/polls/templates/polls/poll_filter.html
+#: src/polls/templates/polls/question_detail.html
 msgid "Polls"
 msgstr "Umfragen"
 
-#: polls/models.py:143
+#: src/polls/models.py
 msgid "Can open Polls"
 msgstr "Kann Umfragen öffnen"
 
-#: polls/models.py:144
+#: src/polls/models.py
 msgid "Can close Polls"
 msgstr "Kann Umfragen schließen"
 
-#: polls/models.py:151
+#: src/polls/models.py
 msgid "Text Type"
 msgstr "Texttyp"
 
-#: polls/models.py:152
+#: src/polls/models.py
 msgid "Image Type"
 msgstr "Bildtyp"
 
-#: polls/models.py:153
+#: src/polls/models.py
 msgid "Multiple Choice Type"
 msgstr "Mehrfachauswahltyp"
 
-#: polls/models.py:157 polls/templates/polls/question_detail.html:25
-#: polls/templates/polls/question_filter.html:28
+#: src/polls/models.py src/polls/templates/polls/question_detail.html
+#: src/polls/templates/polls/question_filter.html
 msgid "Question Type"
 msgstr "Fragentyp"
 
-#: polls/models.py:159 polls/templates/polls/question_filter.html:22
+#: src/polls/models.py src/polls/templates/polls/question_filter.html
 msgid "Position"
 msgstr "Position"
 
-#: polls/models.py:159
+#: src/polls/models.py
 msgid "Order in which questions are displayed"
 msgstr "Reinfolge in welcher die Fragen angezeigt werden"
 
-#: polls/models.py:165 polls/templates/polls/question_detail.html:29
-#: polls/templates/polls/question_filter.html:31
+#: src/polls/models.py src/polls/templates/polls/question_detail.html
+#: src/polls/templates/polls/question_filter.html
 msgid "Max Answers"
 msgstr "Maximale Antworten"
 
-#: polls/models.py:166
+#: src/polls/models.py
 msgid "Max amounts of Answers that can be given"
 msgstr "Maximale Anzahl an Antworten die geben werden kann"
 
-#: polls/models.py:170
+#: src/polls/models.py
 msgid "created at"
 msgstr "Erstellt um"
 
-#: polls/models.py:187
+#: src/polls/models.py
 msgid "Questions"
 msgstr "Fragen"
 
-#: polls/models.py:196
+#: src/polls/models.py
 msgid "User"
 msgstr "Nutzer"
 
-#: polls/models.py:209 polls/templates/polls/answer_detail.html:79
-#: polls/templates/polls/user_answer_detail.html:50
+#: src/polls/models.py src/polls/templates/polls/answer_detail.html
+#: src/polls/templates/polls/user_answer_detail.html
 msgid "Response"
 msgstr "Antwort"
 
-#: polls/tasks/answer_poll/views.py:48
+#: src/polls/tasks/answer_poll/views.py
 msgid "You have already answered this poll"
 msgstr "Du hast diese Umfrage bereits beantwortet"
 
-#: polls/tasks/answer_poll/views.py:58 polls/tasks/answer_poll/views.py:111
+#: src/polls/tasks/answer_poll/views.py
 msgid "Poll is closed"
 msgstr "Umfrage ist geschlossen"
 
-#: polls/tasks/create_poll/forms.py:23
+#: src/polls/tasks/create_poll/forms.py
 msgid "Update Poll"
 msgstr "Umfrage erstellen"
 
-#: polls/tasks/create_poll/forms.py:23
+#: src/polls/tasks/create_poll/forms.py
 msgid "Create Poll"
 msgstr "Umfrage erstellen"
 
-#: polls/tasks/create_poll/forms.py:47
-#: polls/templates/polls/answer_form.html:15
-#: polls/templates/polls/answer_poll/question_answer_form.html:17
+#: src/polls/tasks/create_poll/forms.py
+#: src/polls/templates/polls/answer_form.html
+#: src/polls/templates/polls/answer_poll/question_answer_form.html
 msgid "Submit"
 msgstr "Absenden"
 
-#: polls/tasks/create_poll/forms.py:53
+#: src/polls/tasks/create_poll/forms.py
 msgid "File"
 msgstr "Datei"
 
-#: polls/templates/polls/answer_detail.html:5
+#: src/polls/templates/polls/answer_detail.html
 msgid "List Answers for"
 msgstr "Antworten auflisten für"
 
-#: polls/templates/polls/answer_detail.html:7
+#: src/polls/templates/polls/answer_detail.html
 msgid "Inspect Answers"
 msgstr "Antworten ansehen"
 
-#: polls/templates/polls/answer_detail.html:11
+#: src/polls/templates/polls/answer_detail.html
 msgid "Collapse / Expand Filter"
 msgstr "Filter ein- / ausklappen"
 
-#: polls/templates/polls/answer_detail.html:17
+#: src/polls/templates/polls/answer_detail.html
 msgid "Page Size"
 msgstr "Seiten länge"
 
-#: polls/templates/polls/answer_detail.html:28
+#: src/polls/templates/polls/answer_detail.html
 msgid "Select"
 msgstr "Auswählen"
 
-#: polls/templates/polls/answer_detail.html:29
+#: src/polls/templates/polls/answer_detail.html
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: polls/templates/polls/answer_detail.html:37
-#, python-format
-msgid "Response #%(counter)s by %(user)s"
+#: src/polls/templates/polls/answer_detail.html
+#, fuzzy, python-format
+#| msgid "Response #%(counter)s by %(user)s"
+msgid ""
+"Response #%(counter)s by\n"
+"                        %(user)s"
 msgstr "Antwort #%(counter)s von %(user)s"
 
-#: polls/templates/polls/answer_detail.html:65
-#: polls/templates/polls/user_answer_detail.html:39
+#: src/polls/templates/polls/answer_detail.html
+#: src/polls/templates/polls/user_answer_detail.html
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: polls/templates/polls/answer_detail.html:66
-#: polls/templates/polls/user_answer_detail.html:40
+#: src/polls/templates/polls/answer_detail.html
+#: src/polls/templates/polls/user_answer_detail.html
 msgid "Delete"
 msgstr "Löschen"
 
-#: polls/templates/polls/answer_detail.html:73
-#: polls/templates/polls/user_answer_detail.html:47
+#: src/polls/templates/polls/answer_detail.html
+#: src/polls/templates/polls/user_answer_detail.html
 msgid "No User or User with answer selected"
 msgstr "Kein Nutzer oder Nutzer mit Antwort ausgewählt"
 
-#: polls/templates/polls/answer_detail.html:80
-#: polls/templates/polls/user_answer_detail.html:51
+#: src/polls/templates/polls/answer_detail.html
+#: src/polls/templates/polls/user_answer_detail.html
 msgid "Answer"
 msgstr "Antwort"
 
-#: polls/templates/polls/answer_form.html:5
+#: src/polls/templates/polls/answer_form.html
 msgid "Edit Answer"
 msgstr "Antwort bearbeiten"
 
-#: polls/templates/polls/answer_form.html:7
+#: src/polls/templates/polls/answer_form.html
 #, python-format
 msgid "Update Answer for %(question)s"
 msgstr "Antwort für %(question)s bearbeiten"
 
-#: polls/templates/polls/answer_form.html:10
-#: polls/templates/polls/answer_poll/question_answer_form.html:12
+#: src/polls/templates/polls/answer_form.html
+#: src/polls/templates/polls/answer_poll/question_answer_form.html
 #, fuzzy, python-format
 #| msgid "%(question.max_answers)s can be given"
 msgid "<strong>%(max)s</strong> options can be selected"
 msgstr "<strong>%(max)s</strong> Optionen können ausgewählt werden"
 
-#: polls/templates/polls/answer_poll/poll_done.html:3
-#: polls/templates/polls/answer_poll/poll_done.html:5
+#: src/polls/templates/polls/answer_poll/poll_done.html
 msgid "Thank you for answering"
 msgstr "Vielen dank für ihre Antwort"
 
-#: polls/templates/polls/answer_poll/poll_done.html:6
+#: src/polls/templates/polls/answer_poll/poll_done.html
 msgid "Return to main page"
 msgstr "Zurück zur Hauptseite kehren"
 
-#: polls/templates/polls/answer_poll/question_answer_form.html:5
-#: polls/templates/polls/option_form.html:31
+#: src/polls/templates/polls/answer_poll/question_answer_form.html
+#: src/polls/templates/polls/option_form.html
 msgid "Answer Question"
 msgstr "Frage beantworten"
 
-#: polls/templates/polls/answer_poll/question_answer_form.html:7
+#: src/polls/templates/polls/answer_poll/question_answer_form.html
 #, python-format
 msgid "Start answering %(question)s"
 msgstr "Beantworte %(question)s"
 
-#: polls/templates/polls/answer_poll/start_poll.html:6
+#: src/polls/templates/polls/answer_poll/start_poll.html
 #, python-format
 msgid "Start answering %(object)s"
 msgstr "%(object)s beantworten"
 
-#: polls/templates/polls/answer_poll/start_poll.html:11
+#: src/polls/templates/polls/answer_poll/start_poll.html
 msgid "Start Answering"
 msgstr "Antworten beginnen"
 
-#: polls/templates/polls/csv_option_form.html:4
-#: polls/templates/polls/csv_option_form.html:6
+#: src/polls/templates/polls/csv_option_form.html
 msgid "Load Options from csv"
 msgstr "Lade Optionen von einer csv-Datei"
 
-#: polls/templates/polls/csv_option_form.html:7
+#: src/polls/templates/polls/csv_option_form.html
 msgid "Format of the csv file"
 msgstr "Format der csv-Datei"
 
-#: polls/templates/polls/csv_option_form.html:10
+#: src/polls/templates/polls/csv_option_form.html
 msgid ""
 "value1 (any arbitrary value)\n"
 "value2\n"
@@ -296,17 +296,17 @@ msgstr ""
 "wert3\n"
 "..."
 
-#: polls/templates/polls/email/html/poll_reminder.html:3
+#: src/polls/templates/polls/email/html/poll_reminder.html
 #, python-format
 msgid "%(poll_count)s Poll expiring in %(timediff)s days!"
 msgstr ""
 
-#: polls/templates/polls/email/html/poll_reminder.html:5
+#: src/polls/templates/polls/email/html/poll_reminder.html
 #, python-format
 msgid "Hi %(first_name)s, <br />we need you to fill out some polls."
-msgstr ""
+msgstr "Hi %(first_name)s, <br />wir brauchen dich um einige Umfragen auszufüllen."
 
-#: polls/templates/polls/email/html/poll_reminder.html:8
+#: src/polls/templates/polls/email/html/poll_reminder.html
 #, python-format
 msgid ""
 "This is just a friendly reminder that the following %(poll_count)s polls "
@@ -330,7 +330,7 @@ msgstr ""
 "<strong>Beachte, dass Umfragen, die mehrfach beantwortet werden können, "
 "trotzen aufgelistet werden</strong>\n"
 
-#: polls/templates/polls/email/text/poll_reminder.txt:3
+#: src/polls/templates/polls/email/text/poll_reminder.txt
 #, python-format
 msgid ""
 "Hi %(first_name)s,\n"
@@ -357,82 +357,83 @@ msgstr ""
 "Beachte, dass Umfragen, die mehrfach beantwortet werden können, trotzen "
 "aufgelistet werden\n"
 
-#: polls/templates/polls/option_form.html:5
+#: src/polls/templates/polls/option_form.html
 msgid "Create Options"
 msgstr "Option erstellen"
 
-#: polls/templates/polls/option_form.html:12
+#: src/polls/templates/polls/option_form.html
 msgid "Load from CSV-File"
 msgstr "Von csv-Datei laden"
 
-#: polls/templates/polls/option_form.html:29
+#: src/polls/templates/polls/option_form.html
 msgid "Add another value"
 msgstr "Füge einen neuen Wert hinzu"
 
-#: polls/templates/polls/option_form.html:31
+#: src/polls/templates/polls/option_form.html
 msgid "Finish answering"
 msgstr "Beantworten abschließen"
 
-#: polls/templates/polls/poll_filter.html:7
-#: polls/templates/polls/poll_form.html:5
+#: src/polls/templates/polls/poll_filter.html
+#: src/polls/templates/polls/poll_form.html
 msgid "Add Poll"
 msgstr "Umfrage hinzufügen"
 
-#: polls/templates/polls/poll_form.html:5
+#: src/polls/templates/polls/poll_form.html
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: polls/templates/polls/question_detail.html:37
+#: src/polls/templates/polls/question_detail.html
 msgid "Responses"
 msgstr "Antworten"
 
-#: polls/templates/polls/question_detail.html:44
+#: src/polls/templates/polls/question_detail.html
 msgid "Current Winners"
 msgstr "Aktuelle Gewinner"
 
-#: polls/templates/polls/question_detail.html:45
+#: src/polls/templates/polls/question_detail.html
 msgid "Amount of votes"
 msgstr "Anzahl an Stimmen"
 
-#: polls/templates/polls/question_detail.html:78
+#: src/polls/templates/polls/question_detail.html
 msgid "No options yet..."
 msgstr "Noch keine Optionen..."
 
-#: polls/templates/polls/question_detail.html:99
+#: src/polls/templates/polls/question_detail.html
 msgid " # of Votes"
 msgstr " # an Stimmen"
 
-#: polls/templates/polls/question_filter.html:3
+#: src/polls/templates/polls/question_filter.html
 msgid "Questions for"
 msgstr "Fragen für"
 
-#: polls/templates/polls/question_filter.html:6
+#: src/polls/templates/polls/question_filter.html
 #, fuzzy
 #| msgid "Max Answers"
 msgid "Show Answers"
 msgstr "Antworten anzeigen"
 
-#: polls/templates/polls/question_filter.html:9
+#: src/polls/templates/polls/question_filter.html
 msgid "Edit Poll"
 msgstr "Umfrage bearbeiten"
 
-#: polls/templates/polls/question_filter.html:12
-#: polls/templates/polls/question_form.html:5
+#: src/polls/templates/polls/question_filter.html
+#: src/polls/templates/polls/question_form.html
 msgid "Add Question"
 msgstr "Frage hinzufügen"
 
-#: polls/templates/polls/question_form.html:5
+#: src/polls/templates/polls/question_form.html
 #, python-format
 msgid "Update %(object)s"
 msgstr "%(object)s aktualisieren"
 
-#: polls/templates/polls/user_answer_detail.html:4
-#: polls/templates/polls/user_answer_detail.html:6
+#: src/polls/templates/polls/user_answer_detail.html
 msgid "My Responses"
 msgstr "Meine Antworten"
 
-#: polls/templates/polls/user_answer_detail.html:11
+#: src/polls/templates/polls/user_answer_detail.html
 #, python-format
-msgid "Response #%(counter)s for Poll %(poll)s"
+#| msgid "Response #%(counter)s for Poll %(poll)s"
+msgid ""
+"Response #%(counter)s for Poll\n"
+"                        %(poll)s"
 msgstr "Antwort #%(counter)s für Umfrage %(poll)s"
-

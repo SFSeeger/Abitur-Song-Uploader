@@ -4,7 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["Simon Felix Seeger <simon.f.seeger@gmx.de>"]
 readme = "README.md"
-packages = [{include = "song_uploader"}]
+package-mode = false
+
 
 [tool.poetry.dependencies]
 python = "^3.13"
@@ -36,6 +37,7 @@ black = "^26.5.1"
 pylint-django = "^2.7.0"
 ansible = "^13.7.0"
 coverage = "^7.14.0"
+pandas-stubs = "~=3.0.3"
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.8"

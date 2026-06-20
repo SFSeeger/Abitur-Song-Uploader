@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from tqdm import tqdm
 
 from polls.utils import get_user_polls
+from songuploader.context_processors import get_settings_context
 
 
 class Command(BaseCommand):
@@ -40,6 +41,7 @@ class Command(BaseCommand):
             "timediff": options["timediff"],
             "domain": settings.BASE_URL,
             "protocol": "https",
+            **get_settings_context(None),
         }
         if not options["no_input"]:
             if (

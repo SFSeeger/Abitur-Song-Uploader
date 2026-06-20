@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 from django_q.tasks import async_task
 from tqdm import tqdm
 
+from songuploader.context_processors import get_settings_context
+
 pool = string.ascii_letters + string.digits
 
 
@@ -59,6 +61,7 @@ class Command(BaseCommand):
                 "password": password,
                 "domain": settings.BASE_URL,
                 "protocol": "https",
+                **get_settings_context(None),
             }
             async_task(
                 "django.core.mail.send_mail",

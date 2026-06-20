@@ -9,5 +9,9 @@ def get_public_domain(request):
     }
 
 
-def get_settings(request):
-    return {"ADMIN_EMAIL": settings.ADMIN_EMAIL}
+def get_settings_context(request):
+    return {
+        "ADMIN_EMAIL": settings.ADMIN_EMAIL,
+        "CURRENT_YEAR": settings.CURRENT_YEAR,
+        "SCHOOL_NAME": settings.SCHOOL_NAME,
+    }

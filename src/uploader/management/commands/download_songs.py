@@ -1,9 +1,7 @@
 from django.core.management.base import BaseCommand
-from django_q.tasks import async_chain, async_task
 
 from songuploader.utils import download_song, slice_song
 from uploader.models import Submission
-from uploader.views.submission_views import download_slice
 
 
 class Command(BaseCommand):

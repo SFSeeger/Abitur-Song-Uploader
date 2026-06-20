@@ -5,17 +5,20 @@ from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
 from django_q.tasks import async_chain, async_task
 
+from songuploader.context_processors import get_settings_context
+
 User = get_user_model()
 
 
 class Command(BaseCommand):
-    help = "To manually redownload/slice songs for users"
+    help = "Sends a reminder email to users who have not submitted a song for the graduation ceremony."
 
     def handle(self, *args, **options):
         users = User.objects.filter(submission=None).prefetch_related("submission_set")
         context = {
             "domain": settings.BASE_URL,
             "protocol": "https",
+            **get_settings_context(None),
         }
         for user in users:
             context["user"] = user
