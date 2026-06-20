@@ -71,4 +71,4 @@ typing-inspection==0.4.2 ; python_version >= "3.13" and python_version < "4.0"
 tzdata==2026.2 ; python_version >= "3.13" and python_version < "4.0" and (sys_platform == "win32" or sys_platform == "emscripten")
 urllib3==2.7.0 ; python_version >= "3.13" and python_version < "4.0"
 webencodings==0.5.1 ; python_version >= "3.13" and python_version < "4.0"
-yt-dlp==2026.3.17 ; python_version >= "3.13" and python_version < "4.0"
+yt-dlp==2026.6.9 ; python_version >= "3.13" and python_version < "4.0"
