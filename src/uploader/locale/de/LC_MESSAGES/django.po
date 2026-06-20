@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-23 23:38+0200\n"
+"POT-Creation-Date: 2026-06-20 12:24+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,167 +18,169 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: uploader/forms.py:50 uploader/forms.py:91 uploader/forms.py:128
+#: src/uploader/forms.py
 msgid "Submit"
 msgstr "Absenden"
 
-#: uploader/forms.py:54
+#: src/uploader/forms.py
 msgid "Username"
 msgstr "Benutzername"
 
-#: uploader/forms.py:56
+#: src/uploader/forms.py
 msgid "Password"
 msgstr "Passwort"
 
-#: uploader/forms.py:68 uploader/forms.py:181
+#: src/uploader/forms.py
 msgid "Start Time cannot be larger than End Time"
 msgstr "Anfangs Zeit kann nicht größer als Endzeit sein"
 
-#: uploader/forms.py:72 uploader/forms.py:185
+#: src/uploader/forms.py
 #, python-format
 msgid "Duration of %(duration)d larger than 30 seconds"
 msgstr "Laufzeit von %(duration)d länger als 30 sekunden"
 
-#: uploader/forms.py:103 uploader/forms.py:196
+#: src/uploader/forms.py
+msgid "Download"
+msgstr ""
+
+#: src/uploader/forms.py
+msgid "Users to exclude"
+msgstr ""
+
+#: src/uploader/forms.py src/uploader/models.py
+msgid "Song URL"
+msgstr "Song URL"
+
+#: src/uploader/forms.py src/uploader/models.py
+msgid "Start Time (in sec.)"
+msgstr "Anfangs Zeit (in sek.)"
+
+#: src/uploader/forms.py src/uploader/models.py
+msgid "End Time"
+msgstr "Endzeit"
+
+#: src/uploader/forms.py
+msgid "Song URL too long"
+msgstr "Song URL ist zu lang"
+
+#: src/uploader/forms.py
 #, python-format
 msgid "Not a valid YouTube url: %(value)s"
 msgstr "Keine valide YouTube url: %(value)s"
 
-#: uploader/forms.py:109 uploader/forms.py:202
+#: src/uploader/forms.py
 msgid "Could not find YouTube video"
 msgstr "Konnte YouTube video nicht finden"
 
-#: uploader/forms.py:159
-msgid "Download"
-msgstr ""
-
-#: uploader/forms.py:165
-msgid "Users to exclude"
-msgstr ""
-
-#: uploader/forms.py:169 uploader/models.py:16
-msgid "Song URL"
-msgstr "Song URL"
-
-#: uploader/forms.py:170 uploader/models.py:18
-msgid "Start Time (in sec.)"
-msgstr "Anfangs Zeit (in sek.)"
-
-#: uploader/forms.py:171 uploader/models.py:23
-msgid "End Time"
-msgstr "Endzeit"
-
-#: uploader/models.py:29
+#: src/uploader/models.py
 msgid "Song File"
 msgstr "Song Datei"
 
-#: uploader/templates/uploader/choose_song.html:4
+#: src/uploader/templates/uploader/choose_song.html
 msgid "Choose upload method"
-msgstr "Wähle methode zum hochladen"
+msgstr "Wähle eine Methode zum hochladen"
 
-#: uploader/templates/uploader/choose_song.html:8
-#: uploader/templates/uploader/choose_upload_type.html:8
+#: src/uploader/templates/uploader/choose_song.html
+#: src/uploader/templates/uploader/choose_upload_type.html
 msgid "load song from youtube (recommended)"
 msgstr "Lade den song von Youtube (empfohlen)"
 
-#: uploader/templates/uploader/choose_song.html:11
-#: uploader/templates/uploader/choose_upload_type.html:15
+#: src/uploader/templates/uploader/choose_song.html
+#: src/uploader/templates/uploader/choose_upload_type.html
 msgid "upload your own song from disk"
 msgstr "Lade deinen eigenen Song vom Laufwerk hoch"
 
-#: uploader/templates/uploader/choose_upload_type.html:3
+#: src/uploader/templates/uploader/choose_upload_type.html
 msgid "Choose Music"
 msgstr "Musik Wählen"
 
-#: uploader/templates/uploader/choose_upload_type.html:5
+#: src/uploader/templates/uploader/choose_upload_type.html
 msgid "How do you want to choose your song?"
 msgstr "Wie willst du deinen Song wählen?"
 
-#: uploader/templates/uploader/choose_upload_type.html:11
+#: src/uploader/templates/uploader/choose_upload_type.html
 msgid "Using Youtube"
 msgstr "Von Youtube"
 
-#: uploader/templates/uploader/choose_upload_type.html:18
+#: src/uploader/templates/uploader/choose_upload_type.html
 msgid "Using File"
 msgstr "Song Datei"
 
-#: uploader/templates/uploader/index.html:15
+#: src/uploader/templates/uploader/index.html
 msgid "Song submitted"
 msgstr "Song hochgeladen"
 
-#: uploader/templates/uploader/index.html:17
-#: uploader/templates/uploader/playlist.html:30
+#: src/uploader/templates/uploader/index.html
+#: src/uploader/templates/uploader/playlist.html
 msgid "Song processing"
 msgstr "Song wird vorbereitet"
 
-#: uploader/templates/uploader/index.html:19
+#: src/uploader/templates/uploader/index.html
 msgid "Song missing"
 msgstr "Song fehlt"
 
-#: uploader/templates/uploader/index.html:27
+#: src/uploader/templates/uploader/index.html
 msgid "New features coming soon! Stay tuned"
 msgstr "Neue Features kommen bald! Bleib gespannt"
 
-#: uploader/templates/uploader/index.html:38
-#: uploader/templates/uploader/index.html:69
+#: src/uploader/templates/uploader/index.html
 #, python-format
 msgid "%(poll_number)s polls need your attention"
 msgstr "%(poll_number)s Umfragen brauchen deine Aufmerksamkeit"
 
-#: uploader/templates/uploader/index.html:44
-#: uploader/templates/uploader/index.html:75
+#: src/uploader/templates/uploader/index.html
 #, python-format
 msgid "Answer %(poll)s"
 msgstr "%(poll)s beantworten"
 
-#: uploader/templates/uploader/index.html:48
+#: src/uploader/templates/uploader/index.html
 msgid "Please remind your friends to view their polls"
 msgstr "Bitte erinnere deine Freunde ihre Umfragen einzusehen"
 
-#: uploader/templates/uploader/index.html:52
+#: src/uploader/templates/uploader/index.html
 msgid "All Polls"
 msgstr "Alle Umfragen"
 
-#: uploader/templates/uploader/index.html:63
+#: src/uploader/templates/uploader/index.html
 msgid "List Polls"
 msgstr "Alle Umfragen"
 
-#: uploader/templates/uploader/index.html:79
+#: src/uploader/templates/uploader/index.html
 msgid "No Polls"
 msgstr "Keine Umfragen"
 
-#: uploader/templates/uploader/index.html:85
+#: src/uploader/templates/uploader/index.html
 msgid "Close"
 msgstr "Schließen"
 
-#: uploader/templates/uploader/login_view.html:12
+#: src/uploader/templates/uploader/login_view.html
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
 
-#: uploader/templates/uploader/playlist.html:19
+#: src/uploader/templates/uploader/playlist.html
 msgid "Starting"
 msgstr "Beginnt"
 
-#: uploader/templates/uploader/playlist.html:41
+#: src/uploader/templates/uploader/playlist.html
 msgid "Compiling Songs"
 msgstr "Songs werden gesammelt"
 
-#: uploader/templates/uploader/playlist.html:52
+#: src/uploader/templates/uploader/playlist.html
 msgid "Creating Archive"
 msgstr "Archive wird erstellt"
 
-#: uploader/templates/uploader/playlist.html:63
+#: src/uploader/templates/uploader/playlist.html
 msgid "Done"
 msgstr "Fertig"
 
-#: uploader/templates/uploader/playlist.html:69
+#: src/uploader/templates/uploader/playlist.html
 msgid "Reset Form"
 msgstr "Formular zurücksetzen"
 
-#: uploader/templates/uploader/playlist.html:152
+#: src/uploader/templates/uploader/playlist.html
 msgid "Download Archive"
 msgstr "Archive herunterladen"
 
-#: uploader/views/views.py:55
+#: src/uploader/views/views.py
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"

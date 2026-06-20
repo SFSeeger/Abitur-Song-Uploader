@@ -1,12 +1,10 @@
 import os
 import sys
-from datetime import datetime
 from io import StringIO
 from typing import Any, Optional
 
-from django.conf import settings
 from django.core.management import call_command
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):

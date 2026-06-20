@@ -7,6 +7,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 from tqdm import tqdm
 
+from songuploader.context_processors import get_settings_context
+
 
 class Command(BaseCommand):
     def handle(self, *args: Any, **options: Any) -> Optional[str]:
@@ -24,6 +26,7 @@ class Command(BaseCommand):
         context = {
             "domain": settings.BASE_URL,
             "protocol": "https",
+            **get_settings_context(None),
         }
         for user in tqdm(users, total=user_count):
             context["first_name"] = user.first_name

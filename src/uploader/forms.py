@@ -20,6 +20,7 @@ User = get_user_model()
 
 pattern = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"'
 yt_url = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+yt_url = re.compile(yt_url)
 
 
 def try_site(video_id: str) -> bool:
@@ -97,21 +98,7 @@ class SubmissionForm(SubmissionBaseForm):
 
     def clean_song_url(self):
         data = self.cleaned_data["song_url"]
-
-        if not (match := re.match(yt_url, data)):
-            raise ValidationError(
-                _("Not a valid YouTube url: %(value)s"),
-                code="invalid",
-                params={"value": data},
-            )
-        elif not try_site(match[6]):
-            raise ValidationError(
-                _("Could not find YouTube video"),
-                code="invalid",
-            )
-
-        return data
-
+        return _clean_song_url(data)
 
 class SubmissionUploadForm(SubmissionBaseForm):
     def __init__(self, *args, **kwargs) -> None:
@@ -169,6 +156,7 @@ class PlaylistDownloadForm(forms.Form):
     song_url = forms.URLField(label=_("Song URL"), required=False)
     start_time = forms.IntegerField(label=_("Start Time (in sec.)"), min_value=0)
     end_time = forms.IntegerField(label=_("End Time"), min_value=0)
+
     # song = FileField(
     #    label=_("Or Song"), required=False, validators=[FileExtensionValidator(["mp3"])]
     # )
@@ -190,20 +178,7 @@ class PlaylistDownloadForm(forms.Form):
 
     def clean_song_url(self):
         data = self.cleaned_data["song_url"]
-
-        if not (match := re.match(yt_url, data)):
-            raise ValidationError(
-                _("Not a valid YouTube url: %(value)s"),
-                code="invalid",
-                params={"value": data},
-            )
-        elif not try_site(match[6]):
-            raise ValidationError(
-                _("Could not find YouTube video"),
-                code="invalid",
-            )
-
-        return data
+        return _clean_song_url(data)
 
     # def clean_song(self):
     #     data = self.cleaned_data["song"]
@@ -211,3 +186,22 @@ class PlaylistDownloadForm(forms.Form):
     #     if data and song_url:
     #         raise ValidationError(_("Cannot choose song and song URL"))
     #     return data
+
+
+def _clean_song_url(song_url: str) -> str:
+    if len(song_url) > 1000:
+        raise ValidationError(_("Song URL too long"), code="invalid")
+
+    if not (match := re.match(yt_url, song_url)):
+        raise ValidationError(
+            _("Not a valid YouTube url: %(value)s"),
+            code="invalid",
+            params={"value": song_url},
+        )
+    elif not try_site(match[6]):
+        raise ValidationError(
+            _("Could not find YouTube video"),
+            code="invalid",
+        )
+
+    return song_url

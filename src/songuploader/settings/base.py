@@ -15,6 +15,7 @@ from pathlib import Path
 
 import bleach
 from django.contrib.messages import constants as message_constants
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -96,7 +97,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
                 "songuploader.context_processors.get_public_domain",
-                "songuploader.context_processors.get_settings",
+                "songuploader.context_processors.get_settings_context",
             ],
         },
     },
@@ -292,3 +293,5 @@ NOTEBOOK_ARGUMENTS = [
 ]
 
 ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL")
+CURRENT_YEAR = os.environ.get("CURRENT_YEAR", timezone.now().year)
+SCHOOL_NAME = os.environ.get("SCHOOL_NAME", "")

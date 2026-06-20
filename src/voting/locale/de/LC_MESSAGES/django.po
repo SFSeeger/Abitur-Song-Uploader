@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 18:31+0100\n"
+"POT-Creation-Date: 2026-06-20 12:24+0200\n"
 "PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Simon Felix Seeger <simon.f.seeger@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: voting/forms.py:16
+#: src/voting/forms.py
 msgid "Submit"
 msgstr "Absenden"
 
-#: voting/forms.py:28
+#: src/voting/forms.py
 msgid "Only 5 options possible"
 msgstr "Maximal 5 optionen möglich"
 
-#: voting/templates/voting/dashboard.html:5
+#: src/voting/templates/voting/dashboard.html
 msgid "Vote Dashboard"
 msgstr "Mottowoche Übersicht"
 
-#: voting/templates/voting/dashboard.html:7
-#| msgid "Vote Dashboard"
+#: src/voting/templates/voting/dashboard.html
 msgid "Dashboard"
 msgstr "Übersicht"
 
-#: voting/templates/voting/dashboard.html:10
+#: src/voting/templates/voting/dashboard.html
 msgid "Votes out of"
 msgstr "Stimmen von"
 
-#: voting/templates/voting/dashboard.html:17
+#: src/voting/templates/voting/dashboard.html
 msgid "Current Winners"
 msgstr "Aktuelle Gewinner"
 
-#: voting/templates/voting/dashboard.html:18
+#: src/voting/templates/voting/dashboard.html
 msgid "Ammount of votes"
 msgstr "Anzahl der Stimmen"
 
-#: voting/templates/voting/vote.html:4
+#: src/voting/templates/voting/vote.html
 msgid "Choose Theme"
 msgstr "Motto wählen"
 
-#: voting/templates/voting/vote.html:6
+#: src/voting/templates/voting/vote.html
 msgid "Please choose 5 themes"
 msgstr "Bitte 5 auswählen"
 
-#: voting/views.py:32
+#: src/voting/views.py
 msgid "The poll is now closed"
 msgstr "Die Abstimmung ist beendet"

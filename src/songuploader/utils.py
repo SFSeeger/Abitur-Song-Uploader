@@ -102,7 +102,7 @@ def slice_song(submission: Submission):
     os.remove(out_path)
 
 
-def slice_song_path(filepath: str, start_time: str, end_time: str) -> str:
+def slice_song_path(filepath: str, start_time: int, end_time: int) -> str:
     filename, extension = os.path.splitext(os.path.basename(filepath))
     input_path = os.path.join(
         settings.MEDIA_ROOT, "tmp", filename + f"_full{extension}"
