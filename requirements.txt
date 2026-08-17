@@ -33,7 +33,7 @@ rcssmin==1.2.2 ; python_version >= "3.13" and python_version < "4.0"
 requests==2.34.2 ; python_version >= "3.13" and python_version < "4.0"
 rjsmin==1.2.5 ; python_version >= "3.13" and python_version < "4.0"
 six==1.17.0 ; python_version >= "3.13" and python_version < "4.0"
-sqlparse==0.5.5 ; python_version >= "3.13" and python_version < "4.0"
+sqlparse==0.6.0 ; python_version >= "3.13" and python_version < "4.0"
 tinycss2==1.5.1 ; python_version >= "3.13" and python_version < "4.0"
 tqdm==4.68.3 ; python_version >= "3.13" and python_version < "4.0"
 tzdata==2026.2 ; python_version >= "3.13" and python_version < "4.0" and (sys_platform == "win32" or sys_platform == "emscripten")
